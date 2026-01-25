@@ -14,6 +14,7 @@ import { TimeframeToggle } from '@/components/input';
 import { InsightSection } from '@/components/sections';
 import { Citation } from '@/components/display';
 import { AETable } from '@/components/tables';
+import { ActionMenu } from '@/components/menus';
 import { useTimeframeStore } from '@/stores';
 
 // Map summary level values to InsightSection rating values
@@ -69,18 +70,21 @@ export function ManagerDetail() {
       ) : (
         // Manager found - show hero section
         <div className="mt-4">
-          {/* Row 1: Manager name + TimeframeToggle */}
-          <div className="flex items-center justify-between mb-2">
-            <h1 className="text-3xl font-bold tracking-tight">
-              {manager.name}
-            </h1>
-            <TimeframeToggle />
+          {/* Row 1: Manager name + TimeframeToggle + ActionMenu */}
+          <div className="flex items-start justify-between mb-2">
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight">
+                {manager.name}
+              </h1>
+              <p className="text-gray-500">
+                {manager.region} Region
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <TimeframeToggle />
+              <ActionMenu managerName={manager.name} />
+            </div>
           </div>
-
-          {/* Row 2: Region */}
-          <p className="text-gray-500 mb-6">
-            {manager.region} Region
-          </p>
 
           {/* Row 3: Metrics row */}
           <div className="flex gap-8 mt-6">
@@ -211,9 +215,16 @@ export function ManagerDetail() {
             </div>
           </div>
 
-          {/* Sources footer will be added in Plan 04-04 */}
-          <div className="mt-8 p-4 bg-background-100 border border-border rounded-lg">
-            <p className="text-sm text-gray-400">Sources footer coming in Plan 04-04</p>
+          {/* Sources Footer */}
+          <div className="mt-8 pt-6 border-t border-border">
+            <h4 className="text-sm font-semibold text-gray-700 mb-3">Sources</h4>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-500">
+              <span>{manager.sources.call_listening} calls listened</span>
+              <span>{manager.sources.call_attendance} calls attended</span>
+              <span>{manager.sources.call_comments} comments</span>
+              <span>{manager.sources.scorecards} scorecards</span>
+              <span>{manager.sources.feedback_events} feedback events</span>
+            </div>
           </div>
         </div>
       )}
