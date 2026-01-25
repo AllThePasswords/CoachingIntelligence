@@ -11,7 +11,7 @@ This roadmap delivers a sales coaching analytics dashboard with AI-powered insig
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Foundation** - Project scaffolding, data layer, design tokens
-- [ ] **Phase 2: Component Library** - Atomic/composite components with timeframe state
+- [x] **Phase 2: Component Library** - Atomic/composite components with timeframe state
 - [ ] **Phase 3: Dashboard** - Manager cards grid with navigation and timeframe toggle
 - [ ] **Phase 4: Manager Detail** - Five insight dimensions, AE table, sources footer
 - [ ] **Phase 5: Modal System** - Citation verification and action confirmation modals
@@ -49,12 +49,12 @@ Plans:
 **Plans**: 6 plans
 
 Plans:
-- [ ] 02-01-PLAN.md - Zustand store and atomic icon components (TrendArrow, InfoIcon)
-- [ ] 02-02-PLAN.md - Badge, Tooltip, and UI barrel export
-- [ ] 02-03-PLAN.md - MetricDisplay and Citation display components
-- [ ] 02-04-PLAN.md - TimeframeToggle and AskInput input components
-- [ ] 02-05-PLAN.md - ManagerCard and InsightSection composite components
-- [ ] 02-06-PLAN.md - Component library demo and visual verification
+- [x] 02-01-PLAN.md - Zustand store and atomic icon components (TrendArrow, InfoIcon)
+- [x] 02-02-PLAN.md - Badge, Tooltip, and UI barrel export
+- [x] 02-03-PLAN.md - MetricDisplay and Citation display components
+- [x] 02-04-PLAN.md - TimeframeToggle and AskInput input components
+- [x] 02-05-PLAN.md - ManagerCard and InsightSection composite components
+- [x] 02-06-PLAN.md - Component library demo and visual verification
 
 ### Phase 3: Dashboard
 **Goal**: Users can view all managers at a glance and navigate to details
@@ -66,10 +66,13 @@ Plans:
   3. User can toggle timeframe (30/60/90 days) and all metrics update immediately
   4. User can click any manager card to navigate to that manager's detail page
   5. User sees "Ask anything" input pinned to bottom of dashboard (submitting opens new chat)
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 03-01: TBD
+- [ ] 03-01-PLAN.md - Install React Router and create AppLayout with header and pinned AskInput
+- [ ] 03-02-PLAN.md - Create Dashboard and ManagerDetail page components
+- [ ] 03-03-PLAN.md - Wire routing and add gradient accent to cards
+- [ ] 03-04-PLAN.md - Human verification of dashboard functionality
 
 ### Phase 4: Manager Detail
 **Goal**: Users can explore a manager's coaching effectiveness across all five dimensions
@@ -140,8 +143,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-25 |
-| 2. Component Library | 0/6 | Ready to execute | - |
-| 3. Dashboard | 0/? | Not started | - |
+| 2. Component Library | 6/6 | Complete | 2026-01-25 |
+| 3. Dashboard | 0/4 | Ready to execute | - |
 | 4. Manager Detail | 0/? | Not started | - |
 | 5. Modal System | 0/? | Not started | - |
 | 6. Claude Integration | 0/? | Not started | - |
@@ -149,4 +152,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 ---
 *Roadmap created: 2026-01-25*
-*Last updated: 2026-01-25 - Phase 2 planned (6 plans)*
+*Last updated: 2026-01-25 - Phase 3 planned (4 plans in 3 waves)*
