@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 4 of 7 (Manager Detail)
-Plan: 1 of 3 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-25 - Completed 04-01-PLAN.md (Hero Section)
+Last activity: 2026-01-25 - Completed 04-03-PLAN.md (AE Coaching Table)
 
-Progress: [=======---] ~47%
+Progress: [=========-] ~57%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 14
+- Total plans completed: 16
 - Average duration: 2 min
-- Total execution time: 32 min
+- Total execution time: 34 min
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [=======---] ~47%
 | 01-foundation | 3 | 20 min | 7 min |
 | 02-component-library | 6 | 6 min | 1 min |
 | 03-dashboard | 4 | 3 min | 1 min |
-| 04-manager-detail | 1 | 1 min | 1 min |
+| 04-manager-detail | 3 | 3 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-05 (1 min), 02-06 (1 min), 03-02 (1 min), 03-03 (2 min), 04-01 (1 min)
+- Last 5 plans: 03-02 (1 min), 03-03 (2 min), 04-01 (1 min), 04-02 (1 min), 04-03 (1 min)
 - Trend: Fast execution continues
 
 *Updated after each plan completion*
@@ -61,6 +61,10 @@ Recent decisions affecting current work:
 - **Gradient border wrapper:** p-0.5 bg-gradient-to-r container with adjusted inner rounding
 - **Detail page hero layout:** name + toggle row, region, metrics row, AI summary paragraph
 - **Timeframe-aware metrics pattern:** Use getTimeframeData with nullish coalescing fallback
+- **Level-to-rating mapping:** High/Even/Specific=improving, Medium/Stable=steady, Low/Minimal/Declining/Absent=declining
+- **InsightSection composition:** Data-driven sections with optional rating badges for evaluative content
+- **Simple semantic table pattern:** No table library needed for 4-16 rows of data
+- **Flag badge styling:** text-xs px-2 py-1 rounded-md font-medium with bg-{color}/10 text-{color}
 
 ### Pending Todos
 
@@ -73,6 +77,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 04-01-PLAN.md (Hero Section)
+Stopped at: Completed 04-03-PLAN.md (AE Coaching Table)
 Resume file: None
-Next action: Execute 04-02-PLAN.md (Insight Sections)
+Next action: Execute 04-04-PLAN.md (Sources Footer)
