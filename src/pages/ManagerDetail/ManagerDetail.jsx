@@ -203,9 +203,17 @@ export function ManagerDetail() {
             </div>
           )}
 
-          {/* AE Table will be added in Plan 04-03 */}
+          {/* AE Coaching Table */}
+          <div className="mt-8">
+            <h2 className="text-xl font-semibold text-foreground mb-4">Team Coaching Details</h2>
+            <div className="bg-background-100 border border-border rounded-lg overflow-hidden">
+              <AETable managerId={managerId} />
+            </div>
+          </div>
+
+          {/* Sources footer will be added in Plan 04-04 */}
           <div className="mt-8 p-4 bg-background-100 border border-border rounded-lg">
-            <p className="text-sm text-gray-400">AE table coming in Plan 04-03</p>
+            <p className="text-sm text-gray-400">Sources footer coming in Plan 04-04</p>
           </div>
         </div>
       )}
