@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-25)
 
 **Core value:** Ann can ask any question about her managers' coaching and get an intelligent, cited answer
-**Current focus:** Phase 3 - Dashboard
+**Current focus:** Phase 4 - Manager Detail
 
 ## Current Position
 
-Phase: 3 of 7 (Dashboard) - COMPLETE
-Plan: 4 of 4 in current phase
-Status: Complete
-Last activity: 2026-01-25 - Completed Phase 3 (Dashboard)
+Phase: 4 of 7 (Manager Detail)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-25 - Completed 04-01-PLAN.md (Hero Section)
 
-Progress: [======----] ~43%
+Progress: [=======---] ~47%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
+- Total plans completed: 14
 - Average duration: 2 min
-- Total execution time: 31 min
+- Total execution time: 32 min
 
 **By Phase:**
 
@@ -30,9 +30,10 @@ Progress: [======----] ~43%
 | 01-foundation | 3 | 20 min | 7 min |
 | 02-component-library | 6 | 6 min | 1 min |
 | 03-dashboard | 4 | 3 min | 1 min |
+| 04-manager-detail | 1 | 1 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: 02-04 (1 min), 02-05 (1 min), 02-06 (1 min), 03-02 (1 min), 03-03 (2 min)
+- Last 5 plans: 02-05 (1 min), 02-06 (1 min), 03-02 (1 min), 03-03 (2 min), 04-01 (1 min)
 - Trend: Fast execution continues
 
 *Updated after each plan completion*
@@ -58,6 +59,8 @@ Recent decisions affecting current work:
 - **Page component pattern:** max-w-7xl container with px-4 py-8 padding
 - **Layout route pattern:** AppLayout wraps all routes via element={} without path, using Outlet
 - **Gradient border wrapper:** p-0.5 bg-gradient-to-r container with adjusted inner rounding
+- **Detail page hero layout:** name + toggle row, region, metrics row, AI summary paragraph
+- **Timeframe-aware metrics pattern:** Use getTimeframeData with nullish coalescing fallback
 
 ### Pending Todos
 
@@ -70,6 +73,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed Phase 3 (Dashboard)
+Stopped at: Completed 04-01-PLAN.md (Hero Section)
 Resume file: None
-Next action: Plan Phase 4 (Manager Detail)
+Next action: Execute 04-02-PLAN.md (Insight Sections)
