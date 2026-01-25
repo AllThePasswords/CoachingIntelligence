@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 4 of 7 (Manager Detail)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-25 - Completed 04-03-PLAN.md (AE Coaching Table)
+Last activity: 2026-01-25 - Completed 04-04-PLAN.md (Sources Footer)
 
-Progress: [=========-] ~57%
+Progress: [==========-] ~61%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 16
+- Total plans completed: 17
 - Average duration: 2 min
-- Total execution time: 34 min
+- Total execution time: 36 min
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [=========-] ~57%
 | 01-foundation | 3 | 20 min | 7 min |
 | 02-component-library | 6 | 6 min | 1 min |
 | 03-dashboard | 4 | 3 min | 1 min |
-| 04-manager-detail | 3 | 3 min | 1 min |
+| 04-manager-detail | 4 | 5 min | 1 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-02 (1 min), 03-03 (2 min), 04-01 (1 min), 04-02 (1 min), 04-03 (1 min)
+- Last 5 plans: 03-03 (2 min), 04-01 (1 min), 04-02 (1 min), 04-03 (1 min), 04-04 (2 min)
 - Trend: Fast execution continues
 
 *Updated after each plan completion*
@@ -65,6 +65,8 @@ Recent decisions affecting current work:
 - **InsightSection composition:** Data-driven sections with optional rating badges for evaluative content
 - **Simple semantic table pattern:** No table library needed for 4-16 rows of data
 - **Flag badge styling:** text-xs px-2 py-1 rounded-md font-medium with bg-{color}/10 text-{color}
+- **Outside click pattern:** useRef + mousedown listener for dropdown close behavior
+- **Sources footer pattern:** Horizontal flex-wrap with gap-x-6 for data provenance display
 
 ### Pending Todos
 
@@ -77,6 +79,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-25
-Stopped at: Completed 04-03-PLAN.md (AE Coaching Table)
+Stopped at: Completed 04-04-PLAN.md (Sources Footer)
 Resume file: None
-Next action: Execute 04-04-PLAN.md (Sources Footer)
+Next action: Execute 04-05-PLAN.md (if exists) or next phase
