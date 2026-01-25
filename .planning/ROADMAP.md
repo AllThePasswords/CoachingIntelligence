@@ -46,10 +46,15 @@ Plans:
   3. ManagerCard displays name, metrics, trend, AI summary, and action buttons
   4. AskInput accepts text entry and emits submit events
   5. InsightSection displays title, rating badge, and content
-**Plans**: TBD
+**Plans**: 6 plans
 
 Plans:
-- [ ] 02-01: TBD
+- [ ] 02-01-PLAN.md - Zustand store and atomic icon components (TrendArrow, InfoIcon)
+- [ ] 02-02-PLAN.md - Badge, Tooltip, and UI barrel export
+- [ ] 02-03-PLAN.md - MetricDisplay and Citation display components
+- [ ] 02-04-PLAN.md - TimeframeToggle and AskInput input components
+- [ ] 02-05-PLAN.md - ManagerCard and InsightSection composite components
+- [ ] 02-06-PLAN.md - Component library demo and visual verification
 
 ### Phase 3: Dashboard
 **Goal**: Users can view all managers at a glance and navigate to details
@@ -135,7 +140,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-25 |
-| 2. Component Library | 0/? | Ready to plan | - |
+| 2. Component Library | 0/6 | Ready to execute | - |
 | 3. Dashboard | 0/? | Not started | - |
 | 4. Manager Detail | 0/? | Not started | - |
 | 5. Modal System | 0/? | Not started | - |
@@ -144,4 +149,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 ---
 *Roadmap created: 2026-01-25*
-*Last updated: 2026-01-25 - Phase 1 complete*
+*Last updated: 2026-01-25 - Phase 2 planned (6 plans)*
