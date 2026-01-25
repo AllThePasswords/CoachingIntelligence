@@ -9,7 +9,7 @@ import { MetricDisplay } from '@/components/display';
 import { useTimeframeStore } from '@/stores';
 import { getTimeframeData, getManagerById } from '@/data';
 
-export function ManagerCard({ managerId, onClick, variant = 'border' }) {
+export function ManagerCard({ managerId, onClick, variant = 'border', gradient = false }) {
   // Selective subscription - only re-renders when timeframe changes
   const timeframe = useTimeframeStore(state => state.timeframe);
 
@@ -30,10 +30,11 @@ export function ManagerCard({ managerId, onClick, variant = 'border' }) {
   // Determine trend from timeframe data
   const trend = managerMetrics.trend_vs_prior === 'stable' ? 'steady' : managerMetrics.trend_vs_prior;
 
-  // Variant-specific styling
+  // Variant-specific styling - when gradient is true, inner card needs adjusted rounding
+  const innerRounding = gradient ? 'rounded-[calc(0.75rem-2px)]' : 'rounded-xl';
   const variantClasses = variant === 'shadow'
-    ? 'bg-background-100 rounded-xl p-5 shadow-[0_4px_12px_rgba(0,0,0,0.08)]'
-    : 'bg-background-100 border border-border rounded-xl p-5';
+    ? `bg-background-100 ${innerRounding} p-5 shadow-[0_4px_12px_rgba(0,0,0,0.08)]`
+    : `bg-background-100 border border-border ${innerRounding} p-5`;
 
   const handleClick = () => {
     if (onClick) {
@@ -41,7 +42,7 @@ export function ManagerCard({ managerId, onClick, variant = 'border' }) {
     }
   };
 
-  return (
+  const cardContent = (
     <div className={variantClasses}>
       {/* Header row */}
       <div className="flex justify-between items-center mb-5">
@@ -82,4 +83,15 @@ export function ManagerCard({ managerId, onClick, variant = 'border' }) {
       </button>
     </div>
   );
+
+  // Wrap with gradient border if enabled
+  if (gradient) {
+    return (
+      <div className="p-0.5 bg-gradient-to-r from-[#ff0080] to-[#f81ce5] rounded-xl">
+        {cardContent}
+      </div>
+    );
+  }
+
+  return cardContent;
 }
