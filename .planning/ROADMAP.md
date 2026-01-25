@@ -85,10 +85,14 @@ Plans:
   4. User sees "Ask anything" input pinned to bottom (conversation appears below data in chat section)
   5. User can navigate back to dashboard via back button
   6. Direct URL to manager detail page works (deep linking)
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 04-01: TBD
+- [ ] 04-01-PLAN.md - Hero section with manager info, metrics, timeframe toggle, and back navigation
+- [ ] 04-02-PLAN.md - Five insight sections using InsightSection component and summaries data
+- [ ] 04-03-PLAN.md - AE coaching table with undercoached/critical flags
+- [ ] 04-04-PLAN.md - Sources footer and ActionMenu dropdown
+- [ ] 04-05-PLAN.md - Human verification of complete detail page
 
 ### Phase 5: Modal System
 **Goal**: Users can verify citations and confirm actions through modal interactions
@@ -145,11 +149,11 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation | 3/3 | Complete | 2026-01-25 |
 | 2. Component Library | 6/6 | Complete | 2026-01-25 |
 | 3. Dashboard | 4/4 | Complete | 2026-01-25 |
-| 4. Manager Detail | 0/? | Not started | - |
+| 4. Manager Detail | 0/5 | Not started | - |
 | 5. Modal System | 0/? | Not started | - |
 | 6. Claude Integration | 0/? | Not started | - |
 | 7. Polish | 0/? | Not started | - |
 
 ---
 *Roadmap created: 2026-01-25*
-*Last updated: 2026-01-25 - Phase 3 complete*
+*Last updated: 2026-01-25 - Phase 4 planned*
