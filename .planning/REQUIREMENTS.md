@@ -110,13 +110,13 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DASH-01 | Phase 3 | Pending |
-| DASH-02 | Phase 3 | Pending |
-| DASH-03 | Phase 3 | Pending |
-| DASH-04 | Phase 3 | Pending |
-| DASH-05 | Phase 3 | Pending |
-| DASH-06 | Phase 3 | Pending |
-| DASH-07 | Phase 3 | Pending |
+| DASH-01 | Phase 3 | Complete |
+| DASH-02 | Phase 3 | Complete |
+| DASH-03 | Phase 3 | Complete |
+| DASH-04 | Phase 3 | Complete |
+| DASH-05 | Phase 3 | Complete |
+| DASH-06 | Phase 3 | Complete |
+| DASH-07 | Phase 3 | Complete |
 | DETAIL-01 | Phase 4 | Pending |
 | DETAIL-02 | Phase 4 | Pending |
 | DETAIL-03 | Phase 4 | Pending |
@@ -142,17 +142,17 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CITE-04 | Phase 5 | Pending |
 | CITE-05 | Phase 5 | Pending |
 | CITE-06 | Phase 5 | Pending |
-| ACT-01 | Phase 3 | Pending |
+| ACT-01 | Phase 3 | Complete |
 | ACT-02 | Phase 4 | Pending |
 | ACT-03 | Phase 5 | Pending |
 | ACT-04 | Phase 5 | Pending |
 | ACT-05 | Phase 5 | Pending |
 | ACT-06 | Phase 5 | Pending |
-| NAV-01 | Phase 3 | Pending |
+| NAV-01 | Phase 3 | Complete |
 | NAV-02 | Phase 4 | Pending |
 | NAV-03 | Phase 4 | Pending |
-| NAV-04 | Phase 1 | Pending |
-| NAV-05 | Phase 1 | Pending |
+| NAV-04 | Phase 1 | Complete |
+| NAV-05 | Phase 1 | Complete |
 
 **Coverage:**
 - v1 requirements: 43 total
