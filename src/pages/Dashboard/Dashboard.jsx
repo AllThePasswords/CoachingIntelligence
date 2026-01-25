@@ -33,6 +33,7 @@ export function Dashboard() {
             key={manager.id}
             managerId={manager.id}
             onClick={handleCardClick}
+            gradient={true}
           />
         ))}
       </div>
