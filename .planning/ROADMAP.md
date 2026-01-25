@@ -29,10 +29,12 @@ This roadmap delivers a sales coaching analytics dashboard with AI-powered insig
   2. Pink gradient accent and neutral gray color palette available via CSS variables
   3. Static manager, AE, and feedback data can be imported and filtered by timeframe
   4. Citation ID format (CALL-XXXX) is standardized with lookup function
-**Plans**: TBD
+**Plans**: 3 plans
 
 Plans:
-- [ ] 01-01: TBD
+- [ ] 01-01-PLAN.md - Scaffold Vite + React 19 + Tailwind CSS 4 with Geist fonts and design tokens
+- [ ] 01-02-PLAN.md - Create static data layer with citation utilities
+- [ ] 01-03-PLAN.md - Foundation verification and human approval
 
 ### Phase 2: Component Library
 **Goal**: Build reusable UI components with centralized timeframe state management
@@ -102,7 +104,7 @@ Plans:
 **Success Criteria** (what must be TRUE):
   1. User can type question in pinned input and submit to Claude API
   2. AI response streams into conversation thread (below data on detail page) in real-time
-  3. AI response includes clickable citations in format [→ CALL-XXXX] that open citation modal
+  3. AI response includes clickable citations in format [-> CALL-XXXX] that open citation modal
   4. Follow-up suggestions appear after each AI response
   5. User can ask multiple questions in same session (conversation history preserved)
   6. Dashboard ask input opens new chat (navigates to detail or dedicated chat view)
@@ -132,7 +134,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/? | Not started | - |
+| 1. Foundation | 0/3 | Ready to execute | - |
 | 2. Component Library | 0/? | Not started | - |
 | 3. Dashboard | 0/? | Not started | - |
 | 4. Manager Detail | 0/? | Not started | - |
