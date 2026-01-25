@@ -37,7 +37,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **ASK-01**: User can type question in input field
 - [ ] **ASK-02**: System sends question to Claude API with coaching data context
 - [ ] **ASK-03**: AI response displays in conversation thread
-- [ ] **ASK-04**: AI response includes clickable citations in format [→ CALL-XXXX]
+- [ ] **ASK-04**: AI response includes clickable citations in format [-> CALL-XXXX]
 - [ ] **ASK-05**: Follow-up question suggestions appear after each AI response
 - [ ] **ASK-06**: User can ask multiple questions in same session (conversation thread)
 - [ ] **ASK-07**: Contextual action buttons appear based on AI response content
@@ -110,55 +110,55 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| DASH-01 | TBD | Pending |
-| DASH-02 | TBD | Pending |
-| DASH-03 | TBD | Pending |
-| DASH-04 | TBD | Pending |
-| DASH-05 | TBD | Pending |
-| DASH-06 | TBD | Pending |
-| DASH-07 | TBD | Pending |
-| DETAIL-01 | TBD | Pending |
-| DETAIL-02 | TBD | Pending |
-| DETAIL-03 | TBD | Pending |
-| DETAIL-04 | TBD | Pending |
-| DETAIL-05 | TBD | Pending |
-| DETAIL-06 | TBD | Pending |
-| DETAIL-07 | TBD | Pending |
-| DETAIL-08 | TBD | Pending |
-| DETAIL-09 | TBD | Pending |
-| DETAIL-10 | TBD | Pending |
-| DETAIL-11 | TBD | Pending |
-| DETAIL-12 | TBD | Pending |
-| ASK-01 | TBD | Pending |
-| ASK-02 | TBD | Pending |
-| ASK-03 | TBD | Pending |
-| ASK-04 | TBD | Pending |
-| ASK-05 | TBD | Pending |
-| ASK-06 | TBD | Pending |
-| ASK-07 | TBD | Pending |
-| CITE-01 | TBD | Pending |
-| CITE-02 | TBD | Pending |
-| CITE-03 | TBD | Pending |
-| CITE-04 | TBD | Pending |
-| CITE-05 | TBD | Pending |
-| CITE-06 | TBD | Pending |
-| ACT-01 | TBD | Pending |
-| ACT-02 | TBD | Pending |
-| ACT-03 | TBD | Pending |
-| ACT-04 | TBD | Pending |
-| ACT-05 | TBD | Pending |
-| ACT-06 | TBD | Pending |
-| NAV-01 | TBD | Pending |
-| NAV-02 | TBD | Pending |
-| NAV-03 | TBD | Pending |
-| NAV-04 | TBD | Pending |
-| NAV-05 | TBD | Pending |
+| DASH-01 | Phase 3 | Pending |
+| DASH-02 | Phase 3 | Pending |
+| DASH-03 | Phase 3 | Pending |
+| DASH-04 | Phase 3 | Pending |
+| DASH-05 | Phase 3 | Pending |
+| DASH-06 | Phase 3 | Pending |
+| DASH-07 | Phase 3 | Pending |
+| DETAIL-01 | Phase 4 | Pending |
+| DETAIL-02 | Phase 4 | Pending |
+| DETAIL-03 | Phase 4 | Pending |
+| DETAIL-04 | Phase 4 | Pending |
+| DETAIL-05 | Phase 4 | Pending |
+| DETAIL-06 | Phase 4 | Pending |
+| DETAIL-07 | Phase 4 | Pending |
+| DETAIL-08 | Phase 4 | Pending |
+| DETAIL-09 | Phase 4 | Pending |
+| DETAIL-10 | Phase 4 | Pending |
+| DETAIL-11 | Phase 4 | Pending |
+| DETAIL-12 | Phase 4 | Pending |
+| ASK-01 | Phase 6 | Pending |
+| ASK-02 | Phase 6 | Pending |
+| ASK-03 | Phase 6 | Pending |
+| ASK-04 | Phase 6 | Pending |
+| ASK-05 | Phase 6 | Pending |
+| ASK-06 | Phase 6 | Pending |
+| ASK-07 | Phase 6 | Pending |
+| CITE-01 | Phase 5 | Pending |
+| CITE-02 | Phase 5 | Pending |
+| CITE-03 | Phase 5 | Pending |
+| CITE-04 | Phase 5 | Pending |
+| CITE-05 | Phase 5 | Pending |
+| CITE-06 | Phase 5 | Pending |
+| ACT-01 | Phase 3 | Pending |
+| ACT-02 | Phase 4 | Pending |
+| ACT-03 | Phase 5 | Pending |
+| ACT-04 | Phase 5 | Pending |
+| ACT-05 | Phase 5 | Pending |
+| ACT-06 | Phase 5 | Pending |
+| NAV-01 | Phase 3 | Pending |
+| NAV-02 | Phase 4 | Pending |
+| NAV-03 | Phase 4 | Pending |
+| NAV-04 | Phase 1 | Pending |
+| NAV-05 | Phase 1 | Pending |
 
 **Coverage:**
-- v1 requirements: 40 total
-- Mapped to phases: 0 (pending roadmap)
-- Unmapped: 40
+- v1 requirements: 43 total
+- Mapped to phases: 43
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-25*
-*Last updated: 2026-01-25 after initial definition*
+*Last updated: 2026-01-25 after roadmap creation*
