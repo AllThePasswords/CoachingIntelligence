@@ -2,9 +2,10 @@
  * ActionMenu - Dropdown menu for manager actions
  *
  * Pure React implementation with outside click handling
- * Actions are mocked for MVP (console.log)
+ * Opens ConfirmationModal via modal store on action click
  */
 import { useState, useRef, useEffect } from 'react';
+import { useModalStore } from '@/stores';
 
 const defaultActions = [
   { id: 'add_1on1', label: 'Add to 1:1', icon: 'calendar' },
@@ -13,9 +14,10 @@ const defaultActions = [
   { id: 'flag_hr', label: 'Flag for HR', icon: 'alert-triangle' }
 ];
 
-export function ActionMenu({ managerName, onAction }) {
+export function ActionMenu({ managerName, onAction, sources = [] }) {
   const [isOpen, setIsOpen] = useState(false);
   const menuRef = useRef(null);
+  const openConfirmationModal = useModalStore(state => state.openConfirmationModal);
 
   // Close on outside click
   useEffect(() => {
@@ -29,9 +31,8 @@ export function ActionMenu({ managerName, onAction }) {
   }, []);
 
   const handleAction = (action) => {
-    // MVP: Log action, show alert
     console.log(`Action: ${action.id} for ${managerName}`);
-    alert(`${action.label} for ${managerName}\n\n(Action integration coming in future phase)`);
+    openConfirmationModal(action.id, managerName, sources);
 
     if (onAction) {
       onAction(action);
