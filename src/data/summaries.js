@@ -91,7 +91,7 @@ export const managerSummaries = {
 
   MGR002: {
     manager_id: "MGR002",
-    manager_name: "Marcus Thompson",
+    manager_name: "Marcus Jones",
     headline: "Solid foundation but declining engagement in recent weeks",
     
     sections: {

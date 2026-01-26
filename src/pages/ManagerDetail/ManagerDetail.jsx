@@ -50,7 +50,9 @@ export function ManagerDetail() {
 
   // Chat functionality - use per-manager messages
   const apiKey = useSettingsStore((s) => s.apiKey);
-  const messages = useChatStore((s) => s.getMessages(managerId));
+  // Use stable selector - access chatHistories directly to avoid new array on every render
+  const chatKey = managerId || 'team';
+  const messages = useChatStore((s) => s.chatHistories[chatKey]?.messages || []);
   const { sendMessage } = useChat(managerId);
 
   const handleSuggestionClick = (suggestion) => {

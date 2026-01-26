@@ -1,18 +1,147 @@
 // AppLayout - Gong-style layout with sidebar, header, and main content area
-import { Outlet } from 'react-router';
+import { Outlet, useLocation, useNavigate } from 'react-router';
 import { Toaster } from 'sonner';
+import { ErrorBoundary } from 'react-error-boundary';
 import { Sidebar } from '@/components/navigation';
 import { AskInput } from '@/components/input';
 import { CitationModal, ConfirmationModal } from '@/components/modals';
-import { useAlertsStore } from '@/stores';
+import { ErrorFallback } from '@/components/feedback';
+import { useAlertsStore, useSettingsStore, useChatStore } from '@/stores';
+import { createClaudeClient, SYSTEM_PROMPT } from '@/lib/claude';
+import { managers, feedbackLog, getSummaryByManager, getManagerById } from '@/data';
+
+// Build context string for Claude API
+const buildContext = (managerId = null) => {
+  const managerData = managers.map((m) => ({
+    id: m.id,
+    name: m.name,
+    region: m.region,
+    quota_attainment: m.quota_attainment,
+    coaching_score: m.coaching_score,
+    trend: m.trend,
+    summary: m.summary,
+  }));
+
+  let context = `## Manager Overview\n${JSON.stringify(managerData, null, 2)}\n\n`;
+
+  if (managerId) {
+    const summary = getSummaryByManager(managerId);
+    if (summary) {
+      context += `## Detailed Summary for ${summary.manager_name}\n`;
+      context += JSON.stringify(summary.sections, null, 2);
+      context += '\n\n';
+    }
+  }
+
+  const recentFeedback = feedbackLog.slice(0, 10).map((f) => ({
+    call_id: f.call_id,
+    manager: f.manager_name,
+    ae: f.ae_name,
+    date: f.date,
+    feedback: f.feedback?.substring(0, 100),
+  }));
+  context += `## Recent Feedback (cite using [-> CALL-XXXX])\n`;
+  context += JSON.stringify(recentFeedback, null, 2);
+
+  return context;
+};
+
+// Extract follow-up suggestions from response
+const extractSuggestions = (content) => {
+  const match = content.match(/follow-up questions?:?\s*\n([\s\S]*?)(?:\n\n|$)/i);
+  if (!match) return [];
+  return match[1]
+    .split('\n')
+    .map((s) => s.replace(/^[-•*\d.)\s]+/, '').trim())
+    .filter((s) => s.length > 10 && s.endsWith('?'))
+    .slice(0, 3);
+};
 
 export function AppLayout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const alertsEnabled = useAlertsStore(state => state.alertsEnabled);
   const toggleAlerts = useAlertsStore(state => state.toggleAlerts);
-  
-  const handleAskSubmit = (question) => {
-    console.log('Question submitted:', question);
-    alert(`You asked: "${question}"\n\nChat feature coming soon!`);
+
+  // Chat state - use selectors for proper reactivity
+  const apiKey = useSettingsStore((s) => s.apiKey);
+  const addUserMessage = useChatStore((s) => s.addUserMessage);
+  const startStreaming = useChatStore((s) => s.startStreaming);
+  const appendStreamingContent = useChatStore((s) => s.appendStreamingContent);
+  const completeStreaming = useChatStore((s) => s.completeStreaming);
+  const setError = useChatStore((s) => s.setError);
+
+  // Get current manager for placeholder text
+  const isManagerPage = location.pathname.startsWith('/manager/');
+  const currentManagerId = isManagerPage ? location.pathname.split('/').pop() : null;
+  const currentManager = currentManagerId ? getManagerById(currentManagerId) : null;
+  const askPlaceholder = currentManager
+    ? `Ask anything about ${currentManager.name}'s coaching...`
+    : 'Ask anything about your team...';
+
+  const handleAskSubmit = async (question) => {
+    // Check if on manager detail page
+    const isManagerPage = location.pathname.startsWith('/manager/');
+    const managerId = isManagerPage ? location.pathname.split('/').pop() : null;
+
+    // Check for API key
+    if (!apiKey) {
+      if (isManagerPage) {
+        alert('Please enter your Anthropic API key in the "Ask Anything" section below.');
+      } else {
+        alert('Please go to a manager page and enter your Anthropic API key first.');
+        navigate('/manager/sarah-chen');
+      }
+      return;
+    }
+
+    // If on dashboard, navigate to first manager
+    if (!isManagerPage) {
+      navigate('/manager/sarah-chen');
+      return;
+    }
+
+    // Send message via Claude API - pass managerId for per-manager history
+    addUserMessage(question, managerId);
+
+    try {
+      const client = createClaudeClient(apiKey);
+      const context = buildContext(managerId);
+
+      // Build conversation history from per-manager messages
+      const currentMessages = useChatStore.getState().getMessages(managerId);
+      const conversationMessages = currentMessages.slice(0, -1).map((m) => ({
+        role: m.role,
+        content: m.content,
+      }));
+
+      conversationMessages.push({
+        role: 'user',
+        content: `${context}\n\n## User Question\n${question}`,
+      });
+
+      startStreaming();
+
+      const stream = client.messages.stream({
+        model: 'claude-sonnet-4-5-20250929',
+        max_tokens: 1024,
+        system: SYSTEM_PROMPT,
+        messages: conversationMessages,
+      });
+
+      stream.on('text', (text) => {
+        appendStreamingContent(text);
+      });
+
+      await stream.finalMessage();
+
+      const finalContent = useChatStore.getState().streamingContent;
+      const suggestions = extractSuggestions(finalContent);
+      completeStreaming(suggestions, managerId);
+    } catch (err) {
+      setError(err);
+    }
   };
 
   return (
@@ -25,15 +154,8 @@ export function AppLayout() {
         {/* Top Header Bar */}
         <header className="sticky top-0 z-40 bg-gong-sidebar border-b border-gong-purple-dark shadow-sm">
           <div className="px-6 h-14 flex items-center justify-between">
-            {/* Left: Gong Logo and Nav */}
+            {/* Left: Nav */}
             <div className="flex items-center gap-8">
-              {/* Gong Logo */}
-              <div className="flex items-center">
-                <svg className="w-8 h-8 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <path d="M12 8c-2 0-4 1.5-4 4s2 4 4 4c1.5 0 2.5-.5 3-1.5" strokeLinecap="round"/>
-                </svg>
-              </div>
               <nav className="flex items-center gap-6 text-sm font-medium text-white/80">
                 <a href="#" className="hover:text-white">Home</a>
                 <a href="#" className="hover:text-white flex items-center gap-1">
@@ -78,7 +200,7 @@ export function AppLayout() {
                   className="bg-transparent text-white placeholder-white/70 text-sm ml-2 w-32 focus:outline-none"
                 />
               </div>
-              <span className="text-sm text-white/80">Phil Colbey</span>
+              <span className="text-sm text-white/80">Ann Martinez</span>
               <button className="text-white/60 hover:text-white">
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -96,7 +218,16 @@ export function AppLayout() {
 
         {/* Page Content */}
         <main className="p-6 pb-32">
-          <Outlet />
+          <ErrorBoundary
+            FallbackComponent={ErrorFallback}
+            onError={(error, info) => {
+              console.error('Page Error:', error);
+              console.error('Component Stack:', info?.componentStack);
+            }}
+            onReset={() => window.location.reload()}
+          >
+            <Outlet />
+          </ErrorBoundary>
         </main>
 
         {/* Floating AskInput footer */}
@@ -104,7 +235,7 @@ export function AppLayout() {
           <div className="bg-white rounded-full shadow-lg border border-gray-200 overflow-hidden">
             <AskInput
               onSubmit={handleAskSubmit}
-              placeholder="Ask anything about your team..."
+              placeholder={askPlaceholder}
             />
           </div>
         </div>

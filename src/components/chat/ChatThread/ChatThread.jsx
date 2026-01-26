@@ -13,8 +13,10 @@ import { useChatStore } from '@/stores';
  * @param {Function} props.onSuggestionClick - Callback when suggestion clicked
  */
 export function ChatThread({ managerId, onSuggestionClick }) {
-  const messages = useChatStore((state) => state.getMessages(managerId));
-  const suggestions = useChatStore((state) => state.getSuggestions(managerId));
+  // Use stable selectors - access chatHistories directly to avoid new array on every render
+  const chatKey = managerId || 'team';
+  const messages = useChatStore((state) => state.chatHistories[chatKey]?.messages || []);
+  const suggestions = useChatStore((state) => state.chatHistories[chatKey]?.suggestions || []);
   const activeChat = useChatStore((state) => state.activeChat);
   const streamingContent = useChatStore((state) => state.streamingContent);
   const status = useChatStore((state) => state.status);
@@ -23,7 +25,6 @@ export function ChatThread({ managerId, onSuggestionClick }) {
   const prevMessageCount = useRef(0);
 
   // Only show streaming for the active chat context
-  const chatKey = managerId || 'team';
   const isActiveChat = activeChat === chatKey;
 
   // Auto-scroll to bottom only when new messages are added (not on initial load)
