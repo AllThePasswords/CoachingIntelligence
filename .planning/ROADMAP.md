@@ -104,10 +104,13 @@ Plans:
   3. Citation modal shows "View Full Call" link (mocked for v1)
   4. Clicking action button opens confirmation modal with next 1:1 date, editable topic, sources
   5. User can confirm action and sees success toast
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 05-01: TBD
+- [ ] 05-01-PLAN.md - Install sonner, create modal store and base Modal component
+- [ ] 05-02-PLAN.md - Create CitationModal and wire Citation component
+- [ ] 05-03-PLAN.md - Create ConfirmationModal and wire ActionMenu with toast
+- [ ] 05-04-PLAN.md - Human verification of complete modal system
 
 ### Phase 6: Claude Integration
 **Goal**: Users can ask any question and get an intelligent, cited answer
@@ -150,7 +153,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. Component Library | 6/6 | Complete | 2026-01-25 |
 | 3. Dashboard | 4/4 | Complete | 2026-01-25 |
 | 4. Manager Detail | 5/5 | Complete | 2026-01-26 |
-| 5. Modal System | 0/? | Not started | - |
+| 5. Modal System | 0/4 | Not started | - |
 | 6. Claude Integration | 0/? | Not started | - |
 | 7. Polish | 0/? | Not started | - |
 
