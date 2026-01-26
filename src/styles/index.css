@@ -53,6 +53,13 @@
   --color-purple: #f81ce5;
   --color-magenta: #eb367f;
 
+  /* Gong Brand Colors */
+  --color-gong-purple: #4B2A7C;
+  --color-gong-purple-light: #6B4A9C;
+  --color-gong-purple-dark: #3A1F5E;
+  --color-gong-sidebar: #2D1B4E;
+  --color-gong-hover: #3D2B5E;
+
   /* Borders (Light Mode) */
   --color-border: #eaeaea;
   --color-border-light: #fafafa;
@@ -76,5 +83,44 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+}
+
+/* Dialog animations using @starting-style */
+dialog {
+  opacity: 0;
+  transform: scale(0.95) translateY(-10px);
+  transition:
+    opacity 0.2s ease-out,
+    transform 0.2s ease-out,
+    overlay 0.2s allow-discrete,
+    display 0.2s allow-discrete;
+}
+
+dialog[open] {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+@starting-style {
+  dialog[open] {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+/* Backdrop animation */
+dialog::backdrop {
+  background-color: transparent;
+  transition: background-color 0.2s ease-out;
+}
+
+dialog[open]::backdrop {
+  background-color: rgb(0 0 0 / 50%);
+}
+
+@starting-style {
+  dialog[open]::backdrop {
+    background-color: transparent;
   }
 }
