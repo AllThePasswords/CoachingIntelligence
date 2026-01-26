@@ -13,7 +13,7 @@ This roadmap delivers a sales coaching analytics dashboard with AI-powered insig
 - [x] **Phase 1: Foundation** - Project scaffolding, data layer, design tokens
 - [x] **Phase 2: Component Library** - Atomic/composite components with timeframe state
 - [x] **Phase 3: Dashboard** - Manager cards grid with navigation and timeframe toggle
-- [ ] **Phase 4: Manager Detail** - Five insight dimensions, AE table, sources footer
+- [x] **Phase 4: Manager Detail** - Five insight dimensions, AE table, sources footer
 - [ ] **Phase 5: Modal System** - Citation verification and action confirmation modals
 - [ ] **Phase 6: Claude Integration** - Ask Anything with streaming, citations, conversation thread
 - [ ] **Phase 7: Polish** - Loading states, error handling, transitions, accessibility
@@ -88,11 +88,11 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 04-01-PLAN.md - Hero section with manager info, metrics, timeframe toggle, and back navigation
-- [ ] 04-02-PLAN.md - Five insight sections using InsightSection component and summaries data
-- [ ] 04-03-PLAN.md - AE coaching table with undercoached/critical flags
-- [ ] 04-04-PLAN.md - Sources footer and ActionMenu dropdown
-- [ ] 04-05-PLAN.md - Human verification of complete detail page
+- [x] 04-01-PLAN.md - Hero section with manager info, metrics, timeframe toggle, and back navigation
+- [x] 04-02-PLAN.md - Five insight sections using InsightSection component and summaries data
+- [x] 04-03-PLAN.md - AE coaching table with undercoached/critical flags
+- [x] 04-04-PLAN.md - Sources footer and ActionMenu dropdown
+- [x] 04-05-PLAN.md - Human verification of complete detail page
 
 ### Phase 5: Modal System
 **Goal**: Users can verify citations and confirm actions through modal interactions
@@ -149,11 +149,11 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 1. Foundation | 3/3 | Complete | 2026-01-25 |
 | 2. Component Library | 6/6 | Complete | 2026-01-25 |
 | 3. Dashboard | 4/4 | Complete | 2026-01-25 |
-| 4. Manager Detail | 0/5 | Not started | - |
+| 4. Manager Detail | 5/5 | Complete | 2026-01-26 |
 | 5. Modal System | 0/? | Not started | - |
 | 6. Claude Integration | 0/? | Not started | - |
 | 7. Polish | 0/? | Not started | - |
 
 ---
 *Roadmap created: 2026-01-25*
-*Last updated: 2026-01-25 - Phase 4 planned*
+*Last updated: 2026-01-26 - Phase 4 complete*
