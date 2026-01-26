@@ -35,8 +35,9 @@ export function AETable({ managerId }) {
           <tr className="border-b border-border text-left">
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">AE Name</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Quota %</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls Coached</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Comments</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls Listened</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls with Comments</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls Attended</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Scorecards</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Last Feedback</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Flag</th>
@@ -49,6 +50,7 @@ export function AETable({ managerId }) {
               <td className="py-3 px-4 text-gray-700">{ae.quota}%</td>
               <td className="py-3 px-4 text-gray-700">{ae.calls_coached}</td>
               <td className="py-3 px-4 text-gray-700">{ae.comments}</td>
+              <td className="py-3 px-4 text-gray-700">{ae.live_attended}</td>
               <td className="py-3 px-4 text-gray-700">{ae.scorecards}</td>
               <td className="py-3 px-4 text-sm text-gray-500">
                 {ae.last_feedback_date || 'Never'}
