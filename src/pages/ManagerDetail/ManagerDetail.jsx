@@ -7,15 +7,20 @@
  * - AI-generated headline summary
  * - Timeframe toggle for metrics
  * - Back navigation to dashboard
+ * - Ask Anything chat section
  */
 import { useParams, Link } from 'react-router';
-import { getManagerById, getSummaryByManager, getTimeframeData } from '@/data';
-import { TimeframeToggle } from '@/components/input';
-import { InsightSection } from '@/components/sections';
+import { ErrorBoundary } from 'react-error-boundary';
+import { getManagerById, getSummaryByManager } from '@/data';
+import { InsightSection, CoachingInsight } from '@/components/sections';
+import { FilterRow } from '@/components/filters';
 import { Citation } from '@/components/display';
 import { AETable } from '@/components/tables';
 import { ActionMenu } from '@/components/menus';
-import { useTimeframeStore } from '@/stores';
+import { ChatThread, ApiKeyInput, ChatHistoryButton } from '@/components/chat';
+import { ChatErrorFallback } from '@/components/feedback';
+import { useSettingsStore, useChatStore } from '@/stores';
+import { useChat } from '@/hooks/useChat';
 
 // Map summary level values to InsightSection rating values
 const levelToRating = {
@@ -40,12 +45,17 @@ export function ManagerDetail() {
   const { managerId } = useParams();
   const manager = getManagerById(managerId);
 
-  // Timeframe-aware data
-  const timeframe = useTimeframeStore(state => state.timeframe);
-  const timeframeData = getTimeframeData(timeframe);
-
   // Get AI summary for headline
   const summary = getSummaryByManager(managerId);
+
+  // Chat functionality - use per-manager messages
+  const apiKey = useSettingsStore((s) => s.apiKey);
+  const messages = useChatStore((s) => s.getMessages(managerId));
+  const { sendMessage } = useChat(managerId);
+
+  const handleSuggestionClick = (suggestion) => {
+    sendMessage(suggestion);
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
@@ -70,7 +80,10 @@ export function ManagerDetail() {
       ) : (
         // Manager found - show hero section
         <div className="mt-4">
-          {/* Row 1: Manager name + TimeframeToggle + ActionMenu */}
+          {/* Filter Row */}
+          <FilterRow managerName={manager.name} />
+
+          {/* Row 1: Manager name + ActionMenu */}
           <div className="flex items-start justify-between mb-2">
             <div>
               <h1 className="text-3xl font-bold tracking-tight">
@@ -81,7 +94,6 @@ export function ManagerDetail() {
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <TimeframeToggle />
               <ActionMenu managerName={manager.name} />
             </div>
           </div>
@@ -104,16 +116,18 @@ export function ManagerDetail() {
                 Coaching Score
               </div>
               <div className="text-2xl font-bold">
-                {timeframeData?.managers?.[managerId]?.coaching_score ?? manager.coaching_score}%
+                {manager.coaching_score}%
               </div>
             </div>
           </div>
 
-          {/* Row 4: AI headline */}
+          {/* Coaching Intelligence Insight */}
           {summary && (
-            <p className="mt-6 text-lg text-gray-700">
-              {summary.headline}
-            </p>
+            <div className="mt-6">
+              <CoachingInsight>
+                {summary.headline}
+              </CoachingInsight>
+            </div>
           )}
 
           {/* Insight Sections */}
@@ -139,6 +153,9 @@ export function ManagerDetail() {
                 <div className="flex items-center gap-4 mb-4">
                   <span className="text-2xl font-bold">{summary.sections.trend.level}</span>
                   <span className="text-gray-500">{summary.sections.trend.value}</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                  </svg>
                 </div>
                 <p className="text-gray-600 leading-relaxed">{summary.sections.trend.detail}</p>
               </InsightSection>
@@ -226,6 +243,46 @@ export function ManagerDetail() {
               <span>{manager.sources.feedback_events} feedback events</span>
             </div>
           </div>
+
+          {/* Ask Anything Chat Section */}
+          <section className="mt-8 pt-6 border-t border-border">
+            <h2 className="text-xl font-semibold text-foreground mb-4">
+              Ask Anything About {manager.name}
+            </h2>
+
+            {!apiKey ? (
+              <div className="bg-gray-50 rounded-lg p-6 border border-border">
+                <p className="text-sm text-muted-foreground mb-4">
+                  Enter your Anthropic API key to enable AI-powered chat about {manager.name}'s coaching data.
+                </p>
+                <ApiKeyInput />
+              </div>
+            ) : (
+              <div>
+                {/* Chat History Button - only shows if there are previous messages */}
+                <ChatHistoryButton
+                  managerId={managerId}
+                  onSuggestionClick={handleSuggestionClick}
+                />
+
+                {messages.length === 0 && (
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Ask a question using the input below to get AI-powered insights about {manager.name}'s coaching.
+                  </p>
+                )}
+                <ErrorBoundary
+                  FallbackComponent={ChatErrorFallback}
+                  onReset={() => window.location.reload()}
+                  resetKeys={[managerId]}
+                >
+                  <ChatThread
+                    managerId={managerId}
+                    onSuggestionClick={handleSuggestionClick}
+                  />
+                </ErrorBoundary>
+              </div>
+            )}
+          </section>
         </div>
       )}
     </div>
