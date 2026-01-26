@@ -19,7 +19,7 @@ export function ChatMessage({ message, isStreaming = false }) {
       <div
         className={`max-w-[85%] p-4 ${
           isUser
-            ? 'bg-accent text-white rounded-2xl rounded-br-md'
+            ? 'bg-gray-100 text-foreground rounded-2xl rounded-br-md border border-gray-200'
             : 'bg-white border border-border shadow-sm rounded-lg'
         } ${isStreaming ? 'animate-pulse' : ''}`}
       >
