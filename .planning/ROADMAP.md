@@ -123,10 +123,13 @@ Plans:
   4. Follow-up suggestions appear after each AI response
   5. User can ask multiple questions in same session (conversation history preserved)
   6. Dashboard ask input opens new chat (navigates to detail or dedicated chat view)
-**Plans**: TBD
+**Plans**: 4 plans
 
 Plans:
-- [ ] 06-01: TBD
+- [ ] 06-01-PLAN.md - Install Anthropic SDK, create settingsStore, chatStore, and claude.js client factory
+- [ ] 06-02-PLAN.md - Create useChat hook and chat UI components (ChatThread, ChatMessage, MessageContent, FollowUpSuggestions)
+- [ ] 06-03-PLAN.md - Wire chat to ManagerDetail page and AppLayout AskInput with ApiKeyInput
+- [ ] 06-04-PLAN.md - Human verification of complete Claude integration
 
 ### Phase 7: Polish
 **Goal**: Production-quality UX with loading states, error handling, and accessibility
@@ -154,7 +157,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 3. Dashboard | 4/4 | Complete | 2026-01-25 |
 | 4. Manager Detail | 5/5 | Complete | 2026-01-26 |
 | 5. Modal System | 0/4 | Not started | - |
-| 6. Claude Integration | 0/? | Not started | - |
+| 6. Claude Integration | 0/4 | Not started | - |
 | 7. Polish | 0/? | Not started | - |
 
 ---
