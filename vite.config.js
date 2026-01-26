@@ -13,5 +13,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/CoachingIntelligence/',
+  // base: '/CoachingIntelligence/', // Only needed for GitHub Pages
 });
