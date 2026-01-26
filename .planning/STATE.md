@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-25)
 ## Current Position
 
 Phase: 5 of 7 (Modal System)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-26 - Completed 05-01-PLAN.md (Modal Infrastructure)
+Last activity: 2026-01-26 - Completed 05-02-PLAN.md (Citation Modal)
 
-Progress: [======----] ~61%
+Progress: [======----] ~65%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 19
+- Total plans completed: 20
 - Average duration: 2 min
-- Total execution time: 40 min
+- Total execution time: 42 min
 
 **By Phase:**
 
@@ -31,10 +31,10 @@ Progress: [======----] ~61%
 | 02-component-library | 6 | 6 min | 1 min |
 | 03-dashboard | 4 | 3 min | 1 min |
 | 04-manager-detail | 5 | 6 min | 1 min |
-| 05-modal-system | 1 | 3 min | 3 min |
+| 05-modal-system | 2 | 5 min | 2.5 min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (1 min), 04-02 (1 min), 04-03 (1 min), 04-04 (2 min), 05-01 (3 min)
+- Last 5 plans: 04-02 (1 min), 04-03 (1 min), 04-04 (2 min), 05-01 (3 min), 05-02 (2 min)
 - Trend: Fast execution continues
 
 *Updated after each plan completion*
@@ -71,6 +71,8 @@ Recent decisions affecting current work:
 - **Native dialog modal pattern:** Use showModal/close methods, sync with React state via useEffect
 - **createPortal to document.body:** Render modals outside React tree for proper z-index layering
 - **Zustand modal store pattern:** Centralized modal state, triggered from multiple components
+- **CitationModal open pattern:** Citation triggers openCitationModal(id), modal fetches details via getCitationDetails
+- **Coaching activity checklist pattern:** Vertical list with green check/gray x SVG icons
 
 ### Pending Todos
 
@@ -83,6 +85,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-26
-Stopped at: Completed 05-01-PLAN.md (Modal Infrastructure)
+Stopped at: Completed 05-02-PLAN.md (Citation Modal)
 Resume file: None
-Next action: Execute 05-02-PLAN.md (Citation Modal)
+Next action: Execute 05-03-PLAN.md (Confirmation Modal)
