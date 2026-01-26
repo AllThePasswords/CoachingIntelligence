@@ -42,6 +42,29 @@ function TrendIcon({ direction }) {
   );
 }
 
+// Rating icon for insight sections (larger, based on rating)
+function RatingIcon({ rating }) {
+  if (rating === 'improving') {
+    return (
+      <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    );
+  }
+  if (rating === 'declining') {
+    return (
+      <svg className="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    );
+  }
+  return (
+    <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+  );
+}
+
 // Determine trend direction based on metric value
 function getQuotaTrend(quota) {
   if (quota >= 100) return 'up';
@@ -151,11 +174,6 @@ export function ManagerDetail() {
                 </svg>
                 Send Summary
               </button>
-              <Tooltip content="Coaching score is calculated from call reviews, feedback frequency, and team development activities.">
-                <span className="text-gray-400 hover:text-gray-600 cursor-help">
-                  <InfoIcon />
-                </span>
-              </Tooltip>
             </div>
 
             {/* Header */}
@@ -175,7 +193,14 @@ export function ManagerDetail() {
                 </div>
               </div>
               <div>
-                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Coaching Score</p>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1 flex items-center gap-1">
+                  Coaching Score
+                  <Tooltip content="Coaching score is calculated from call reviews, feedback frequency, and team development activities.">
+                    <span className="text-gray-400 hover:text-gray-600 cursor-help">
+                      <InfoIcon />
+                    </span>
+                  </Tooltip>
+                </p>
                 <div className="flex items-center gap-2">
                   <span className="text-2xl font-bold text-gray-900">{manager.coaching_score}%</span>
                   <TrendIcon direction={getCoachingTrend(manager.coaching_score)} />
@@ -194,31 +219,45 @@ export function ManagerDetail() {
           {/* Insight Sections */}
           {summary && (
             <div className="mt-8 space-y-6">
-              {/* Section 1: Coaching Investment */}
-              <InsightSection
-                title={summary.sections.effort.title}
-                rating={levelToRating[summary.sections.effort.level]}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-2xl font-bold">{summary.sections.effort.level}</span>
-                  <span className="text-gray-500">{summary.sections.effort.value}</span>
-                </div>
-                <p className="text-gray-600 leading-relaxed">{summary.sections.effort.detail}</p>
-              </InsightSection>
+              {/* Row of 3 cards: Coaching Investment, Trend Over Time, Coaching Distribution */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {/* Section 1: Coaching Investment */}
+                <InsightSection
+                  title={summary.sections.effort.title}
+                  className="h-full"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <RatingIcon rating={levelToRating[summary.sections.effort.level]} />
+                    <span className="text-gray-500">{summary.sections.effort.value}</span>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">{summary.sections.effort.detail}</p>
+                </InsightSection>
 
-              {/* Section 2: Trend Over Time */}
-              <InsightSection
-                title={summary.sections.trend.title}
-                rating={levelToRating[summary.sections.trend.level]}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-2xl font-bold">{summary.sections.trend.level}</span>
-                  <span className="text-gray-500">{summary.sections.trend.value}</span>
-                </div>
-                <p className="text-gray-600 leading-relaxed">{summary.sections.trend.detail}</p>
-              </InsightSection>
+                {/* Section 2: Trend Over Time */}
+                <InsightSection
+                  title={summary.sections.trend.title}
+                  className="h-full"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <RatingIcon rating={levelToRating[summary.sections.trend.level]} />
+                    <span className="text-gray-500">{summary.sections.trend.value}</span>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">{summary.sections.trend.detail}</p>
+                </InsightSection>
 
-              {/* Section 3: Coaching Methods */}
+                {/* Section 3: Coaching Distribution */}
+                <InsightSection
+                  title={summary.sections.distribution.title}
+                  className="h-full"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <RatingIcon rating={levelToRating[summary.sections.distribution.level]} />
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">{summary.sections.distribution.detail}</p>
+                </InsightSection>
+              </div>
+
+              {/* Section 4: Coaching Methods */}
               <InsightSection title={summary.sections.methods.title}>
                 <p className="text-gray-600 leading-relaxed mb-4">{summary.sections.methods.detail}</p>
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
@@ -243,17 +282,6 @@ export function ManagerDetail() {
                     <p className="text-xl font-semibold mt-1">{summary.sections.methods.breakdown.calls_with_scorecards}</p>
                   </div>
                 </div>
-              </InsightSection>
-
-              {/* Section 4: Coaching Distribution */}
-              <InsightSection
-                title={summary.sections.distribution.title}
-                rating={levelToRating[summary.sections.distribution.level]}
-              >
-                <div className="flex items-center gap-4 mb-4">
-                  <span className="text-2xl font-bold">{summary.sections.distribution.level}</span>
-                </div>
-                <p className="text-gray-600 leading-relaxed">{summary.sections.distribution.detail}</p>
               </InsightSection>
 
               {/* Section 5: Feedback Quality */}
