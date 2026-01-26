@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 import { Toaster } from 'sonner';
 import { Sidebar } from '@/components/navigation';
 import { AskInput } from '@/components/input';
-import { CitationModal } from '@/components/modals';
+import { CitationModal, ConfirmationModal } from '@/components/modals';
 import { useAlertsStore } from '@/stores';
 
 export function AppLayout() {
@@ -110,6 +110,7 @@ export function AppLayout() {
         </div>
       </div>
       <CitationModal />
+      <ConfirmationModal />
       <Toaster position="bottom-right" richColors />
     </div>
   );
