@@ -247,11 +247,13 @@ export function AppLayout() {
 
         {/* Floating AskInput footer */}
         <div className="fixed bottom-6 left-[calc(5rem+1.5rem)] right-6 z-40">
-          <div className="bg-white rounded-full shadow-lg border border-gray-200 overflow-hidden">
-            <AskInput
-              onSubmit={handleAskSubmit}
-              placeholder={askPlaceholder}
-            />
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-full shadow-lg border border-gray-200 overflow-hidden">
+              <AskInput
+                onSubmit={handleAskSubmit}
+                placeholder={askPlaceholder}
+              />
+            </div>
           </div>
         </div>
       </div>

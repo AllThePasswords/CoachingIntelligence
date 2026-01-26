@@ -21,7 +21,7 @@ export function Dashboard() {
   };
 
   return (
-    <div className="max-w-6xl">
+    <div className="max-w-6xl mx-auto">
       {/* Page Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-gray-900 mb-1">Coaching Effectiveness</h1>
