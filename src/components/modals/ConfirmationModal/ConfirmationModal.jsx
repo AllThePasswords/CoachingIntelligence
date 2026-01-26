@@ -2,11 +2,13 @@
  * ConfirmationModal - Modal for confirming manager actions
  *
  * Shows action title, next 1:1 date, editable topic field, and sources.
+ * For send_summary action, displays the full summary text.
  * Triggers success toast on confirmation.
  */
 import { useState, useEffect } from 'react';
 import { toast } from 'sonner';
 import { useModalStore } from '@/stores';
+import { getSummaryByManager } from '@/data';
 import { Modal } from '../Modal';
 
 // Action type to display label mapping
@@ -30,8 +32,12 @@ export function ConfirmationModal() {
   const isOpen = useModalStore(state => state.confirmationModal.isOpen);
   const action = useModalStore(state => state.confirmationModal.action);
   const managerName = useModalStore(state => state.confirmationModal.managerName);
+  const managerId = useModalStore(state => state.confirmationModal.managerId);
   const sources = useModalStore(state => state.confirmationModal.sources);
   const closeConfirmationModal = useModalStore(state => state.closeConfirmationModal);
+
+  // Get summary if send_summary or add_1on1 action
+  const summary = managerId && (action === 'send_summary' || action === 'add_1on1') ? getSummaryByManager(managerId) : null;
 
   // Local state
   const [topic, setTopic] = useState('');
@@ -88,6 +94,42 @@ export function ConfirmationModal() {
             placeholder="Enter topic..."
           />
         </div>
+
+        {/* Summary Text - for send_summary and add_1on1 actions */}
+        {(action === 'send_summary' || action === 'add_1on1') && summary && (
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-muted-foreground mb-2">
+              Coaching Summary
+            </label>
+            <div className="px-3 py-3 bg-gray-50 border border-border rounded-lg text-sm text-foreground max-h-64 overflow-y-auto">
+              <div className="space-y-4">
+                <div>
+                  <p className="font-semibold mb-2">{summary.headline}</p>
+                </div>
+                {summary.sections && (
+                  <>
+                    <div>
+                      <p className="font-medium mb-1">{summary.sections.effort?.title}</p>
+                      <p className="text-gray-600">{summary.sections.effort?.detail}</p>
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">{summary.sections.trend?.title}</p>
+                      <p className="text-gray-600">{summary.sections.trend?.detail}</p>
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">{summary.sections.distribution?.title}</p>
+                      <p className="text-gray-600">{summary.sections.distribution?.detail}</p>
+                    </div>
+                    <div>
+                      <p className="font-medium mb-1">{summary.sections.feedback_quality?.title}</p>
+                      <p className="text-gray-600">{summary.sections.feedback_quality?.detail}</p>
+                    </div>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Sources - conditional */}
         {sources && sources.length > 0 && (

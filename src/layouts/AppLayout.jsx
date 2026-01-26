@@ -87,10 +87,12 @@ export function AppLayout() {
       const client = createClaudeClient(currentApiKey);
       const context = buildContext(managerId);
 
-      // Build conversation history from per-manager messages
+      // Build conversation history from active session
       const chatKey = managerId || 'team';
       const chatHistory = useChatStore.getState().chatHistories[chatKey];
-      const currentMessages = chatHistory?.messages || [];
+      const activeSessionId = chatHistory?.activeSessionId;
+      const activeSession = chatHistory?.sessions?.find((s) => s.id === activeSessionId);
+      const currentMessages = activeSession?.messages || [];
       const conversationMessages = currentMessages.slice(0, -1).map((m) => ({
         role: m.role,
         content: m.content,
@@ -135,14 +137,14 @@ export function AppLayout() {
         alert('Please enter your Anthropic API key in the "Ask Anything" section below.');
       } else {
         alert('Please go to a manager page and enter your Anthropic API key first.');
-        navigate('/manager/sarah-chen');
+        navigate('/manager/MGR001');
       }
       return;
     }
 
     // If on dashboard, navigate to first manager with the question
     if (!isManagerPage) {
-      const targetManagerId = 'sarah-chen';
+      const targetManagerId = 'MGR001';
       navigate(`/manager/${targetManagerId}`);
       // Add user message and send after navigation completes
       setTimeout(() => {

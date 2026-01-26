@@ -17,10 +17,12 @@ const EMPTY_ARRAY = [];
  */
 export function ChatThread({ managerId, onSuggestionClick }) {
   const chatKey = managerId || 'team';
-  // Use stable empty array fallback to prevent infinite re-renders
+  // Get active session's messages and suggestions
   const chatHistory = useChatStore((state) => state.chatHistories[chatKey]);
-  const messages = chatHistory?.messages ?? EMPTY_ARRAY;
-  const suggestions = chatHistory?.suggestions ?? EMPTY_ARRAY;
+  const activeSessionId = chatHistory?.activeSessionId;
+  const activeSession = chatHistory?.sessions?.find((s) => s.id === activeSessionId);
+  const messages = activeSession?.messages ?? EMPTY_ARRAY;
+  const suggestions = activeSession?.suggestions ?? EMPTY_ARRAY;
   const activeChat = useChatStore((state) => state.activeChat);
   const streamingContent = useChatStore((state) => state.streamingContent);
   const status = useChatStore((state) => state.status);

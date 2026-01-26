@@ -2,10 +2,8 @@
  * ManagerDetail - Detail page for individual manager
  *
  * Hero section displays:
- * - Manager name and region
- * - Key metrics (attainment, coaching score)
+ * - Manager card style header with name, metrics, and summary
  * - AI-generated headline summary
- * - Timeframe toggle for metrics
  * - Back navigation to dashboard
  * - Ask Anything chat section
  */
@@ -13,14 +11,49 @@ import { useParams, Link } from 'react-router';
 import { ErrorBoundary } from 'react-error-boundary';
 import { getManagerById, getSummaryByManager } from '@/data';
 import { InsightSection, CoachingInsight } from '@/components/sections';
-import { FilterRow } from '@/components/filters';
 import { Citation } from '@/components/display';
 import { AETable } from '@/components/tables';
-import { ActionMenu } from '@/components/menus';
 import { ChatThread, ApiKeyInput, ChatHistoryButton } from '@/components/chat';
 import { ChatErrorFallback } from '@/components/feedback';
-import { useSettingsStore, useChatStore } from '@/stores';
+import { Tooltip, InfoIcon } from '@/components/ui';
+import { useSettingsStore, useChatStore, useModalStore } from '@/stores';
 import { useChat } from '@/hooks/useChat';
+
+// Trend indicator icon using Heroicons (circled arrows)
+function TrendIcon({ direction }) {
+  if (direction === 'up') {
+    return (
+      <svg className="w-5 h-5 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    );
+  }
+  if (direction === 'down') {
+    return (
+      <svg className="w-5 h-5 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+      </svg>
+    );
+  }
+  return (
+    <svg className="w-5 h-5 text-gray-900" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+    </svg>
+  );
+}
+
+// Determine trend direction based on metric value
+function getQuotaTrend(quota) {
+  if (quota >= 100) return 'up';
+  if (quota < 80) return 'down';
+  return 'stable';
+}
+
+function getCoachingTrend(score) {
+  if (score >= 75) return 'up';
+  if (score < 50) return 'down';
+  return 'stable';
+}
 
 // Stable empty array to prevent re-renders
 const EMPTY_ARRAY = [];
@@ -51,16 +84,26 @@ export function ManagerDetail() {
   // Get AI summary for headline
   const summary = getSummaryByManager(managerId);
 
-  // Chat functionality - use per-manager messages
+  // Chat functionality - use per-manager messages from active session
   const apiKey = useSettingsStore((s) => s.apiKey);
   const chatKey = managerId || 'team';
-  // Use stable empty array fallback
+  // Get active session's messages
   const chatHistory = useChatStore((s) => s.chatHistories[chatKey]);
-  const messages = chatHistory?.messages ?? EMPTY_ARRAY;
+  const activeSessionId = chatHistory?.activeSessionId;
+  const activeSession = chatHistory?.sessions?.find((s) => s.id === activeSessionId);
+  const messages = activeSession?.messages ?? EMPTY_ARRAY;
   const { sendMessage } = useChat(managerId);
 
   const handleSuggestionClick = (suggestion) => {
     sendMessage(suggestion);
+  };
+
+  // CTA actions
+  const openConfirmationModal = useModalStore(state => state.openConfirmationModal);
+  const handleCTA = (actionId) => {
+    if (manager) {
+      openConfirmationModal(actionId, manager.name, [], managerId);
+    }
   };
 
   return (
@@ -86,54 +129,66 @@ export function ManagerDetail() {
       ) : (
         // Manager found - show hero section
         <div className="mt-4">
-          {/* Filter Row */}
-          <FilterRow managerName={manager.name} />
-
-          {/* Row 1: Manager name + ActionMenu */}
-          <div className="flex items-start justify-between mb-2">
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight">
-                {manager.name}
-              </h1>
-              <p className="text-gray-500">
-                {manager.region} Region
-              </p>
+          {/* Manager Card Header - Full Width */}
+          <div className="bg-white rounded-xl border border-gray-200 p-5 relative mb-6">
+            {/* Top right: CTA buttons and info tooltip */}
+            <div className="absolute top-4 right-4 flex items-center gap-2">
+              <button
+                onClick={() => handleCTA('add_1on1')}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Add to 1:1
+              </button>
+              <button
+                onClick={() => handleCTA('send_summary')}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors"
+              >
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Send Summary
+              </button>
+              <Tooltip content="Coaching score is calculated from call reviews, feedback frequency, and team development activities.">
+                <span className="text-gray-400 hover:text-gray-600 cursor-help">
+                  <InfoIcon />
+                </span>
+              </Tooltip>
             </div>
-            <div className="flex items-center gap-3">
-              <ActionMenu managerName={manager.name} />
-            </div>
-          </div>
 
-          {/* Row 3: Metrics row */}
-          <div className="flex gap-8 mt-6">
-            {/* Attainment */}
-            <div>
-              <div className="text-xs uppercase tracking-wider text-gray-400 mb-1">
-                Attainment
-              </div>
-              <div className="text-2xl font-bold">
-                {manager.quota_attainment}%
-              </div>
+            {/* Header */}
+            <div className="mb-4">
+              <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Sales Manager</p>
+              <h1 className="text-3xl font-semibold text-gray-900">{manager.name}</h1>
+              <p className="text-sm text-gray-500 mt-1">{manager.region} Region</p>
             </div>
 
-            {/* Coaching Score */}
-            <div>
-              <div className="text-xs uppercase tracking-wider text-gray-400 mb-1">
-                Coaching Score
+            {/* Metrics Row */}
+            <div className="flex gap-8">
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Team Quota</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-gray-900">{manager.quota_attainment}%</span>
+                  <TrendIcon direction={getQuotaTrend(manager.quota_attainment)} />
+                </div>
               </div>
-              <div className="text-2xl font-bold">
-                {manager.coaching_score}%
+              <div>
+                <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Coaching Score</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-2xl font-bold text-gray-900">{manager.coaching_score}%</span>
+                  <TrendIcon direction={getCoachingTrend(manager.coaching_score)} />
+                </div>
               </div>
             </div>
           </div>
 
           {/* Coaching Intelligence Insight */}
           {summary && (
-            <div className="mt-6">
-              <CoachingInsight>
-                {summary.headline}
-              </CoachingInsight>
-            </div>
+            <CoachingInsight>
+              {summary.headline}
+            </CoachingInsight>
           )}
 
           {/* Insight Sections */}
@@ -159,9 +214,6 @@ export function ManagerDetail() {
                 <div className="flex items-center gap-4 mb-4">
                   <span className="text-2xl font-bold">{summary.sections.trend.level}</span>
                   <span className="text-gray-500">{summary.sections.trend.value}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 text-gray-400">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-                  </svg>
                 </div>
                 <p className="text-gray-600 leading-relaxed">{summary.sections.trend.detail}</p>
               </InsightSection>
