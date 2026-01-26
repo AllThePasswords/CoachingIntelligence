@@ -3,10 +3,13 @@
  *
  * Renders as monospace inline button for consistent citation appearance
  * Validates citation format before rendering
+ * Opens CitationModal via Zustand store when clicked
  */
 import { isValidCitationId } from '@/data';
+import { useModalStore } from '@/stores';
 
-export function Citation({ id, onClick }) {
+export function Citation({ id }) {
+  const openCitationModal = useModalStore(state => state.openCitationModal);
   const isValid = isValidCitationId(id);
 
   if (!isValid) {
@@ -20,7 +23,7 @@ export function Citation({ id, onClick }) {
 
   return (
     <button
-      onClick={() => onClick?.(id)}
+      onClick={() => openCitationModal(id)}
       className="font-mono text-sm px-2 py-0.5 bg-gray-100 rounded border border-border text-foreground hover:bg-gray-200 hover:border-gray-300 transition-colors cursor-pointer"
       aria-label={`View details for ${id}`}
     >
