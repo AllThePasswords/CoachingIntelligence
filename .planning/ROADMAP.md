@@ -14,8 +14,8 @@ This roadmap delivers a sales coaching analytics dashboard with AI-powered insig
 - [x] **Phase 2: Component Library** - Atomic/composite components with timeframe state
 - [x] **Phase 3: Dashboard** - Manager cards grid with navigation and timeframe toggle
 - [x] **Phase 4: Manager Detail** - Five insight dimensions, AE table, sources footer
-- [ ] **Phase 5: Modal System** - Citation verification and action confirmation modals
-- [ ] **Phase 6: Claude Integration** - Ask Anything with streaming, citations, conversation thread
+- [x] **Phase 5: Modal System** - Citation verification and action confirmation modals
+- [x] **Phase 6: Claude Integration** - Ask Anything with streaming, citations, conversation thread
 - [ ] **Phase 7: Polish** - Loading states, error handling, transitions, accessibility
 
 ## Phase Details
@@ -107,15 +107,15 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 05-01-PLAN.md - Install sonner, create modal store and base Modal component
-- [ ] 05-02-PLAN.md - Create CitationModal and wire Citation component
-- [ ] 05-03-PLAN.md - Create ConfirmationModal and wire ActionMenu with toast
-- [ ] 05-04-PLAN.md - Human verification of complete modal system
+- [x] 05-01-PLAN.md - Install sonner, create modal store and base Modal component
+- [x] 05-02-PLAN.md - Create CitationModal and wire Citation component
+- [x] 05-03-PLAN.md - Create ConfirmationModal and wire ActionMenu with toast
+- [x] 05-04-PLAN.md - Human verification of complete modal system
 
 ### Phase 6: Claude Integration
 **Goal**: Users can ask any question and get an intelligent, cited answer
 **Depends on**: Phase 5
-**Requirements**: ASK-01, ASK-02, ASK-03, ASK-04, ASK-05, ASK-06, ASK-07
+**Requirements**: ASK-01, ASK-02, ASK-03, ASK-04, ASK-05, ASK-06 (ASK-07 deferred to Phase 7)
 **Success Criteria** (what must be TRUE):
   1. User can type question in pinned input and submit to Claude API
   2. AI response streams into conversation thread (below data on detail page) in real-time
@@ -126,24 +126,28 @@ Plans:
 **Plans**: 4 plans
 
 Plans:
-- [ ] 06-01-PLAN.md - Install Anthropic SDK, create settingsStore, chatStore, and claude.js client factory
-- [ ] 06-02-PLAN.md - Create useChat hook and chat UI components (ChatThread, ChatMessage, MessageContent, FollowUpSuggestions)
-- [ ] 06-03-PLAN.md - Wire chat to ManagerDetail page and AppLayout AskInput with ApiKeyInput
-- [ ] 06-04-PLAN.md - Human verification of complete Claude integration
+- [x] 06-01-PLAN.md - Install Anthropic SDK, create settingsStore, chatStore, and claude.js client factory
+- [x] 06-02-PLAN.md - Create useChat hook and chat UI components (ChatThread, ChatMessage, MessageContent, FollowUpSuggestions)
+- [x] 06-03-PLAN.md - Wire chat to ManagerDetail page and AppLayout AskInput with ApiKeyInput
+- [x] 06-04-PLAN.md - Human verification of complete Claude integration
 
 ### Phase 7: Polish
 **Goal**: Production-quality UX with loading states, error handling, and accessibility
 **Depends on**: Phase 6
-**Requirements**: (quality improvements, not feature requirements)
+**Requirements**: ASK-07 (contextual action buttons), plus quality improvements
 **Success Criteria** (what must be TRUE):
   1. Skeleton loaders appear during data loading and AI responses
   2. Error boundaries show graceful degradation when API fails
   3. Modal and card transitions use smooth animations
   4. All interactive elements are keyboard navigable with visible focus states
-**Plans**: TBD
+**Plans**: 5 plans
 
 Plans:
-- [ ] 07-01: TBD
+- [ ] 07-01-PLAN.md - Install dependencies and CSS foundation (modal animations, focus ring utility)
+- [ ] 07-02-PLAN.md - Create skeleton loader and error fallback components
+- [ ] 07-03-PLAN.md - Create MessageActions with Copy and Add to 1:1 buttons (ASK-07)
+- [ ] 07-04-PLAN.md - Wire error boundaries and keyboard focus states
+- [ ] 07-05-PLAN.md - Human verification of complete polish implementation
 
 ## Progress
 
@@ -156,10 +160,10 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 2. Component Library | 6/6 | Complete | 2026-01-25 |
 | 3. Dashboard | 4/4 | Complete | 2026-01-25 |
 | 4. Manager Detail | 5/5 | Complete | 2026-01-26 |
-| 5. Modal System | 0/4 | Not started | - |
-| 6. Claude Integration | 0/4 | Not started | - |
-| 7. Polish | 0/? | Not started | - |
+| 5. Modal System | 4/4 | Complete | 2026-01-26 |
+| 6. Claude Integration | 4/4 | Complete | 2026-01-26 |
+| 7. Polish | 0/5 | Not started | - |
 
 ---
 *Roadmap created: 2026-01-25*
-*Last updated: 2026-01-26 - Phase 4 complete*
+*Last updated: 2026-01-26 - Phase 6 complete*
