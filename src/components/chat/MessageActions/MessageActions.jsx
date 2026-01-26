@@ -17,6 +17,11 @@ export function MessageActions({ content, messageId }) {
   const [copied, setCopied] = useState(false);
   const openConfirmationModal = useModalStore((s) => s.openConfirmationModal);
 
+  // Guard against empty/undefined content
+  if (!content) {
+    return null;
+  }
+
   // Detect actionable content
   const managerMatch = content.match(MANAGER_PATTERN);
   const hasManagerMention = !!managerMatch;
