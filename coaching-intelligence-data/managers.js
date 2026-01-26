@@ -1,27 +1,6 @@
 // Coaching Intelligence - Manager Data
 // 4 managers with varying performance levels
 
-import { getAEsByManager } from './aes.js';
-
-// Compute sources from AE data
-function computeSources(managerId) {
-  const aes = getAEsByManager(managerId);
-  const callListening = aes.reduce((sum, ae) => sum + ae.calls_coached, 0);
-  const callAttendance = aes.reduce((sum, ae) => sum + ae.live_attended, 0);
-  const callComments = aes.reduce((sum, ae) => sum + ae.comments, 0);
-  const scorecards = aes.reduce((sum, ae) => sum + ae.scorecards, 0);
-  // feedback_events = calls that have any form of feedback (comments or scorecards)
-  const feedbackEvents = callComments + scorecards;
-  return {
-    call_listening: callListening,
-    call_attendance: callAttendance,
-    call_comments: callComments,
-    scorecards: scorecards,
-    feedback_events: feedbackEvents,
-    forecast_updates: 0 // This would come from a different data source
-  };
-}
-
 export const managers = [
   {
     id: "MGR001",
@@ -32,39 +11,39 @@ export const managers = [
     coaching_score: 97,
     team_win_rate: 42,
     trend: "stable",
-    summary: "Consistently high engagement with specific, actionable feedback. All AEs above quota with strong pipeline coverage.",
+    summary: "Consistently high engagement, specific feedback, all AEs above quota.",
     coaching_investment: { level: "High", activities: 171 },
     improvement: { trend: "Stable", days: 90 },
     distribution: "Even",
     team_performance: "Exceeding",
     sources: {
-      call_listening: 60,
+      call_listening: 171,
       call_attendance: 18,
-      call_comments: 38,
-      scorecards: 14,
+      call_comments: 156,
+      scorecards: 42,
       feedback_events: 112,
       forecast_updates: 24
     }
   },
   {
     id: "MGR002",
-    name: "Marcus Jones",
+    name: "Marcus Thompson",
     region: "East",
     performance: "good",
     quota_attainment: 96,
     coaching_score: 56,
     team_win_rate: 34,
     trend: "declining",
-    summary: "Solid coaching foundation but engagement declining over past 30 days. Lauren Kim under-coached compared to rest of team.",
+    summary: "Solid foundation but declining engagement. Lauren Kim under-coached.",
     coaching_investment: { level: "Medium", activities: 89 },
     improvement: { trend: "Declining", days: 90 },
     distribution: "Uneven",
     team_performance: "On Track",
     sources: {
-      call_listening: 14,
+      call_listening: 89,
       call_attendance: 8,
-      call_comments: 10,
-      scorecards: 4,
+      call_comments: 62,
+      scorecards: 16,
       feedback_events: 34,
       forecast_updates: 18
     }
@@ -78,16 +57,16 @@ export const managers = [
     coaching_score: 26,
     team_win_rate: 31,
     trend: "stable",
-    summary: "High call listening but minimal coaching delivered. Feedback lacks substance and actionable guidance for the team.",
+    summary: "Listening but not coaching. Feedback lacks substance.",
     coaching_investment: { level: "Low", activities: 44 },
     improvement: { trend: "Stable", days: 90 },
     distribution: "Sporadic",
     team_performance: "Underperforming",
     sources: {
-      call_listening: 13,
+      call_listening: 44,
       call_attendance: 3,
-      call_comments: 7,
-      scorecards: 2,
+      call_comments: 28,
+      scorecards: 6,
       feedback_events: 8,
       forecast_updates: 12
     }
@@ -101,15 +80,15 @@ export const managers = [
     coaching_score: 5,
     team_win_rate: 19,
     trend: "declining",
-    summary: "Critical intervention needed. Zero coaching activities in past 14 days. Team performance declining with multiple reps at risk.",
+    summary: "Critical: Zero coaching in 14 days. Team in crisis.",
     coaching_investment: { level: "Minimal", activities: 22 },
     improvement: { trend: "Declining", days: 90 },
     distribution: "Absent",
     team_performance: "Underperforming",
     sources: {
-      call_listening: 2,
+      call_listening: 22,
       call_attendance: 1,
-      call_comments: 1,
+      call_comments: 8,
       scorecards: 0,
       feedback_events: 1,
       forecast_updates: 4
@@ -117,16 +96,7 @@ export const managers = [
   }
 ];
 
-export const getManagerById = (id) => {
-  const manager = managers.find(m => m.id === id);
-  if (!manager) return null;
-
-  // Merge computed sources into the manager
-  return {
-    ...manager,
-    sources: computeSources(id)
-  };
-};
+export const getManagerById = (id) => managers.find(m => m.id === id);
 
 export const getManagersByPerformance = (performance) => 
   managers.filter(m => m.performance === performance);
