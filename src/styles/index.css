@@ -84,6 +84,10 @@
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
+  .focus-ring {
+    @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-violet focus-visible:ring-offset-2;
+  }
 }
 
 /* Dialog animations using @starting-style */
