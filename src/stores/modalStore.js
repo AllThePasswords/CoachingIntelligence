@@ -20,12 +20,13 @@ export const useModalStore = create((set) => ({
     isOpen: false,
     action: null,      // 'add_1on1' | 'send_summary' | 'recognize' | 'flag_hr'
     managerName: null,
+    managerId: null,   // Manager ID for fetching summary
     sources: [],       // Citation IDs used as sources
   },
-  openConfirmationModal: (action, managerName, sources = []) => set({
-    confirmationModal: { isOpen: true, action, managerName, sources }
+  openConfirmationModal: (action, managerName, sources = [], managerId = null) => set({
+    confirmationModal: { isOpen: true, action, managerName, managerId, sources }
   }),
   closeConfirmationModal: () => set({
-    confirmationModal: { isOpen: false, action: null, managerName: null, sources: [] }
+    confirmationModal: { isOpen: false, action: null, managerName: null, managerId: null, sources: [] }
   }),
 }));

@@ -1,31 +1,31 @@
 /**
  * TrendArrow - Directional trend indicator icon
- * Extracted from App.jsx TrendUp/TrendDown/TrendSteady components
+ * Uses Heroicons circled arrows matching ManagerCard overview cards:
+ * - Green for up/improving
+ * - Red for down/declining
+ * - Black for steady
  */
 export function TrendArrow({ direction }) {
   if (direction === 'up') {
     return (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 12L7 8L9 10L13 4" />
-        <path d="M10 4H13V7" />
+      <svg className="w-4 h-4 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     );
   }
 
   if (direction === 'down') {
     return (
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M3 4L7 8L9 6L13 12" />
-        <path d="M10 12H13V9" />
+      <svg className="w-4 h-4 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     );
   }
 
-  // steady (default)
+  // steady (default) - right-facing circled arrow, black/gray-900
   return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 8H13" />
-      <path d="M10 5L13 8L10 11" />
+    <svg className="w-4 h-4 text-gray-900" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </svg>
   );
 }

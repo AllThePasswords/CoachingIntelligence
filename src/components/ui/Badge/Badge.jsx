@@ -9,17 +9,20 @@ import { TrendArrow } from '../TrendArrow';
 
 const trendConfig = {
   improving: {
-    className: 'bg-success/10 text-success',
+    bgClassName: 'bg-success/10',
+    textClassName: 'text-success',
     direction: 'up',
     label: 'Improving'
   },
   declining: {
-    className: 'bg-error/10 text-error',
+    bgClassName: 'bg-error/10',
+    textClassName: 'text-error',
     direction: 'down',
     label: 'Declining'
   },
   steady: {
-    className: 'bg-gray-100 text-foreground',
+    bgClassName: 'bg-gray-100',
+    textClassName: 'text-foreground',
     direction: 'steady',
     label: 'Steady'
   }
@@ -29,9 +32,9 @@ export function Badge({ trend, showIcon = true }) {
   const config = trendConfig[trend] || trendConfig.steady;
 
   return (
-    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${config.className}`}>
+    <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-xs font-medium ${config.bgClassName}`}>
       {showIcon && <TrendArrow direction={config.direction} />}
-      {config.label}
+      <span className={config.textClassName}>{config.label}</span>
     </span>
   );
 }
