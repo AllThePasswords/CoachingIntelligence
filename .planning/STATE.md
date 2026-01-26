@@ -5,23 +5,23 @@
 See: .planning/PROJECT.md (updated 2026-01-25)
 
 **Core value:** Ann can ask any question about her managers' coaching and get an intelligent, cited answer
-**Current focus:** Phase 4 - Manager Detail
+**Current focus:** Phase 5 - Modal System
 
 ## Current Position
 
-Phase: 4 of 7 (Manager Detail) - COMPLETE
-Plan: 5 of 5 in current phase
-Status: Complete
-Last activity: 2026-01-26 - Completed Phase 4 (Manager Detail)
+Phase: 5 of 7 (Modal System)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-26 - Completed 05-01-PLAN.md (Modal Infrastructure)
 
-Progress: [======----] ~57%
+Progress: [======----] ~61%
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 19
 - Average duration: 2 min
-- Total execution time: 37 min
+- Total execution time: 40 min
 
 **By Phase:**
 
@@ -31,9 +31,10 @@ Progress: [======----] ~57%
 | 02-component-library | 6 | 6 min | 1 min |
 | 03-dashboard | 4 | 3 min | 1 min |
 | 04-manager-detail | 5 | 6 min | 1 min |
+| 05-modal-system | 1 | 3 min | 3 min |
 
 **Recent Trend:**
-- Last 5 plans: 03-03 (2 min), 04-01 (1 min), 04-02 (1 min), 04-03 (1 min), 04-04 (2 min)
+- Last 5 plans: 04-01 (1 min), 04-02 (1 min), 04-03 (1 min), 04-04 (2 min), 05-01 (3 min)
 - Trend: Fast execution continues
 
 *Updated after each plan completion*
@@ -67,6 +68,9 @@ Recent decisions affecting current work:
 - **Flag badge styling:** text-xs px-2 py-1 rounded-md font-medium with bg-{color}/10 text-{color}
 - **Outside click pattern:** useRef + mousedown listener for dropdown close behavior
 - **Sources footer pattern:** Horizontal flex-wrap with gap-x-6 for data provenance display
+- **Native dialog modal pattern:** Use showModal/close methods, sync with React state via useEffect
+- **createPortal to document.body:** Render modals outside React tree for proper z-index layering
+- **Zustand modal store pattern:** Centralized modal state, triggered from multiple components
 
 ### Pending Todos
 
@@ -79,6 +83,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-26
-Stopped at: Completed Phase 4 (Manager Detail)
+Stopped at: Completed 05-01-PLAN.md (Modal Infrastructure)
 Resume file: None
-Next action: Plan Phase 5 (Modal System)
+Next action: Execute 05-02-PLAN.md (Citation Modal)
