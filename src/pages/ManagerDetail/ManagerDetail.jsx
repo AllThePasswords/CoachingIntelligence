@@ -22,6 +22,9 @@ import { ChatErrorFallback } from '@/components/feedback';
 import { useSettingsStore, useChatStore } from '@/stores';
 import { useChat } from '@/hooks/useChat';
 
+// Stable empty array to prevent re-renders
+const EMPTY_ARRAY = [];
+
 // Map summary level values to InsightSection rating values
 const levelToRating = {
   'High': 'improving',
@@ -50,9 +53,10 @@ export function ManagerDetail() {
 
   // Chat functionality - use per-manager messages
   const apiKey = useSettingsStore((s) => s.apiKey);
-  // Use stable selector - access chatHistories directly to avoid new array on every render
   const chatKey = managerId || 'team';
-  const messages = useChatStore((s) => s.chatHistories[chatKey]?.messages || []);
+  // Use stable empty array fallback
+  const chatHistory = useChatStore((s) => s.chatHistories[chatKey]);
+  const messages = chatHistory?.messages ?? EMPTY_ARRAY;
   const { sendMessage } = useChat(managerId);
 
   const handleSuggestionClick = (suggestion) => {

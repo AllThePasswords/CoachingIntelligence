@@ -1,10 +1,13 @@
 // ChatThread - Conversation thread container with auto-scroll
 // Renders messages, streaming indicator, suggestions, and errors
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useMemo } from 'react';
 import { ChatMessage } from '../ChatMessage';
 import { FollowUpSuggestions } from '../FollowUpSuggestions';
 import { ChatMessageSkeleton } from '@/components/feedback';
 import { useChatStore } from '@/stores';
+
+// Stable empty array to prevent re-renders
+const EMPTY_ARRAY = [];
 
 /**
  * Render conversation thread with messages and suggestions
@@ -13,10 +16,11 @@ import { useChatStore } from '@/stores';
  * @param {Function} props.onSuggestionClick - Callback when suggestion clicked
  */
 export function ChatThread({ managerId, onSuggestionClick }) {
-  // Use stable selectors - access chatHistories directly to avoid new array on every render
   const chatKey = managerId || 'team';
-  const messages = useChatStore((state) => state.chatHistories[chatKey]?.messages || []);
-  const suggestions = useChatStore((state) => state.chatHistories[chatKey]?.suggestions || []);
+  // Use stable empty array fallback to prevent infinite re-renders
+  const chatHistory = useChatStore((state) => state.chatHistories[chatKey]);
+  const messages = chatHistory?.messages ?? EMPTY_ARRAY;
+  const suggestions = chatHistory?.suggestions ?? EMPTY_ARRAY;
   const activeChat = useChatStore((state) => state.activeChat);
   const streamingContent = useChatStore((state) => state.streamingContent);
   const status = useChatStore((state) => state.status);
