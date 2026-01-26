@@ -143,7 +143,7 @@ Plans:
 **Plans**: 5 plans
 
 Plans:
-- [ ] 07-01-PLAN.md - Install dependencies and CSS foundation (modal animations, focus ring utility)
+- [x] 07-01-PLAN.md - Install dependencies and CSS foundation (modal animations, focus ring utility)
 - [ ] 07-02-PLAN.md - Create skeleton loader and error fallback components
 - [ ] 07-03-PLAN.md - Create MessageActions with Copy and Add to 1:1 buttons (ASK-07)
 - [ ] 07-04-PLAN.md - Wire error boundaries and keyboard focus states
@@ -162,8 +162,8 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7
 | 4. Manager Detail | 5/5 | Complete | 2026-01-26 |
 | 5. Modal System | 4/4 | Complete | 2026-01-26 |
 | 6. Claude Integration | 4/4 | Complete | 2026-01-26 |
-| 7. Polish | 0/5 | Not started | - |
+| 7. Polish | 1/5 | In progress | - |
 
 ---
 *Roadmap created: 2026-01-25*
-*Last updated: 2026-01-26 - Phase 6 complete*
+*Last updated: 2026-01-26 - Phase 7 plan 01 complete*
