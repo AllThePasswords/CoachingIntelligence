@@ -1,6 +1,20 @@
 // Coaching Intelligence - AI-Generated Summaries
 // Pre-generated summaries for each manager
 
+import { getAEsByManager } from './aes.js';
+
+// Compute breakdown metrics from AE data
+function computeBreakdown(managerId) {
+  const aes = getAEsByManager(managerId);
+  return {
+    calls_listened: aes.reduce((sum, ae) => sum + ae.calls_coached, 0),
+    calls_attended: aes.reduce((sum, ae) => sum + ae.live_attended, 0),
+    calls_with_feedback: aes.reduce((sum, ae) => sum + ae.comments, 0),
+    calls_with_comments: aes.reduce((sum, ae) => sum + ae.comments, 0),
+    calls_with_scorecards: aes.reduce((sum, ae) => sum + ae.scorecards, 0)
+  };
+}
+
 export const managerSummaries = {
   MGR001: {
     manager_id: "MGR001",
@@ -11,30 +25,27 @@ export const managerSummaries = {
       effort: {
         title: "Coaching Investment",
         level: "High",
-        value: "171 activities",
-        detail: "Sarah invested significant coaching effort this quarter, reviewing 171 calls across 57 active days. This is 2.5x the team average and represents consistent daily engagement rather than sporadic bursts. She averages 3 calls reviewed per working day, with 65% receiving written feedback."
+        value: "60 calls coached",
+        detail: "Sarah invested significant coaching effort this quarter, coaching 60 calls across her team. This is 4x the team average and represents consistent engagement. She averages 15 calls per AE, with 63% receiving written comments—the highest rate across all managers."
       },
       trend: {
         title: "Trend Over Time",
         level: "Stable",
-        value: "90 days",
-        detail: "Coaching volume has been stable across all 13 weeks. No decline despite quarter-end pressure. Week-over-week variance is minimal, indicating coaching is a deliberate habit, not an afterthought.",
+        value: "30 days",
+        detail: "Coaching volume has been stable across the month. No decline despite quarter-end pressure. Week-over-week variance is minimal, indicating coaching is a deliberate habit, not an afterthought.",
         weekly: [
-          { week: 1, calls: 14 }, { week: 2, calls: 16 }, { week: 3, calls: 15 },
-          { week: 4, calls: 15 }, { week: 5, calls: 13 }, { week: 6, calls: 14 },
-          { week: 7, calls: 12 }, { week: 8, calls: 15 }, { week: 9, calls: 14 },
-          { week: 10, calls: 13 }, { week: 11, calls: 14 }, { week: 12, calls: 12 }, { week: 13, calls: 14 }
+          { week: 1, calls: 15 }, { week: 2, calls: 16 }, { week: 3, calls: 14 }, { week: 4, calls: 15 }
         ]
       },
       methods: {
         title: "How They Coach",
-        detail: "Sarah uses the full coaching toolkit with emphasis on written feedback.",
+        detail: "Sarah uses the full coaching toolkit with emphasis on written feedback and scorecards.",
         breakdown: {
-          calls_listened: 171,
-          calls_attended: 18,
-          calls_with_feedback: 112,
-          calls_with_comments: 156,
-          calls_with_scorecards: 42
+          calls_listened: 60,
+          calls_attended: 6,
+          calls_with_feedback: 38,
+          calls_with_comments: 38,
+          calls_with_scorecards: 14
         }
       },
       distribution: {
@@ -98,30 +109,27 @@ export const managerSummaries = {
       effort: {
         title: "Coaching Investment",
         level: "Medium",
-        value: "89 activities",
-        detail: "Marcus reviewed 89 calls this quarter across 35 active days. This is below the benchmark of 135 calls but represents meaningful engagement when it occurs. However, activity has declined significantly in the last 30 days."
+        value: "14 calls coached",
+        detail: "Marcus coached 14 calls across his team this month. While this is meaningful engagement, it's 4x below Sarah's level. Activity has declined in recent weeks, particularly for lower-performing AEs."
       },
       trend: {
         title: "Trend Over Time",
         level: "Declining",
-        value: "90 days",
-        detail: "Coaching activity has declined 35% from Month 1 to Month 3. Week 4 of Month 3 showed zero written feedback despite calls being reviewed. This coincided with quarter-end, suggesting coaching was deprioritised under pressure.",
+        value: "30 days",
+        detail: "Coaching activity has declined from Week 1 to Week 4. The most recent week showed only 2 calls coached. This coincided with quarter-end, suggesting coaching was deprioritised under pressure.",
         weekly: [
-          { week: 1, calls: 10 }, { week: 2, calls: 12 }, { week: 3, calls: 9 },
-          { week: 4, calls: 11 }, { week: 5, calls: 8 }, { week: 6, calls: 7 },
-          { week: 7, calls: 8 }, { week: 8, calls: 6 }, { week: 9, calls: 5 },
-          { week: 10, calls: 4 }, { week: 11, calls: 5 }, { week: 12, calls: 3 }, { week: 13, calls: 2 }
+          { week: 1, calls: 5 }, { week: 2, calls: 4 }, { week: 3, calls: 3 }, { week: 4, calls: 2 }
         ]
       },
       methods: {
         title: "How They Coach",
-        detail: "Marcus relies primarily on call listening with selective feedback. Scorecard usage is reasonable but written feedback is the gap.",
+        detail: "Marcus relies primarily on call listening with selective comments. Scorecard usage is reasonable but written feedback frequency is the gap.",
         breakdown: {
-          calls_listened: 89,
-          calls_attended: 8,
-          calls_with_feedback: 34,
-          calls_with_comments: 62,
-          calls_with_scorecards: 16
+          calls_listened: 14,
+          calls_attended: 1,
+          calls_with_feedback: 10,
+          calls_with_comments: 10,
+          calls_with_scorecards: 4
         }
       },
       distribution: {
@@ -186,30 +194,27 @@ export const managerSummaries = {
       effort: {
         title: "Coaching Investment",
         level: "Low",
-        value: "44 activities",
-        detail: "Jennifer reviewed 44 calls this quarter across 26 active days. While she's showing up more days than David, her depth of engagement is lower—only 18% of calls received meaningful feedback. She's listening to calls but not converting listening into coaching interventions."
+        value: "13 calls coached",
+        detail: "Jennifer coached 13 calls across her team this month. While she's showing more activity than David, her depth of engagement is low—only 54% of calls received comments. She's listening to calls but not converting listening into coaching interventions."
       },
       trend: {
         title: "Trend Over Time",
         level: "Stable",
-        value: "90 days",
+        value: "30 days",
         detail: "Activity has been inconsistent with no clear pattern. The pattern suggests coaching is reactive rather than planned—activity when time permits rather than a deliberate practice. No improvement trend.",
         weekly: [
-          { week: 1, calls: 4 }, { week: 2, calls: 3 }, { week: 3, calls: 4 },
-          { week: 4, calls: 3 }, { week: 5, calls: 4 }, { week: 6, calls: 2 },
-          { week: 7, calls: 3 }, { week: 8, calls: 4 }, { week: 9, calls: 3 },
-          { week: 10, calls: 4 }, { week: 11, calls: 3 }, { week: 12, calls: 4 }, { week: 13, calls: 2 }
+          { week: 1, calls: 4 }, { week: 2, calls: 3 }, { week: 3, calls: 4 }, { week: 4, calls: 2 }
         ]
       },
       methods: {
         title: "How They Coach",
-        detail: "Jennifer's coaching is heavily weighted to passive listening. The feedback rate (18%) is significantly below the 60% benchmark. She's monitoring activity but not actively developing her team.",
+        detail: "Jennifer's coaching is heavily weighted to passive listening. The feedback rate (54%) is below the 60% benchmark. She's monitoring activity but not actively developing her team with scorecards.",
         breakdown: {
-          calls_listened: 44,
-          calls_attended: 3,
-          calls_with_feedback: 8,
-          calls_with_comments: 28,
-          calls_with_scorecards: 6
+          calls_listened: 13,
+          calls_attended: 1,
+          calls_with_feedback: 7,
+          calls_with_comments: 7,
+          calls_with_scorecards: 2
         }
       },
       distribution: {
@@ -274,29 +279,26 @@ export const managerSummaries = {
       effort: {
         title: "Coaching Investment",
         level: "Minimal",
-        value: "22 activities",
-        detail: "David reviewed only 22 calls this quarter across 12 active days. This represents an 84% gap versus the 135-call benchmark and is the lowest engagement across all managers. His team is the only one with all AEs below quota."
+        value: "2 calls coached",
+        detail: "David coached only 2 calls this month across his entire team. This represents a 97% gap versus Sarah's output and is the lowest engagement across all managers. His team is the only one with all AEs below quota."
       },
       trend: {
         title: "Trend Over Time",
         level: "Declining",
-        value: "90 days",
-        detail: "Coaching activity has effectively ceased. Month 1 showed some engagement (15 calls), but activity dropped sharply in Month 2 (5 calls) and Month 3 (2 calls). Zero coaching activity in the past 14 days. This is not a dip—it's an absence.",
+        value: "30 days",
+        detail: "Coaching activity has effectively ceased. Week 1 showed some engagement (2 calls), but activity dropped to zero in recent weeks. Zero coaching activity in the past 14 days. This is not a dip—it's an absence.",
         weekly: [
-          { week: 1, calls: 4 }, { week: 2, calls: 5 }, { week: 3, calls: 3 },
-          { week: 4, calls: 3 }, { week: 5, calls: 2 }, { week: 6, calls: 1 },
-          { week: 7, calls: 1 }, { week: 8, calls: 1 }, { week: 9, calls: 1 },
-          { week: 10, calls: 1 }, { week: 11, calls: 0 }, { week: 12, calls: 0 }, { week: 13, calls: 0 }
+          { week: 1, calls: 2 }, { week: 2, calls: 0 }, { week: 3, calls: 0 }, { week: 4, calls: 0 }
         ]
       },
       methods: {
         title: "How They Coach",
-        detail: "David is not using any coaching tools in a meaningful way. The single feedback entry recorded was minimal and non-actionable.",
+        detail: "David is not using any coaching tools in a meaningful way. The single comment recorded was minimal and non-actionable. Zero scorecards.",
         breakdown: {
-          calls_listened: 22,
-          calls_attended: 1,
+          calls_listened: 2,
+          calls_attended: 0,
           calls_with_feedback: 1,
-          calls_with_comments: 8,
+          calls_with_comments: 1,
           calls_with_scorecards: 0
         }
       },
@@ -347,4 +349,20 @@ export const managerSummaries = {
   }
 };
 
-export const getSummaryByManager = (managerId) => managerSummaries[managerId];
+export const getSummaryByManager = (managerId) => {
+  const summary = managerSummaries[managerId];
+  if (!summary) return null;
+
+  // Merge computed breakdown into the summary
+  const computedBreakdown = computeBreakdown(managerId);
+  return {
+    ...summary,
+    sections: {
+      ...summary.sections,
+      methods: {
+        ...summary.sections.methods,
+        breakdown: computedBreakdown
+      }
+    }
+  };
+};
