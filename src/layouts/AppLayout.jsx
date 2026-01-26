@@ -80,37 +80,17 @@ export function AppLayout() {
     ? `Ask anything about ${currentManager.name}'s coaching...`
     : 'Ask anything about your team...';
 
-  const handleAskSubmit = async (question) => {
-    // Check if on manager detail page
-    const isManagerPage = location.pathname.startsWith('/manager/');
-    const managerId = isManagerPage ? location.pathname.split('/').pop() : null;
-
-    // Check for API key
-    if (!apiKey) {
-      if (isManagerPage) {
-        alert('Please enter your Anthropic API key in the "Ask Anything" section below.');
-      } else {
-        alert('Please go to a manager page and enter your Anthropic API key first.');
-        navigate('/manager/sarah-chen');
-      }
-      return;
-    }
-
-    // If on dashboard, navigate to first manager
-    if (!isManagerPage) {
-      navigate('/manager/sarah-chen');
-      return;
-    }
-
-    // Send message via Claude API - pass managerId for per-manager history
-    addUserMessage(question, managerId);
-
+  // Helper function to send question to Claude API
+  const sendQuestionToApi = async (question, managerId) => {
     try {
-      const client = createClaudeClient(apiKey);
+      const currentApiKey = useSettingsStore.getState().apiKey;
+      const client = createClaudeClient(currentApiKey);
       const context = buildContext(managerId);
 
       // Build conversation history from per-manager messages
-      const currentMessages = useChatStore.getState().getMessages(managerId);
+      const chatKey = managerId || 'team';
+      const chatHistory = useChatStore.getState().chatHistories[chatKey];
+      const currentMessages = chatHistory?.messages || [];
       const conversationMessages = currentMessages.slice(0, -1).map((m) => ({
         role: m.role,
         content: m.content,
@@ -142,6 +122,39 @@ export function AppLayout() {
     } catch (err) {
       setError(err);
     }
+  };
+
+  const handleAskSubmit = async (question) => {
+    // Check if on manager detail page
+    const isManagerPage = location.pathname.startsWith('/manager/');
+    const managerId = isManagerPage ? location.pathname.split('/').pop() : null;
+
+    // Check for API key
+    if (!apiKey) {
+      if (isManagerPage) {
+        alert('Please enter your Anthropic API key in the "Ask Anything" section below.');
+      } else {
+        alert('Please go to a manager page and enter your Anthropic API key first.');
+        navigate('/manager/sarah-chen');
+      }
+      return;
+    }
+
+    // If on dashboard, navigate to first manager with the question
+    if (!isManagerPage) {
+      const targetManagerId = 'sarah-chen';
+      navigate(`/manager/${targetManagerId}`);
+      // Add user message and send after navigation completes
+      setTimeout(() => {
+        addUserMessage(question, targetManagerId);
+        sendQuestionToApi(question, targetManagerId);
+      }, 100);
+      return;
+    }
+
+    // Send message via Claude API - pass managerId for per-manager history
+    addUserMessage(question, managerId);
+    sendQuestionToApi(question, managerId);
   };
 
   return (
