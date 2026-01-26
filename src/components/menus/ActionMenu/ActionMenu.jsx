@@ -44,7 +44,7 @@ export function ActionMenu({ managerName, onAction, sources = [] }) {
     <div ref={menuRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+        className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 focus-ring"
       >
         Actions
         <svg
@@ -63,7 +63,7 @@ export function ActionMenu({ managerName, onAction, sources = [] }) {
             <button
               key={action.id}
               onClick={() => handleAction(action)}
-              className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus:bg-gray-50 focus:outline-none"
+              className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 focus-ring"
             >
               {action.label}
             </button>
