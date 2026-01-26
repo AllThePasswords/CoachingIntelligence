@@ -64,7 +64,7 @@ export const aes = [
     flag: null
   },
 
-  // Marcus Thompson's team (MGR002) - Mixed, with Lauren undercoached
+  // Marcus Jones's team (MGR002) - Mixed, with Lauren undercoached
   {
     id: "AE005",
     name: "James Wilson",

@@ -46,7 +46,7 @@ export function Modal({ isOpen, onClose, children, ariaLabel }) {
   return createPortal(
     <dialog
       ref={dialogRef}
-      className="backdrop:bg-black/50 bg-white rounded-lg shadow-xl max-w-lg w-full p-0"
+      className="backdrop:bg-black/50 bg-white rounded-lg shadow-xl max-w-lg w-full p-0 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 m-0"
       aria-label={ariaLabel}
     >
       {children}

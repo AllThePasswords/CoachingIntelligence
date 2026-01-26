@@ -137,13 +137,13 @@ export const feedbackLog = [
     has_scorecard: false
   },
 
-  // Marcus Thompson's feedback (moderate to vague)
+  // Marcus Jones's feedback (moderate to vague)
   {
     id: "FB008",
     call_id: "CALL-2015",
     date: "2026-01-08",
     manager_id: "MGR002",
-    manager_name: "Marcus Thompson",
+    manager_name: "Marcus Jones",
     ae_id: "AE005",
     ae_name: "James Wilson",
     pipeline_stage: "Discovery",
@@ -162,7 +162,7 @@ export const feedbackLog = [
     call_id: "CALL-2089",
     date: "2026-01-18",
     manager_id: "MGR002",
-    manager_name: "Marcus Thompson",
+    manager_name: "Marcus Jones",
     ae_id: "AE005",
     ae_name: "James Wilson",
     pipeline_stage: "Demo",
@@ -181,7 +181,7 @@ export const feedbackLog = [
     call_id: "CALL-2067",
     date: "2026-01-14",
     manager_id: "MGR002",
-    manager_name: "Marcus Thompson",
+    manager_name: "Marcus Jones",
     ae_id: "AE006",
     ae_name: "Priya Sharma",
     pipeline_stage: "Demo",
@@ -200,7 +200,7 @@ export const feedbackLog = [
     call_id: "CALL-2045",
     date: "2025-12-15",
     manager_id: "MGR002",
-    manager_name: "Marcus Thompson",
+    manager_name: "Marcus Jones",
     ae_id: "AE007",
     ae_name: "Michael Brown",
     pipeline_stage: "Qualification",
@@ -219,7 +219,7 @@ export const feedbackLog = [
     call_id: "CALL-2023",
     date: "2025-12-02",
     manager_id: "MGR002",
-    manager_name: "Marcus Thompson",
+    manager_name: "Marcus Jones",
     ae_id: "AE008",
     ae_name: "Lauren Kim",
     pipeline_stage: "Discovery",

@@ -135,7 +135,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | ASK-04 | Phase 6 | Pending |
 | ASK-05 | Phase 6 | Pending |
 | ASK-06 | Phase 6 | Pending |
-| ASK-07 | Phase 6 | Pending |
+| ASK-07 | Phase 7 | Pending |
 | CITE-01 | Phase 5 | Pending |
 | CITE-02 | Phase 5 | Pending |
 | CITE-03 | Phase 5 | Pending |
