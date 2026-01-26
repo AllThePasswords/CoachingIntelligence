@@ -136,7 +136,7 @@ Plans:
 **Depends on**: Phase 6
 **Requirements**: ASK-07 (contextual action buttons), plus quality improvements
 **Success Criteria** (what must be TRUE):
-  1. Skeleton loaders appear during data loading and AI responses
+  1. ChatMessageSkeleton appears while waiting for AI response to start streaming
   2. Error boundaries show graceful degradation when API fails
   3. Modal and card transitions use smooth animations
   4. All interactive elements are keyboard navigable with visible focus states
