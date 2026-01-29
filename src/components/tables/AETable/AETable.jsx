@@ -1,21 +1,10 @@
 /**
  * AETable - Display AE coaching data for a manager
  *
- * Shows each AE with quota, coaching metrics, and flag status
+ * Shows each AE with quota, coaching metrics, and marked-as-feedback-given
  * Simple semantic table - no library needed for 4-16 rows
  */
 import { getAEsByManager } from '@/data';
-
-// Flag styling using Geist semantic tokens
-const flagStyles = {
-  undercoached: 'bg-warning/10 text-warning',
-  critical: 'bg-error/10 text-error'
-};
-
-const flagLabels = {
-  undercoached: 'Undercoached',
-  critical: 'Critical'
-};
 
 export function AETable({ managerId }) {
   const aes = getAEsByManager(managerId);
@@ -36,11 +25,11 @@ export function AETable({ managerId }) {
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">AE Name</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Quota %</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls Listened</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls with Comments</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls with feedback</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls Attended</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Scorecards</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Last Feedback</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Flag</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Calls with comments</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider">Marked as feedback given</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
@@ -52,15 +41,11 @@ export function AETable({ managerId }) {
               <td className="py-3 px-4 text-gray-700">{ae.comments}</td>
               <td className="py-3 px-4 text-gray-700">{ae.live_attended}</td>
               <td className="py-3 px-4 text-gray-700">{ae.scorecards}</td>
-              <td className="py-3 px-4 text-sm text-gray-500">
-                {ae.last_feedback_date || 'Never'}
+              <td className="py-3 px-4 text-gray-700">
+                {ae.comments}
               </td>
-              <td className="py-3 px-4">
-                {ae.flag && (
-                  <span className={`text-xs px-2 py-1 rounded-md font-medium ${flagStyles[ae.flag]}`}>
-                    {flagLabels[ae.flag]}
-                  </span>
-                )}
+              <td className="py-3 px-4 text-gray-700">
+                {ae.comments}
               </td>
             </tr>
           ))}
