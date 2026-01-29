@@ -38,7 +38,7 @@ export const managerSummaries = {
         ]
       },
       methods: {
-        title: "How They Coach",
+        title: "Coaching Activity",
         detail: "Sarah uses the full coaching toolkit with emphasis on written feedback and scorecards.",
         breakdown: {
           calls_listened: 60,
@@ -60,7 +60,7 @@ export const managerSummaries = {
         ]
       },
       feedback_quality: {
-        title: "Feedback Quality",
+        title: "Feedback Analysis",
         level: "Specific & Actionable",
         detail: "Sarah's feedback is specific, actionable, and tied to observable behaviors. She consistently cites specific moments, connects to frameworks or prior coaching, and provides one clear action item.",
         examples: [
@@ -122,7 +122,7 @@ export const managerSummaries = {
         ]
       },
       methods: {
-        title: "How They Coach",
+        title: "Coaching Activity",
         detail: "Marcus relies primarily on call listening with selective comments. Scorecard usage is reasonable but written feedback frequency is the gap.",
         breakdown: {
           calls_listened: 14,
@@ -144,7 +144,7 @@ export const managerSummaries = {
         ]
       },
       feedback_quality: {
-        title: "Feedback Quality",
+        title: "Feedback Analysis",
         level: "Moderate to Vague",
         detail: "When Marcus provides feedback, it's relevant but often lacks specificity. Comments are brief and occasionally actionable, but lack the framework references that drive skill development.",
         examples: [
@@ -207,7 +207,7 @@ export const managerSummaries = {
         ]
       },
       methods: {
-        title: "How They Coach",
+        title: "Coaching Activity",
         detail: "Jennifer's coaching is heavily weighted to passive listening. The feedback rate (54%) is below the 60% benchmark. She's monitoring activity but not actively developing her team with scorecards.",
         breakdown: {
           calls_listened: 13,
@@ -229,7 +229,7 @@ export const managerSummaries = {
         ]
       },
       feedback_quality: {
-        title: "Feedback Quality",
+        title: "Feedback Analysis",
         level: "Generic",
         detail: "The limited feedback provided lacks substance. Jennifer's comments are brief affirmations that don't identify specific strengths to repeat or areas to develop. This is encouragement, not coaching.",
         examples: [
@@ -292,7 +292,7 @@ export const managerSummaries = {
         ]
       },
       methods: {
-        title: "How They Coach",
+        title: "Coaching Activity",
         detail: "David is not using any coaching tools in a meaningful way. The single comment recorded was minimal and non-actionable. Zero scorecards.",
         breakdown: {
           calls_listened: 2,
@@ -314,7 +314,7 @@ export const managerSummaries = {
         ]
       },
       feedback_quality: {
-        title: "Feedback Quality",
+        title: "Feedback Analysis",
         level: "None",
         detail: "Only one feedback comment was recorded this quarter. There are no examples of actionable feedback, skill development, or deal-specific guidance. David's AEs are operating without management support.",
         examples: [

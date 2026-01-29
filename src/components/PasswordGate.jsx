@@ -2,7 +2,7 @@
 // Password is set via VITE_DEMO_PASSWORD environment variable
 import { useState, useEffect } from 'react';
 
-const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD || 'demo2024';
+const DEMO_PASSWORD = import.meta.env.VITE_DEMO_PASSWORD || 'Gong2026';
 const STORAGE_KEY = 'coaching-demo-auth';
 
 export function PasswordGate({ children }) {

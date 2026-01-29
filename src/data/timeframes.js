@@ -10,6 +10,7 @@ export const timeframes = {
       MGR001: {
         calls_reviewed: 56,
         coaching_score: 95,
+        quota_attainment: 112,
         active_days: 19,
         calls_attended: 6,
         calls_with_feedback: 39,
@@ -21,6 +22,7 @@ export const timeframes = {
       MGR002: {
         calls_reviewed: 23,
         coaching_score: 56,
+        quota_attainment: 89,
         active_days: 8,
         calls_attended: 2,
         calls_with_feedback: 8,
@@ -32,6 +34,7 @@ export const timeframes = {
       MGR003: {
         calls_reviewed: 11,
         coaching_score: 26,
+        quota_attainment: 85,
         active_days: 9,
         calls_attended: 1,
         calls_with_feedback: 2,
@@ -43,6 +46,7 @@ export const timeframes = {
       MGR004: {
         calls_reviewed: 3,
         coaching_score: 5,
+        quota_attainment: 58,
         active_days: 2,
         calls_attended: 0,
         calls_with_feedback: 0,
@@ -61,6 +65,7 @@ export const timeframes = {
       MGR001: {
         calls_reviewed: 118,
         coaching_score: 97,
+        quota_attainment: 115,
         active_days: 38,
         calls_attended: 12,
         calls_with_feedback: 78,
@@ -72,6 +77,7 @@ export const timeframes = {
       MGR002: {
         calls_reviewed: 46,
         coaching_score: 62,
+        quota_attainment: 92,
         active_days: 18,
         calls_attended: 5,
         calls_with_feedback: 18,
@@ -83,6 +89,7 @@ export const timeframes = {
       MGR003: {
         calls_reviewed: 26,
         coaching_score: 25,
+        quota_attainment: 86,
         active_days: 16,
         calls_attended: 2,
         calls_with_feedback: 5,
@@ -94,6 +101,7 @@ export const timeframes = {
       MGR004: {
         calls_reviewed: 7,
         coaching_score: 6,
+        quota_attainment: 60,
         active_days: 5,
         calls_attended: 0,
         calls_with_feedback: 1,
@@ -112,6 +120,7 @@ export const timeframes = {
       MGR001: {
         calls_reviewed: 171,
         coaching_score: 96,
+        quota_attainment: 118,
         active_days: 57,
         calls_attended: 18,
         calls_with_feedback: 112,
@@ -123,6 +132,7 @@ export const timeframes = {
       MGR002: {
         calls_reviewed: 89,
         coaching_score: 75,
+        quota_attainment: 96,
         active_days: 35,
         calls_attended: 8,
         calls_with_feedback: 34,
@@ -134,6 +144,7 @@ export const timeframes = {
       MGR003: {
         calls_reviewed: 44,
         coaching_score: 35,
+        quota_attainment: 88,
         active_days: 26,
         calls_attended: 3,
         calls_with_feedback: 8,
@@ -145,6 +156,7 @@ export const timeframes = {
       MGR004: {
         calls_reviewed: 22,
         coaching_score: 17,
+        quota_attainment: 62,
         active_days: 12,
         calls_attended: 1,
         calls_with_feedback: 1,
