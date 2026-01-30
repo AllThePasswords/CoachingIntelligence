@@ -57,6 +57,9 @@ function computeAEMetricsForTimeframe(aes, managerId, timeframe) {
     const variation = 0.85 + (seededRandom(seed) * 0.30); // 0.85 to 1.15
     const total_calls = Math.round(ae.total_calls * scaleFactor * variation);
 
+    // Calls with feedback = sum of listened + attended + scorecards
+    const calls_with_feedback = calls_listened + calls_attended + scorecards;
+
     return {
       ...ae,
       total_calls,
@@ -64,6 +67,7 @@ function computeAEMetricsForTimeframe(aes, managerId, timeframe) {
       calls_attended,
       scorecards,
       calls_with_comments,
+      calls_with_feedback,
     };
   });
 }
@@ -89,6 +93,7 @@ export function AETable({ managerId }) {
       calls_attended: acc.calls_attended + (ae.calls_attended || 0),
       scorecards: acc.scorecards + (ae.scorecards || 0),
       calls_with_comments: acc.calls_with_comments + (ae.calls_with_comments || 0),
+      calls_with_feedback: acc.calls_with_feedback + (ae.calls_with_feedback || 0),
     }),
     {
       total_calls: 0,
@@ -96,6 +101,7 @@ export function AETable({ managerId }) {
       calls_attended: 0,
       scorecards: 0,
       calls_with_comments: 0,
+      calls_with_feedback: 0,
     }
   );
 
@@ -107,6 +113,7 @@ export function AETable({ managerId }) {
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[120px]">Name</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[70px] text-right">Quota</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[80px] text-right pr-6">Total calls</th>
+            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[110px] text-right border-l border-gray-200">Calls with feedback</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[90px] text-right border-l border-gray-200">Call listened</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[90px] text-right">Call attended</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[110px] text-right">Calls with scorecards</th>
@@ -119,6 +126,7 @@ export function AETable({ managerId }) {
               <td className="py-3 px-4 font-medium text-gray-900">{ae.name}</td>
               <td className="py-3 px-4 text-gray-700 text-right">{ae.quota}%</td>
               <td className="py-3 px-4 text-gray-700 text-right pr-6">{ae.total_calls}</td>
+              <td className="py-3 px-4 text-gray-700 text-right border-l border-gray-200">{ae.calls_with_feedback}</td>
               <td className="py-3 px-4 text-gray-700 text-right border-l border-gray-200">{ae.calls_listened}</td>
               <td className="py-3 px-4 text-gray-700 text-right">{ae.calls_attended}</td>
               <td className="py-3 px-4 text-gray-700 text-right">{ae.scorecards}</td>
@@ -131,6 +139,7 @@ export function AETable({ managerId }) {
             <td className="py-3 px-4 font-bold text-gray-900">Total</td>
             <td className="py-3 px-4 text-right"></td>
             <td className="py-3 px-4 font-bold text-gray-900 text-right pr-6">{totals.total_calls}</td>
+            <td className="py-3 px-4 font-bold text-gray-900 text-right border-l border-gray-200">{totals.calls_with_feedback}</td>
             <td className="py-3 px-4 font-bold text-gray-900 text-right border-l border-gray-200">{totals.calls_listened}</td>
             <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.calls_attended}</td>
             <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.scorecards}</td>
