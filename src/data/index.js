@@ -29,7 +29,6 @@ export {
   timeframes,
   getTimeframeData,
   getManagerTimeframeData,
-  getBenchmark,
   getScoreTrend
 } from './timeframes.js';
 

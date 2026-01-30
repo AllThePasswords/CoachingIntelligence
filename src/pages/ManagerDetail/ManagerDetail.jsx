@@ -7,12 +7,12 @@
  * - Back navigation to dashboard
  */
 import { useParams, Link } from 'react-router';
-import { getManagerById, getSummaryByManager } from '@/data';
+import { getManagerById, getSummaryByManager, getTimeframeData } from '@/data';
 import { InsightSection, CoachingInsight } from '@/components/sections';
 import { Citation } from '@/components/display';
 import { AETable } from '@/components/tables';
 import { Tooltip, InfoIcon } from '@/components/ui';
-import { useModalStore } from '@/stores';
+import { useModalStore, useTimeframeStore } from '@/stores';
 
 // Trend indicator icon using Heroicons (circled arrows)
 function TrendIcon({ direction }) {
@@ -96,6 +96,15 @@ export function ManagerDetail() {
   const { managerId } = useParams();
   const manager = getManagerById(managerId);
 
+  // Get timeframe data for consistent metrics with Dashboard
+  const timeframe = useTimeframeStore(state => state.timeframe);
+  const timeframeData = getTimeframeData(timeframe);
+  const managerMetrics = timeframeData?.managers?.[managerId];
+
+  // Use timeframe data when available so page reflects selected period (same as ManagerCard)
+  const coachingScore = managerMetrics?.coaching_score ?? manager?.coaching_score;
+  const quotaAttainment = managerMetrics?.quota_attainment ?? manager?.quota_attainment;
+
   // Get AI summary for headline
   const summary = getSummaryByManager(managerId);
 
@@ -171,22 +180,22 @@ export function ManagerDetail() {
               <div className="text-center sm:text-right min-w-[100px]">
                 <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Team Quota</p>
                 <div className="flex items-center justify-center sm:justify-end gap-2">
-                  <span className="text-4xl font-bold text-gray-900">{manager.quota_attainment}%</span>
-                  <TrendIcon direction={getQuotaTrend(manager.quota_attainment)} />
+                  <span className="text-4xl font-bold text-gray-900">{quotaAttainment}%</span>
+                  <TrendIcon direction={getQuotaTrend(quotaAttainment)} />
                 </div>
               </div>
               <div className="text-center sm:text-right min-w-[100px]">
                 <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1 flex items-center justify-center sm:justify-end gap-1">
                   Coaching Score
-                  <Tooltip content="Coaching score is calculated from call reviews, feedback frequency, and team development activities.">
+                  <Tooltip content="Based on active coaching days, feedback on reviewed calls, scorecards, live attendance, and coverage across all AEs.">
                     <span className="text-gray-400 hover:text-gray-600 cursor-help">
                       <InfoIcon />
                     </span>
                   </Tooltip>
                 </p>
                 <div className="flex items-center justify-center sm:justify-end gap-2">
-                  <span className="text-4xl font-bold text-gray-900">{manager.coaching_score}%</span>
-                  <TrendIcon direction={getCoachingTrend(manager.coaching_score)} />
+                  <span className="text-4xl font-bold text-gray-900">{coachingScore}%</span>
+                  <TrendIcon direction={getCoachingTrend(coachingScore)} />
                 </div>
               </div>
             </div>
@@ -198,6 +207,14 @@ export function ManagerDetail() {
               {summary.headline}
             </CoachingInsight>
           )}
+
+          {/* Coaching Activity - directly under insight */}
+          <div className="mt-6">
+            <h2 className="text-xl font-semibold text-foreground mb-4">Coaching Activity</h2>
+            <div className="bg-background-100 border border-border rounded-lg overflow-hidden">
+              <AETable managerId={managerId} />
+            </div>
+          </div>
 
           {/* Insight Sections */}
           {summary && (
@@ -234,16 +251,20 @@ export function ManagerDetail() {
 
               {/* Section 4: Feedback Analysis */}
               <InsightSection title={summary.sections.feedback_quality.title}>
-                <p className="text-gray-600 leading-relaxed">{summary.sections.feedback_quality.detail}</p>
-                <div className="space-y-4 mt-4">
+                <p className="text-gray-600 leading-relaxed mb-4">{summary.sections.feedback_quality.detail}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {summary.sections.feedback_quality.examples.map((example) => (
-                    <div key={example.call_id} className="bg-white border border-gray-100 rounded-lg p-4">
+                    <div
+                      key={example.call_id}
+                      className={`bg-white border rounded-lg p-4 flex flex-col ${example.empty ? 'border-gray-200 bg-gray-50' : 'border-gray-100'}`}
+                    >
                       <div className="flex items-center gap-2 mb-2">
                         <Citation id={example.call_id} />
-                        <span className="text-sm text-gray-500">{example.ae} - {example.stage}</span>
+                        <span className="text-sm text-gray-500">{example.ae}</span>
                       </div>
-                      <blockquote className="text-gray-700 italic">
-                        "{example.quote}"
+                      <p className="text-xs text-gray-400 mb-2">{example.stage} · {example.date}</p>
+                      <blockquote className={`text-sm leading-relaxed flex-1 ${example.empty ? 'text-gray-400 italic' : 'text-gray-700 italic'}`}>
+                        {example.empty ? example.quote : `"${example.quote}"`}
                       </blockquote>
                     </div>
                   ))}
@@ -251,14 +272,6 @@ export function ManagerDetail() {
               </InsightSection>
             </div>
           )}
-
-          {/* AE Coaching Table */}
-          <div className="mt-8">
-            <h2 className="text-xl font-semibold text-foreground mb-4">Coaching Activity</h2>
-            <div className="bg-background-100 border border-border rounded-lg overflow-hidden">
-              <AETable managerId={managerId} />
-            </div>
-          </div>
         </div>
       )}
     </div>

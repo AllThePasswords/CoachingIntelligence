@@ -65,8 +65,9 @@ export function ManagerCard({ managerId, onClick, variant = 'default' }) {
     );
   }
 
-  // Use manager data directly, fall back to timeframe data if available
+  // Use timeframe data when available so card reflects selected period
   const coachingScore = managerMetrics?.coaching_score ?? manager.coaching_score;
+  const quotaAttainment = managerMetrics?.quota_attainment ?? manager.quota_attainment;
 
   // Calculate total sources from manager.sources
   const totalSources = manager.sources
@@ -97,7 +98,7 @@ export function ManagerCard({ managerId, onClick, variant = 'default' }) {
     >
       {/* Info tooltip - top right */}
       <div className="absolute top-3 right-3 z-10" onClick={(e) => e.stopPropagation()}>
-        <Tooltip content="Coaching score is calculated from call reviews, feedback frequency, and team development activities.">
+        <Tooltip content="Based on active coaching days, feedback on reviewed calls, scorecards, live attendance, and coverage across all AEs.">
           <span className="text-gray-400 hover:text-gray-600 cursor-help">
             <InfoIcon />
           </span>
@@ -116,8 +117,8 @@ export function ManagerCard({ managerId, onClick, variant = 'default' }) {
           <div>
             <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Team Quota</p>
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold text-gray-900">{manager.quota_attainment}%</span>
-              <TrendIcon direction={getQuotaTrend(manager.quota_attainment)} />
+              <span className="text-2xl font-bold text-gray-900">{quotaAttainment}%</span>
+              <TrendIcon direction={getQuotaTrend(quotaAttainment)} />
             </div>
           </div>
           <div>
