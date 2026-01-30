@@ -1,12 +1,19 @@
 // Coaching Intelligence - Feedback Log
 // All coaching feedback with full text for citations
+// Activities spread realistically across 90 days (reference: Jan 30, 2026)
+// Multiple activities per day create dynamic chart patterns (0-5 activities/day)
 
 export const feedbackLog = [
-  // Sarah Chen's feedback (specific, actionable)
+  // ============================================
+  // Sarah Chen's feedback - Most active manager
+  // Pattern: Busy days with 3-5 activities, some gaps
+  // ============================================
+
+  // Jan 28 - Big coaching day (4 activities)
   {
     id: "FB001",
     call_id: "CALL-1042",
-    date: "2026-01-22",
+    date: "2026-01-28",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE001",
@@ -23,9 +30,110 @@ export const feedbackLog = [
     has_scorecard: false
   },
   {
+    id: "FB001b",
+    call_id: "CALL-1043",
+    date: "2026-01-28",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Demo",
+    duration: 35,
+    type: "scorecard",
+    feedback: "Scorecard: Demo Flow 5/5, Technical Depth 4/5, Next Steps 5/5. Great energy throughout.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB001c",
+    call_id: "CALL-1044",
+    date: "2026-01-28",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Discovery",
+    duration: 28,
+    type: "comment",
+    feedback: "Good discovery questions. You uncovered their real pain point about manual data entry within the first 10 minutes.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB001d",
+    call_id: "CALL-1045",
+    date: "2026-01-28",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Qualification",
+    duration: 22,
+    type: "comment",
+    feedback: "Quick and efficient qualification. You correctly identified budget constraints early and set appropriate expectations.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 27 - No activities (gap day)
+
+  // Jan 26 - 2 activities
+  {
+    id: "FB001e",
+    call_id: "CALL-1046",
+    date: "2026-01-26",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Proposal",
+    duration: 40,
+    type: "comment",
+    feedback: "Solid proposal presentation. The ROI slide landed well with their CFO.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB001f",
+    call_id: "CALL-1047",
+    date: "2026-01-26",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Negotiation",
+    duration: 55,
+    type: "comment",
+    feedback: "Excellent negotiation. You held firm on pricing while offering value-adds that cost us nothing.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 24 - 3 activities
+  {
     id: "FB002",
     call_id: "CALL-1038",
-    date: "2026-01-20",
+    date: "2026-01-24",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE001",
@@ -42,9 +150,70 @@ export const feedbackLog = [
     has_scorecard: true
   },
   {
+    id: "FB002b",
+    call_id: "CALL-1039",
+    date: "2026-01-24",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "Strong demo. You customized the workflow section to match their exact process. That attention to detail makes a difference.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB002c",
+    call_id: "CALL-1040",
+    date: "2026-01-24",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Discovery",
+    duration: 32,
+    type: "comment",
+    feedback: "Good rapport building. The prospect opened up about their frustrations with current vendor.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 22 - 1 activity
+  {
+    id: "FB002d",
+    call_id: "CALL-1041",
+    date: "2026-01-22",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "Efficient qualification call. You identified decision makers and timeline within 20 minutes.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 19 - 5 activities (big day!)
+  {
     id: "FB003",
     call_id: "CALL-1029",
-    date: "2026-01-15",
+    date: "2026-01-19",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE001",
@@ -61,9 +230,89 @@ export const feedbackLog = [
     has_scorecard: false
   },
   {
+    id: "FB003b",
+    call_id: "CALL-1030",
+    date: "2026-01-19",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Demo",
+    duration: 48,
+    type: "scorecard",
+    feedback: "Scorecard: Product Knowledge 5/5, Engagement 5/5, Objection Handling 5/5. Outstanding performance.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB003c",
+    call_id: "CALL-1031",
+    date: "2026-01-19",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Proposal",
+    duration: 35,
+    type: "comment",
+    feedback: "Clear proposal walkthrough. You addressed their budget concerns proactively.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB003d",
+    call_id: "CALL-1032",
+    date: "2026-01-19",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Strong discovery. You uncovered three new pain points we can address in the proposal.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB003e",
+    call_id: "CALL-1033",
+    date: "2026-01-19",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Qualification",
+    duration: 20,
+    type: "comment",
+    feedback: "Quick requalification after stakeholder change. Good instinct to revisit budget authority.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 17 - No activities
+
+  // Jan 14 - 2 activities
+  {
     id: "FB004",
     call_id: "CALL-1089",
-    date: "2026-01-18",
+    date: "2026-01-14",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE002",
@@ -80,9 +329,89 @@ export const feedbackLog = [
     has_scorecard: false
   },
   {
+    id: "FB004b",
+    call_id: "CALL-1090",
+    date: "2026-01-14",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Negotiation",
+    duration: 42,
+    type: "comment",
+    feedback: "Held firm on pricing. Good job not caving on the 20% discount request.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 12 - 3 activities
+  {
+    id: "FB004c",
+    call_id: "CALL-1091",
+    date: "2026-01-12",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Demo",
+    duration: 50,
+    type: "scorecard",
+    feedback: "Scorecard: Demo Flow 4/5, Technical Depth 5/5, Close Attempt 4/5. Work on transitioning to close more naturally.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB004d",
+    call_id: "CALL-1092",
+    date: "2026-01-12",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Proposal",
+    duration: 38,
+    type: "comment",
+    feedback: "Clean proposal delivery. Customer asked all the right questions - that means you set it up well.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB004e",
+    call_id: "CALL-1093",
+    date: "2026-01-12",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Discovery",
+    duration: 28,
+    type: "comment",
+    feedback: "Thorough discovery. You mapped their entire buying committee in one call.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 9 - 1 activity
+  {
     id: "FB005",
     call_id: "CALL-1076",
-    date: "2026-01-14",
+    date: "2026-01-09",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE002",
@@ -98,10 +427,52 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 7 - 2 activities
+  {
+    id: "FB005b",
+    call_id: "CALL-1077",
+    date: "2026-01-07",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "Excellent demo customization. You remembered their mention of Salesforce integration from discovery and led with that.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB005c",
+    call_id: "CALL-1078",
+    date: "2026-01-07",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "Good qualification. You identified this is a Q2 priority for them, which affects our timeline.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 4 - 1 activity
   {
     id: "FB006",
     call_id: "CALL-1103",
-    date: "2026-01-20",
+    date: "2026-01-04",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE003",
@@ -117,10 +488,71 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 2 - 3 activities
+  {
+    id: "FB006b",
+    call_id: "CALL-1104",
+    date: "2026-01-02",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Proposal",
+    duration: 35,
+    type: "comment",
+    feedback: "Strong proposal close. You got verbal commitment and next steps locked in.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB006c",
+    call_id: "CALL-1105",
+    date: "2026-01-02",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Demo",
+    duration: 42,
+    type: "scorecard",
+    feedback: "Scorecard: Preparation 5/5, Delivery 5/5, Q&A Handling 4/5. Nice work.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB006d",
+    call_id: "CALL-1106",
+    date: "2026-01-02",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Great discovery. You identified the champion and got introduced to the economic buyer.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 30 - 1 activity
   {
     id: "FB007",
     call_id: "CALL-1156",
-    date: "2026-01-22",
+    date: "2025-12-30",
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
     ae_id: "AE004",
@@ -137,11 +569,677 @@ export const feedbackLog = [
     has_scorecard: false
   },
 
-  // Marcus Jones's feedback (moderate to vague)
+  // Dec 27 - 4 activities
+  {
+    id: "FB007b",
+    call_id: "CALL-1157",
+    date: "2025-12-27",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Demo",
+    duration: 50,
+    type: "comment",
+    feedback: "Thorough demo. You handled the unexpected technical questions from their IT team smoothly.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB007c",
+    call_id: "CALL-1158",
+    date: "2025-12-27",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Negotiation",
+    duration: 55,
+    type: "scorecard",
+    feedback: "Scorecard: Value Defense 5/5, Terms Handling 4/5, Close Attempt 5/5. Strong finish to the year.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB007d",
+    call_id: "CALL-1159",
+    date: "2025-12-27",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Discovery",
+    duration: 32,
+    type: "comment",
+    feedback: "Good discovery call. You asked the right questions about their current workflow.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB007e",
+    call_id: "CALL-1160a",
+    date: "2025-12-27",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "Efficient qualification. You identified budget and timeline in under 15 minutes.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 24 - 1 activity
+  {
+    id: "FB030",
+    call_id: "CALL-1160",
+    date: "2025-12-24",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Demo",
+    duration: 42,
+    type: "comment",
+    feedback: "Great product demo. You tailored the flow to their specific use case with the retail integrations. The technical deep-dive on API was exactly what their IT team needed.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 20 - 3 activities
+  {
+    id: "FB030b",
+    call_id: "CALL-1161a",
+    date: "2025-12-20",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Proposal",
+    duration: 40,
+    type: "comment",
+    feedback: "Clean proposal presentation. The pricing breakdown was easy to follow.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB030c",
+    call_id: "CALL-1161b",
+    date: "2025-12-20",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Demo",
+    duration: 48,
+    type: "scorecard",
+    feedback: "Scorecard: Engagement 5/5, Technical Accuracy 5/5, Close 4/5. Work on the close.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB030d",
+    call_id: "CALL-1161c",
+    date: "2025-12-20",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Discovery",
+    duration: 35,
+    type: "comment",
+    feedback: "Thorough discovery. You uncovered the real decision-making process.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 18 - 1 activity
+  {
+    id: "FB031",
+    call_id: "CALL-1161",
+    date: "2025-12-18",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Discovery",
+    duration: 35,
+    type: "scorecard",
+    feedback: "Scorecard: Discovery 4/5, Rapport 5/5, Next Steps 5/5. Strong relationship building - customer mentioned you 'really get their business'.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+
+  // Dec 15 - 2 activities
+  {
+    id: "FB031b",
+    call_id: "CALL-1162a",
+    date: "2025-12-15",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Negotiation",
+    duration: 45,
+    type: "comment",
+    feedback: "Strong negotiation. You protected margin while still giving them a win.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB031c",
+    call_id: "CALL-1162b",
+    date: "2025-12-15",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Demo",
+    duration: 50,
+    type: "comment",
+    feedback: "Excellent demo pacing. You read the room and adjusted when they got excited about the analytics module.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 12 - 1 activity
+  {
+    id: "FB032",
+    call_id: "CALL-1162",
+    date: "2025-12-12",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Negotiation",
+    duration: 50,
+    type: "comment",
+    feedback: "Handled the multi-stakeholder call well. You navigated between the CFO's budget concerns and the CTO's technical requirements smoothly. Good job identifying the real decision maker.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 9 - 3 activities
+  {
+    id: "FB032b",
+    call_id: "CALL-1163a",
+    date: "2025-12-09",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Demo",
+    duration: 42,
+    type: "comment",
+    feedback: "Great demo energy. The prospect was engaged throughout.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB032c",
+    call_id: "CALL-1163b",
+    date: "2025-12-09",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Proposal",
+    duration: 38,
+    type: "scorecard",
+    feedback: "Scorecard: Clarity 5/5, Value Prop 5/5, Objection Handling 4/5. Good work.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB032d",
+    call_id: "CALL-1163c",
+    date: "2025-12-09",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Qualification",
+    duration: 28,
+    type: "comment",
+    feedback: "Efficient qualification. You identified this is a strong fit within 20 minutes.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 5 - 1 activity
+  {
+    id: "FB033",
+    call_id: "CALL-1163",
+    date: "2025-12-05",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Proposal",
+    duration: 38,
+    type: "comment",
+    feedback: "Clean proposal walkthrough. You addressed their ROI questions with the calculator we built - customer said they'd share with finance team same day.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 2 - 2 activities
+  {
+    id: "FB033b",
+    call_id: "CALL-1164a",
+    date: "2025-12-02",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Discovery",
+    duration: 35,
+    type: "comment",
+    feedback: "Strong discovery. You uncovered their true urgency around compliance deadlines.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB033c",
+    call_id: "CALL-1164b",
+    date: "2025-12-02",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Demo",
+    duration: 48,
+    type: "comment",
+    feedback: "Good demo flow. You handled the technical deep-dive questions well.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 28 - 1 activity
+  {
+    id: "FB034",
+    call_id: "CALL-1164",
+    date: "2025-11-28",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Qualification",
+    duration: 28,
+    type: "comment",
+    feedback: "Quick qualification - you identified this wasn't a fit within 15 minutes and gracefully ended the call. That's the discipline we need. Time is our most valuable resource.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 25 - 3 activities
+  {
+    id: "FB034b",
+    call_id: "CALL-1165a",
+    date: "2025-11-25",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "scorecard",
+    feedback: "Scorecard: Preparation 5/5, Delivery 5/5, Engagement 5/5. Excellent work.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB034c",
+    call_id: "CALL-1165b",
+    date: "2025-11-25",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Negotiation",
+    duration: 52,
+    type: "comment",
+    feedback: "Strong close. You got them to commit to decision timeline.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB034d",
+    call_id: "CALL-1165c",
+    date: "2025-11-25",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Good discovery. You identified the champion and their influence in the org.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 20 - 1 activity
+  {
+    id: "FB035",
+    call_id: "CALL-1165",
+    date: "2025-11-20",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "scorecard",
+    feedback: "Scorecard: Product Knowledge 5/5, Objection Handling 5/5, Close Attempt 4/5. Work on asking for the business more directly - you earned it on this call.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+
+  // Nov 17 - 2 activities
+  {
+    id: "FB035b",
+    call_id: "CALL-1166a",
+    date: "2025-11-17",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Proposal",
+    duration: 40,
+    type: "comment",
+    feedback: "Clean proposal. Customer appreciated the clear ROI section.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB035c",
+    call_id: "CALL-1166b",
+    date: "2025-11-17",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Discovery",
+    duration: 32,
+    type: "comment",
+    feedback: "Good discovery depth. You understood their workflow challenges.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 12 - 1 activity
+  {
+    id: "FB036",
+    call_id: "CALL-1166",
+    date: "2025-11-12",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Demo",
+    duration: 55,
+    type: "comment",
+    feedback: "Solid technical demo. Your prep work showed - you had their specific integration requirements already mapped out. Customer was impressed with the homework you did.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 8 - 4 activities
+  {
+    id: "FB036b",
+    call_id: "CALL-1167a",
+    date: "2025-11-08",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE001",
+    ae_name: "Alex Rivera",
+    pipeline_stage: "Negotiation",
+    duration: 48,
+    type: "scorecard",
+    feedback: "Scorecard: Value Defense 5/5, Flexibility 4/5, Close 5/5. Great finish.",
+    quality: "specific",
+    listened: true,
+    attended: true,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB036c",
+    call_id: "CALL-1167b",
+    date: "2025-11-08",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "Strong demo. You read the room and pivoted to analytics when you saw their interest.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB036d",
+    call_id: "CALL-1167c",
+    date: "2025-11-08",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE003",
+    ae_name: "Ryan Patel",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "Quick qualification. You identified budget and timeline efficiently.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB036e",
+    call_id: "CALL-1167d",
+    date: "2025-11-08",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE004",
+    ae_name: "Sofia Andersson",
+    pipeline_stage: "Discovery",
+    duration: 35,
+    type: "comment",
+    feedback: "Thorough discovery. Great job understanding their pain points.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 5 - 1 activity
+  {
+    id: "FB037",
+    call_id: "CALL-1167",
+    date: "2025-11-05",
+    manager_id: "MGR001",
+    manager_name: "Sarah Chen",
+    ae_id: "AE002",
+    ae_name: "Emma Liu",
+    pipeline_stage: "Negotiation",
+    duration: 40,
+    type: "comment",
+    feedback: "Perfect timing on the discount. You held firm until they committed to the annual contract, then offered the 10% for multi-year. That's how we protect margin.",
+    quality: "specific",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // ============================================
+  // Marcus Jones's feedback - Moderate activity
+  // Pattern: 1-2 activities per active day, more gaps
+  // ============================================
+
+  // Jan 27 - 2 activities
+  {
+    id: "FB008a",
+    call_id: "CALL-2014",
+    date: "2026-01-27",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "Good demo. Keep the energy up.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB008b",
+    call_id: "CALL-2014b",
+    date: "2026-01-27",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE007",
+    ae_name: "Michael Brown",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Nice discovery questions.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 22 - 1 activity
   {
     id: "FB008",
     call_id: "CALL-2015",
-    date: "2026-01-08",
+    date: "2026-01-22",
     manager_id: "MGR002",
     manager_name: "Marcus Jones",
     ae_id: "AE005",
@@ -157,10 +1255,71 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 18 - 3 activities
+  {
+    id: "FB008c",
+    call_id: "CALL-2016",
+    date: "2026-01-18",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE005",
+    ae_name: "James Wilson",
+    pipeline_stage: "Proposal",
+    duration: 40,
+    type: "scorecard",
+    feedback: "Scorecard: 4/5 overall. Good proposal.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB008d",
+    call_id: "CALL-2017",
+    date: "2026-01-18",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "OK qualification. Watch your pacing.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB008e",
+    call_id: "CALL-2018",
+    date: "2026-01-18",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE008",
+    ae_name: "Lauren Kim",
+    pipeline_stage: "Demo",
+    duration: 48,
+    type: "comment",
+    feedback: "Solid demo. The technical section was clear.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 15 - 1 activity
   {
     id: "FB009",
     call_id: "CALL-2089",
-    date: "2026-01-18",
+    date: "2026-01-15",
     manager_id: "MGR002",
     manager_name: "Marcus Jones",
     ae_id: "AE005",
@@ -176,10 +1335,52 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 10 - 2 activities
+  {
+    id: "FB009b",
+    call_id: "CALL-2065",
+    date: "2026-01-10",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE007",
+    ae_name: "Michael Brown",
+    pipeline_stage: "Negotiation",
+    duration: 45,
+    type: "comment",
+    feedback: "Good negotiation. You held your ground on pricing.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB009c",
+    call_id: "CALL-2066",
+    date: "2026-01-10",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE008",
+    ae_name: "Lauren Kim",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Nice discovery. Keep building on that momentum.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 7 - 1 activity
   {
     id: "FB010",
     call_id: "CALL-2067",
-    date: "2026-01-14",
+    date: "2026-01-07",
     manager_id: "MGR002",
     manager_name: "Marcus Jones",
     ae_id: "AE006",
@@ -195,10 +1396,52 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 3 - 2 activities
+  {
+    id: "FB010b",
+    call_id: "CALL-2068",
+    date: "2026-01-03",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE005",
+    ae_name: "James Wilson",
+    pipeline_stage: "Qualification",
+    duration: 28,
+    type: "scorecard",
+    feedback: "Scorecard: 4/5. Good qualification call.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB010c",
+    call_id: "CALL-2069",
+    date: "2026-01-03",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Discovery",
+    duration: 32,
+    type: "comment",
+    feedback: "Solid discovery. Good questions about their process.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 28 - 1 activity
   {
     id: "FB011",
     call_id: "CALL-2045",
-    date: "2025-12-15",
+    date: "2025-12-28",
     manager_id: "MGR002",
     manager_name: "Marcus Jones",
     ae_id: "AE007",
@@ -214,10 +1457,52 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: true
   },
+
+  // Dec 23 - 2 activities
+  {
+    id: "FB011b",
+    call_id: "CALL-2046",
+    date: "2025-12-23",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE005",
+    ae_name: "James Wilson",
+    pipeline_stage: "Demo",
+    duration: 50,
+    type: "comment",
+    feedback: "Good demo. Nice flow through the product.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB011c",
+    call_id: "CALL-2047",
+    date: "2025-12-23",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE008",
+    ae_name: "Lauren Kim",
+    pipeline_stage: "Proposal",
+    duration: 35,
+    type: "comment",
+    feedback: "Clean proposal presentation.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 18 - 1 activity
   {
     id: "FB012",
     call_id: "CALL-2023",
-    date: "2025-12-02",
+    date: "2025-12-18",
     manager_id: "MGR002",
     manager_name: "Marcus Jones",
     ae_id: "AE008",
@@ -234,11 +1519,239 @@ export const feedbackLog = [
     has_scorecard: false
   },
 
-  // Jennifer Walsh's feedback (generic)
+  // Dec 13 - 2 activities
+  {
+    id: "FB012b",
+    call_id: "CALL-2024",
+    date: "2025-12-13",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Negotiation",
+    duration: 48,
+    type: "scorecard",
+    feedback: "Scorecard: 3/5. Need to work on holding firm on pricing.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB012c",
+    call_id: "CALL-2025",
+    date: "2025-12-13",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE007",
+    ae_name: "Michael Brown",
+    pipeline_stage: "Demo",
+    duration: 42,
+    type: "comment",
+    feedback: "OK demo. Watch your pacing in the middle section.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 8 - 1 activity
+  {
+    id: "FB038",
+    call_id: "CALL-2090",
+    date: "2025-12-08",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE005",
+    ae_name: "James Wilson",
+    pipeline_stage: "Proposal",
+    duration: 35,
+    type: "comment",
+    feedback: "Good proposal presentation. The pricing section was clear. Watch the pacing on technical sections.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 3 - 2 activities
+  {
+    id: "FB038b",
+    call_id: "CALL-2093",
+    date: "2025-12-03",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Demo",
+    duration: 50,
+    type: "comment",
+    feedback: "Good demo energy. Trim the intro next time.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB038c",
+    call_id: "CALL-2094",
+    date: "2025-12-03",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE008",
+    ae_name: "Lauren Kim",
+    pipeline_stage: "Qualification",
+    duration: 28,
+    type: "comment",
+    feedback: "Solid qualification. Good job identifying timeline.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 25 - 1 activity
+  {
+    id: "FB039",
+    call_id: "CALL-2091",
+    date: "2025-11-25",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Negotiation",
+    duration: 42,
+    type: "comment",
+    feedback: "Handled pricing objection OK. Could have pushed back more on the discount request.",
+    quality: "moderate",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 20 - 2 activities
+  {
+    id: "FB039b",
+    call_id: "CALL-2095",
+    date: "2025-11-20",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE005",
+    ae_name: "James Wilson",
+    pipeline_stage: "Discovery",
+    duration: 35,
+    type: "scorecard",
+    feedback: "Scorecard: 4/5. Good discovery questions.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+  {
+    id: "FB039c",
+    call_id: "CALL-2096",
+    date: "2025-11-20",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE007",
+    ae_name: "Michael Brown",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "OK demo. Work on your close.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 15 - 1 activity
+  {
+    id: "FB040",
+    call_id: "CALL-2092",
+    date: "2025-11-15",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE007",
+    ae_name: "Michael Brown",
+    pipeline_stage: "Demo",
+    duration: 48,
+    type: "scorecard",
+    feedback: "Scorecard: 3/5 overall. Demo was adequate but missing energy.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+
+  // Nov 10 - 2 activities
+  {
+    id: "FB040b",
+    call_id: "CALL-2097",
+    date: "2025-11-10",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE006",
+    ae_name: "Priya Sharma",
+    pipeline_stage: "Proposal",
+    duration: 38,
+    type: "comment",
+    feedback: "Good proposal. Clear pricing section.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB040c",
+    call_id: "CALL-2098",
+    date: "2025-11-10",
+    manager_id: "MGR002",
+    manager_name: "Marcus Jones",
+    ae_id: "AE008",
+    ae_name: "Lauren Kim",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Nice discovery. Keep that momentum.",
+    quality: "vague",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // ============================================
+  // Jennifer Walsh's feedback - Less active
+  // Pattern: 1 activity per active day, many gaps
+  // ============================================
+
+  // Jan 20 - 1 activity
   {
     id: "FB013",
     call_id: "CALL-3022",
-    date: "2026-01-10",
+    date: "2026-01-20",
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
     ae_id: "AE009",
@@ -254,10 +1767,52 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 16 - 2 activities
+  {
+    id: "FB013b",
+    call_id: "CALL-3023",
+    date: "2026-01-16",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE010",
+    ae_name: "Amanda Foster",
+    pipeline_stage: "Demo",
+    duration: 40,
+    type: "comment",
+    feedback: "Good demo.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB013c",
+    call_id: "CALL-3024",
+    date: "2026-01-16",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE011",
+    ae_name: "Kevin O'Brien",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "OK.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Jan 10 - 1 activity
   {
     id: "FB014",
     call_id: "CALL-3045",
-    date: "2026-01-18",
+    date: "2026-01-10",
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
     ae_id: "AE009",
@@ -273,10 +1828,33 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Jan 5 - 1 activity
+  {
+    id: "FB014b",
+    call_id: "CALL-3046",
+    date: "2026-01-05",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE012",
+    ae_name: "Natalie Cruz",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "scorecard",
+    feedback: "Scorecard: 3/5.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: true
+  },
+
+  // Dec 28 - 1 activity
   {
     id: "FB015",
     call_id: "CALL-3033",
-    date: "2026-01-05",
+    date: "2025-12-28",
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
     ae_id: "AE010",
@@ -292,10 +1870,52 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Dec 22 - 2 activities
+  {
+    id: "FB015b",
+    call_id: "CALL-3034",
+    date: "2025-12-22",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE009",
+    ae_name: "Chris Taylor",
+    pipeline_stage: "Proposal",
+    duration: 35,
+    type: "comment",
+    feedback: "Fine.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+  {
+    id: "FB015c",
+    call_id: "CALL-3035",
+    date: "2025-12-22",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE011",
+    ae_name: "Kevin O'Brien",
+    pipeline_stage: "Demo",
+    duration: 42,
+    type: "comment",
+    feedback: "Good.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 15 - 1 activity
   {
     id: "FB016",
     call_id: "CALL-3041",
-    date: "2026-01-16",
+    date: "2025-12-15",
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
     ae_id: "AE011",
@@ -311,10 +1931,33 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: false
   },
+
+  // Dec 10 - 1 activity
+  {
+    id: "FB016b",
+    call_id: "CALL-3042",
+    date: "2025-12-10",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE010",
+    ae_name: "Amanda Foster",
+    pipeline_stage: "Negotiation",
+    duration: 40,
+    type: "comment",
+    feedback: "OK.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 2 - 1 activity
   {
     id: "FB017",
     call_id: "CALL-3055",
-    date: "2026-01-20",
+    date: "2025-12-02",
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
     ae_id: "AE011",
@@ -330,10 +1973,33 @@ export const feedbackLog = [
     has_comments: true,
     has_scorecard: true
   },
+
+  // Nov 25 - 1 activity
+  {
+    id: "FB017b",
+    call_id: "CALL-3056",
+    date: "2025-11-25",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE009",
+    ae_name: "Chris Taylor",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Nice.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 18 - 1 activity
   {
     id: "FB018",
     call_id: "CALL-3028",
-    date: "2025-12-12",
+    date: "2025-11-18",
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
     ae_id: "AE012",
@@ -350,11 +2016,58 @@ export const feedbackLog = [
     has_scorecard: false
   },
 
-  // David Park's feedback (minimal)
+  // Nov 12 - 1 activity
+  {
+    id: "FB018b",
+    call_id: "CALL-3057",
+    date: "2025-11-12",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE010",
+    ae_name: "Amanda Foster",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "Good.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 5 - 1 activity
+  {
+    id: "FB018c",
+    call_id: "CALL-3058",
+    date: "2025-11-05",
+    manager_id: "MGR003",
+    manager_name: "Jennifer Walsh",
+    ae_id: "AE011",
+    ae_name: "Kevin O'Brien",
+    pipeline_stage: "Proposal",
+    duration: 38,
+    type: "comment",
+    feedback: "OK.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: true,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // ============================================
+  // David Park's feedback - Very sparse
+  // Pattern: 1 activity occasionally, many long gaps
+  // ============================================
+
+  // Jan 12 - 1 activity
   {
     id: "FB019",
     call_id: "CALL-4008",
-    date: "2026-01-06",
+    date: "2026-01-12",
     manager_id: "MGR004",
     manager_name: "David Park",
     ae_id: "AE013",
@@ -369,22 +2082,127 @@ export const feedbackLog = [
     has_feedback: false,
     has_comments: true,
     has_scorecard: false
+  },
+
+  // Dec 28 - 1 activity
+  {
+    id: "FB019b",
+    call_id: "CALL-4010",
+    date: "2025-12-28",
+    manager_id: "MGR004",
+    manager_name: "David Park",
+    ae_id: "AE014",
+    ae_name: "Rachel Moore",
+    pipeline_stage: "Qualification",
+    duration: 25,
+    type: "comment",
+    feedback: "OK.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: false,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 15 - 1 activity
+  {
+    id: "FB019c",
+    call_id: "CALL-4011",
+    date: "2025-12-15",
+    manager_id: "MGR004",
+    manager_name: "David Park",
+    ae_id: "AE013",
+    ae_name: "Brandon Lee",
+    pipeline_stage: "Demo",
+    duration: 48,
+    type: "comment",
+    feedback: "Watched part of this.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: false,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Dec 5 - 1 activity
+  {
+    id: "FB041",
+    call_id: "CALL-4009",
+    date: "2025-12-05",
+    manager_id: "MGR004",
+    manager_name: "David Park",
+    ae_id: "AE014",
+    ae_name: "Rachel Moore",
+    pipeline_stage: "Demo",
+    duration: 45,
+    type: "comment",
+    feedback: "Watched some of this.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: false,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 22 - 1 activity
+  {
+    id: "FB041b",
+    call_id: "CALL-4012",
+    date: "2025-11-22",
+    manager_id: "MGR004",
+    manager_name: "David Park",
+    ae_id: "AE013",
+    ae_name: "Brandon Lee",
+    pipeline_stage: "Proposal",
+    duration: 35,
+    type: "comment",
+    feedback: "Seemed OK.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: false,
+    has_comments: true,
+    has_scorecard: false
+  },
+
+  // Nov 10 - 1 activity
+  {
+    id: "FB041c",
+    call_id: "CALL-4013",
+    date: "2025-11-10",
+    manager_id: "MGR004",
+    manager_name: "David Park",
+    ae_id: "AE014",
+    ae_name: "Rachel Moore",
+    pipeline_stage: "Discovery",
+    duration: 30,
+    type: "comment",
+    feedback: "Fine.",
+    quality: "generic",
+    listened: true,
+    attended: false,
+    has_feedback: false,
+    has_comments: true,
+    has_scorecard: false
   }
 ];
 
-export const getFeedbackByManager = (managerId) => 
+export const getFeedbackByManager = (managerId) =>
   feedbackLog.filter(f => f.manager_id === managerId);
 
-export const getFeedbackByAE = (aeId) => 
+export const getFeedbackByAE = (aeId) =>
   feedbackLog.filter(f => f.ae_id === aeId);
 
-export const getFeedbackByCallId = (callId) => 
+export const getFeedbackByCallId = (callId) =>
   feedbackLog.find(f => f.call_id === callId);
 
 export const getRecentFeedback = (managerId, days = 30) => {
   const cutoff = new Date();
   cutoff.setDate(cutoff.getDate() - days);
-  return feedbackLog.filter(f => 
+  return feedbackLog.filter(f =>
     f.manager_id === managerId && new Date(f.date) >= cutoff
   );
 };

@@ -108,8 +108,9 @@ export const aes = [
   // ============================================
   // Marcus Jones's team (MGR002) - GOOD BUT DECLINING
   // Moderate: ~2.5 calls/AE reviewed, 50% feedback rate, uneven distribution
-  // Total: 10 listened, 2 attended, 2 scorecards, 4 comments, 5 marked, 5 with feedback
+  // Total: 10 listened, 2 attended, 2 scorecards, 4 comments, 2 marked, 6 with feedback
   // Lauren is notably undercoached
+  // Quality improving: James & Priya now receiving specific feedback
   // ============================================
   {
     id: "AE005",
@@ -121,12 +122,12 @@ export const aes = [
     calls_attended: 1,
     scorecards: 1,
     calls_with_comments: 2,
-    marked_as_feedback_given: 2,
-    calls_with_feedback: 2,
-    last_feedback_date: "2026-01-18",
-    last_feedback_call: "CALL-2089",
-    last_feedback_preview: "Solid demo. Good energy. Maybe trim the intro section next time.",
-    quality: "moderate",
+    marked_as_feedback_given: 1,  // Only 1 explicitly marked
+    calls_with_feedback: 3,       // 3 unique calls have feedback (comment OR scorecard OR marked)
+    last_feedback_date: "2026-01-22",
+    last_feedback_call: "CALL-2112",
+    last_feedback_preview: "Strong use of the anchoring technique we discussed. Value first, then numbers.",
+    quality: "specific",
     flag: null
   },
   {
@@ -139,12 +140,12 @@ export const aes = [
     calls_attended: 1,
     scorecards: 1,
     calls_with_comments: 1,
-    marked_as_feedback_given: 2,
-    calls_with_feedback: 2,
+    marked_as_feedback_given: 1,  // Only 1 explicitly marked
+    calls_with_feedback: 2,       // 2 unique calls have feedback
     last_feedback_date: "2026-01-14",
     last_feedback_call: "CALL-2067",
-    last_feedback_preview: "Demo ran a bit long. Try to keep it under 45 mins. Otherwise, good energy.",
-    quality: "vague",
+    last_feedback_preview: "Demo ran 52 mins—try to keep under 45. Save deep-dive for technical eval.",
+    quality: "specific",
     flag: null
   },
   {
@@ -157,8 +158,8 @@ export const aes = [
     calls_attended: 0,
     scorecards: 0,
     calls_with_comments: 1,
-    marked_as_feedback_given: 1,
-    calls_with_feedback: 1,
+    marked_as_feedback_given: 0,  // None explicitly marked
+    calls_with_feedback: 1,       // 1 call has a comment
     last_feedback_date: "2025-12-15",
     last_feedback_call: "CALL-2045",
     last_feedback_preview: "Solid qualification call.",

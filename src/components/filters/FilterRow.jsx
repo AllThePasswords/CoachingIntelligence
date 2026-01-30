@@ -118,19 +118,26 @@ const PhoneIcon = () => (
  * @param {string} managerName - If provided, shows manager name; otherwise shows team name
  */
 export function FilterRow({ managerName = null }) {
-  const isManagerView = !!managerName;
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <div className="flex items-center gap-4 mb-6">
-      <FilterSelect
-        value={isManagerView ? managerName : "Ann Martinez's Team"}
-        icon={isManagerView ? <PersonIcon /> : <TeamIcon />}
-      />
-      <TimeframeSelect />
-      <FilterSelect
-        value="External calls"
-        icon={<PhoneIcon />}
-      />
+    <div className={`sticky top-[57px] z-40 bg-gray-100 py-3 -ml-[calc(50vw-50%)] -mr-[calc(50vw-50%)] px-[calc(50vw-50%)] mb-6 transition-shadow duration-200 ${isScrolled ? 'shadow-[0_4px_12px_rgba(0,0,0,0.06)]' : ''}`}>
+      <div className="flex items-center gap-4 max-w-6xl mx-auto">
+        <TimeframeSelect />
+        <FilterSelect
+          value="External calls"
+          icon={<PhoneIcon />}
+        />
+      </div>
     </div>
   );
 }

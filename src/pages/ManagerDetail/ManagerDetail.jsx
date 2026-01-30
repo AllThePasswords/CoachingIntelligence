@@ -7,12 +7,43 @@
  * - Back navigation to dashboard
  */
 import { useParams, Link } from 'react-router';
-import { getManagerById, getSummaryByManager, getTimeframeData } from '@/data';
+import { getManagerById, getSummaryByManager, getTimeframeData, getFeedbackByManager } from '@/data';
 import { InsightSection, CoachingInsight } from '@/components/sections';
 import { Citation } from '@/components/display';
 import { AETable } from '@/components/tables';
+import { FilterRow } from '@/components/filters';
 import { Tooltip, InfoIcon } from '@/components/ui';
 import { useModalStore, useTimeframeStore } from '@/stores';
+
+// Filter feedback examples by timeframe
+function getFilteredFeedbackExamples(managerId, timeframe) {
+  const days = Number(timeframe) || 30;
+  // Reference date matching the mock data (Jan 30, 2026)
+  const endDate = new Date('2026-01-30');
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - days);
+
+  const allFeedback = getFeedbackByManager(managerId);
+
+  // Filter feedback within timeframe and format for display
+  const filtered = allFeedback
+    .filter(f => {
+      const feedbackDate = new Date(f.date);
+      return feedbackDate >= startDate && feedbackDate <= endDate;
+    })
+    .map(f => ({
+      call_id: f.call_id,
+      ae: f.ae_name,
+      date: new Date(f.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+      stage: f.pipeline_stage,
+      quote: f.feedback,
+      empty: !f.has_feedback
+    }))
+    .sort((a, b) => new Date(b.date) - new Date(a.date)) // Most recent first
+    .slice(0, 6); // Limit to 6 examples
+
+  return filtered;
+}
 
 // Trend indicator icon using Heroicons (circled arrows)
 function TrendIcon({ direction }) {
@@ -37,27 +68,34 @@ function TrendIcon({ direction }) {
   );
 }
 
-// Rating icon for insight sections (larger, based on rating)
+// Rating icon for insight section titles (all black, based on rating)
 function RatingIcon({ rating }) {
   if (rating === 'improving') {
     return (
-      <svg className="w-8 h-8 text-green-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <svg className="w-5 h-5 text-gray-900" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     );
   }
   if (rating === 'declining') {
     return (
-      <svg className="w-8 h-8 text-red-500" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+      <svg className="w-5 h-5 text-gray-900" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="m9 12.75 3 3m0 0 3-3m-3 3v-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
       </svg>
     );
   }
   return (
-    <svg className="w-8 h-8 text-gray-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+    <svg className="w-5 h-5 text-gray-900" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
     </svg>
   );
+}
+
+// Get status label for rating
+function getStatusLabel(rating) {
+  if (rating === 'improving') return 'Increasing';
+  if (rating === 'declining') return 'Declining';
+  return 'Steady';
 }
 
 // Determine trend direction based on metric value
@@ -201,9 +239,37 @@ export function ManagerDetail() {
             </div>
           </div>
 
-          {/* Coaching Intelligence Insight */}
+          {/* Filter Row - timeframe selector */}
+          <FilterRow managerName={manager.name} />
+
+          {/* Coaching Intelligence Insight with section titles */}
           {summary && (
-            <CoachingInsight>
+            <CoachingInsight
+              detailCards={
+                <div className="flex items-center gap-8 pt-2">
+                  {/* Section 1: Coaching Investment */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-gray-800">{summary.sections.effort.title}:</span>
+                    <span className="text-sm text-gray-600">{getStatusLabel(levelToRating[summary.sections.effort.level])}</span>
+                    <RatingIcon rating={levelToRating[summary.sections.effort.level]} />
+                  </div>
+
+                  {/* Section 2: Trend Over Time */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-gray-800">{summary.sections.trend.title}:</span>
+                    <span className="text-sm text-gray-600">{getStatusLabel(levelToRating[summary.sections.trend.level])}</span>
+                    <RatingIcon rating={levelToRating[summary.sections.trend.level]} />
+                  </div>
+
+                  {/* Section 3: Coaching Distribution */}
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-gray-800">{summary.sections.distribution.title}:</span>
+                    <span className="text-sm text-gray-600">{getStatusLabel(levelToRating[summary.sections.distribution.level])}</span>
+                    <RatingIcon rating={levelToRating[summary.sections.distribution.level]} />
+                  </div>
+                </div>
+              }
+            >
               {summary.headline}
             </CoachingInsight>
           )}
@@ -215,44 +281,13 @@ export function ManagerDetail() {
             </div>
           </div>
 
-          {/* Insight Sections */}
+          {/* Feedback Analysis Section */}
           {summary && (
-            <div className="mt-8 space-y-6">
-              {/* Row of 3 cards: Coaching Investment, Trend Over Time, Coaching Distribution */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {/* Section 1: Coaching Investment */}
-                <InsightSection
-                  title={summary.sections.effort.title}
-                  headerIcon={<RatingIcon rating={levelToRating[summary.sections.effort.level]} />}
-                  className="h-full"
-                >
-                  <p className="text-gray-600 leading-relaxed">{summary.sections.effort.detail}</p>
-                </InsightSection>
-
-                {/* Section 2: Trend Over Time */}
-                <InsightSection
-                  title={summary.sections.trend.title}
-                  headerIcon={<RatingIcon rating={levelToRating[summary.sections.trend.level]} />}
-                  className="h-full"
-                >
-                  <p className="text-gray-600 leading-relaxed">{summary.sections.trend.detail}</p>
-                </InsightSection>
-
-                {/* Section 3: Coaching Distribution */}
-                <InsightSection
-                  title={summary.sections.distribution.title}
-                  headerIcon={<RatingIcon rating={levelToRating[summary.sections.distribution.level]} />}
-                  className="h-full"
-                >
-                  <p className="text-gray-600 leading-relaxed">{summary.sections.distribution.detail}</p>
-                </InsightSection>
-              </div>
-
-              {/* Section 4: Feedback Analysis */}
+            <div className="mt-8">
               <InsightSection title={summary.sections.feedback_quality.title}>
                 <p className="text-gray-600 leading-relaxed mb-4">{summary.sections.feedback_quality.detail}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {summary.sections.feedback_quality.examples.map((example) => (
+                  {getFilteredFeedbackExamples(managerId, timeframe).map((example) => (
                     <div
                       key={example.call_id}
                       className={`bg-white border rounded-lg p-4 flex flex-col ${example.empty ? 'border-gray-200 bg-gray-50' : 'border-gray-100'}`}
