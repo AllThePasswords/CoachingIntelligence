@@ -69,10 +69,14 @@ export function ManagerCard({ managerId, onClick, variant = 'default' }) {
   const coachingScore = managerMetrics?.coaching_score ?? manager.coaching_score;
   const quotaAttainment = managerMetrics?.quota_attainment ?? manager.quota_attainment;
 
-  // Calculate total sources from manager.sources
-  const totalSources = manager.sources
-    ? Object.values(manager.sources).reduce((sum, val) => sum + val, 0)
-    : 0;
+  // Calculate total activities from timeframe-specific metrics
+  // Activities = calls_listened + calls_attended + scorecards + calls_with_comments
+  const totalActivities = managerMetrics
+    ? (managerMetrics.calls_listened || 0) +
+      (managerMetrics.calls_attended || 0) +
+      (managerMetrics.scorecards || 0) +
+      (managerMetrics.calls_with_comments || 0)
+    : manager.coaching_investment?.activities ?? 0;
 
   const handleClick = () => onClick?.(managerId);
 
@@ -96,20 +100,20 @@ export function ManagerCard({ managerId, onClick, variant = 'default' }) {
       role="button"
       aria-label={`View details for ${manager.name}`}
     >
-      {/* Info tooltip - top right */}
-      <div className="absolute top-3 right-3 z-10" onClick={(e) => e.stopPropagation()}>
-        <Tooltip content="Based on active coaching days, feedback on reviewed calls, scorecards, live attendance, and coverage across all AEs.">
-          <span className="text-gray-400 hover:text-gray-600 cursor-help">
-            <InfoIcon />
-          </span>
-        </Tooltip>
-      </div>
-
       <div className="p-5">
-        {/* Header */}
-        <div className="mb-4">
-          <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Sales Manager</p>
-          <h3 className="text-3xl font-semibold text-gray-900">{manager.name}</h3>
+        {/* Header with tooltip in top right */}
+        <div className="flex justify-between items-start mb-4">
+          <div>
+            <p className="text-[10px] uppercase tracking-wider text-gray-400 font-medium mb-1">Sales Manager</p>
+            <h3 className="text-3xl font-semibold text-gray-900">{manager.name}</h3>
+          </div>
+          <div onClick={(e) => e.stopPropagation()}>
+            <Tooltip content="Based on active coaching days, feedback on reviewed calls, scorecards, live attendance, and coverage across all AEs.">
+              <span className="text-gray-400 hover:text-gray-600 cursor-help">
+                <InfoIcon className="w-4 h-4" />
+              </span>
+            </Tooltip>
+          </div>
         </div>
 
         {/* Metrics Row */}
@@ -139,7 +143,7 @@ export function ManagerCard({ managerId, onClick, variant = 'default' }) {
         <div className="flex items-center justify-between pt-3 border-t border-gray-100">
           <button className="flex items-center gap-1.5 text-xs text-gray-500 hover:text-gray-700 transition-colors">
             <span>Activities</span>
-            <span className="bg-gray-100 px-1.5 py-0.5 rounded text-[10px] font-medium">{totalSources}</span>
+            <span className="bg-gray-100 px-1.5 py-0.5 rounded text-[10px] font-medium">{totalActivities}</span>
           </button>
           <div className="flex items-center gap-2">
             <button

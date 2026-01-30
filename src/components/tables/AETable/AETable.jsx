@@ -5,11 +5,78 @@
  * - AE data: Name, Quota, Total calls (separated visually)
  * - Coaching types: Calls listened, Calls attended, Calls with scorecards,
  *   Calls with comments, Marked as feedback given, Calls with feedback
+ *
+ * Data is timeframe-aware: metrics are computed from feedback log based on selected period
  */
-import { getAEsByManager } from '@/data';
+import { getAEsByManager, feedbackLog } from '@/data';
+import { useTimeframeStore } from '@/stores';
+
+// Deterministic pseudo-random based on AE id and timeframe (consistent across renders)
+function seededRandom(seed) {
+  const x = Math.sin(seed) * 10000;
+  return x - Math.floor(x);
+}
+
+function hashString(str) {
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = ((hash << 5) - hash) + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return Math.abs(hash);
+}
+
+// Compute AE metrics from feedback log for a given timeframe
+function computeAEMetricsForTimeframe(aes, managerId, timeframe) {
+  const days = Number(timeframe) || 30;
+  // Reference date matching the mock data (Jan 30, 2026)
+  const endDate = new Date('2026-01-30');
+  const startDate = new Date(endDate);
+  startDate.setDate(startDate.getDate() - days);
+
+  // Filter feedback for this manager within timeframe
+  const managerFeedback = feedbackLog.filter(f => {
+    if (f.manager_id !== managerId) return false;
+    const feedbackDate = new Date(f.date);
+    return feedbackDate >= startDate && feedbackDate <= endDate;
+  });
+
+  // Build metrics per AE
+  return aes.map(ae => {
+    const aeFeedback = managerFeedback.filter(f => f.ae_id === ae.id);
+
+    // Count metrics from feedback entries
+    const calls_listened = aeFeedback.filter(f => f.listened).length;
+    const calls_attended = aeFeedback.filter(f => f.attended).length;
+    const scorecards = aeFeedback.filter(f => f.has_scorecard).length;
+    const calls_with_comments = aeFeedback.filter(f => f.has_comments).length;
+    const marked_as_feedback_given = aeFeedback.filter(f => f.has_feedback).length;
+    const calls_with_feedback = aeFeedback.filter(f => f.has_feedback || f.has_scorecard || f.has_comments).length;
+
+    // Scale total_calls with deterministic variation per AE/timeframe
+    // Base: ae.total_calls is for 30 days, scale proportionally with +/- 15% variation
+    const scaleFactor = days / 30;
+    const seed = hashString(ae.id + timeframe);
+    const variation = 0.85 + (seededRandom(seed) * 0.30); // 0.85 to 1.15
+    const total_calls = Math.round(ae.total_calls * scaleFactor * variation);
+
+    return {
+      ...ae,
+      total_calls,
+      calls_listened,
+      calls_attended,
+      scorecards,
+      calls_with_comments,
+      marked_as_feedback_given,
+      calls_with_feedback,
+    };
+  });
+}
 
 export function AETable({ managerId }) {
-  const aes = getAEsByManager(managerId);
+  const timeframe = useTimeframeStore(state => state.timeframe);
+  const baseAes = getAEsByManager(managerId);
+  const aes = computeAEMetricsForTimeframe(baseAes, managerId, timeframe);
 
   if (!aes || aes.length === 0) {
     return (

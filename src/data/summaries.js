@@ -19,7 +19,7 @@ export const managerSummaries = {
   MGR001: {
     manager_id: "MGR001",
     manager_name: "Sarah Chen",
-    headline: "Consistently high coaching engagement with measurable team impact",
+    headline: "Sarah is a top-performing coach investing 4x the team average in coaching, with 60 calls coached this month and 63% receiving written feedback. Her team shows the results: all 4 AEs are above quota with a 42% win rate (11 points above org average). Coaching is consistent week-over-week and distributed appropriately across skill levels.",
     
     sections: {
       effort: {
@@ -131,7 +131,7 @@ export const managerSummaries = {
   MGR002: {
     manager_id: "MGR002",
     manager_name: "Marcus Jones",
-    headline: "Solid foundation but declining engagement in recent weeks",
+    headline: "Marcus's coaching volume has declined from 5 calls in week 1 to just 2 calls in week 4, coinciding with quarter-end pressure. However, his feedback quality has improved significantly—recent comments are specific and actionable. The concern: Lauren Kim (89% quota) received the least coaching despite needing it most. Marcus needs to maintain his improved quality while increasing volume.",
     
     sections: {
       effort: {
@@ -173,29 +173,16 @@ export const managerSummaries = {
       },
       feedback_quality: {
         title: "Feedback Analysis",
-        level: "Moderate to Vague",
-        detail: "When Marcus provides feedback, it's relevant but often lacks specificity. Comments are brief and occasionally actionable, but lack the framework references that drive skill development.",
+        level: "Low Volume, High Quality",
+        detail: "While Marcus's coaching volume has declined, his feedback quality has improved significantly. Recent comments are specific, reference frameworks, and include actionable next steps. The gap is frequency, not substance—when he coaches, he coaches well.",
         examples: [
+          // Earliest - vague and generic
           {
-            call_id: "CALL-2015",
-            ae: "James Wilson",
-            date: "Jan 8",
+            call_id: "CALL-2023",
+            ae: "Lauren Kim",
+            date: "Dec 2",
             stage: "Discovery",
-            quote: "Good probing on their current process. The question about 'what happens when a deal slips' got them talking about their real pain."
-          },
-          {
-            call_id: "CALL-2067",
-            ae: "Priya Sharma",
-            date: "Jan 14",
-            stage: "Demo",
-            quote: "Demo ran a bit long. Try to keep it under 45 mins. Otherwise, good energy."
-          },
-          {
-            call_id: "CALL-2089",
-            ae: "James Wilson",
-            date: "Jan 18",
-            stage: "Demo",
-            quote: "Solid demo. Good energy. Maybe trim the intro section next time."
+            quote: "Good start. Keep building rapport."
           },
           {
             call_id: "CALL-2045",
@@ -204,40 +191,63 @@ export const managerSummaries = {
             stage: "Qualification",
             quote: "Scorecard: 4/5 overall. Solid qualification call."
           },
+          // Mid-period - somewhat specific
           {
-            call_id: "CALL-2023",
-            ae: "Lauren Kim",
-            date: "Dec 2",
+            call_id: "CALL-2015",
+            ae: "James Wilson",
+            date: "Jan 8",
             stage: "Discovery",
-            quote: "Good start. Keep building rapport."
+            quote: "Good probing on their current process. The question about 'what happens when a deal slips' got them talking about their real pain."
+          },
+          // Most recent - specific and actionable
+          {
+            call_id: "CALL-2067",
+            ae: "Priya Sharma",
+            date: "Jan 14",
+            stage: "Demo",
+            quote: "Demo ran 52 mins—try to keep under 45. The extra time came from the integrations section. For prospects at their stage, a 2-min overview is enough; save deep-dive for technical eval."
+          },
+          {
+            call_id: "CALL-2089",
+            ae: "James Wilson",
+            date: "Jan 18",
+            stage: "Demo",
+            quote: "Good demo structure. The way you mapped their 3 pain points to our 3 features kept them engaged. One thing: the CFO checked out during the technical deep-dive. Next time, gauge executive attention and pivot to business impact sooner."
+          },
+          {
+            call_id: "CALL-2112",
+            ae: "James Wilson",
+            date: "Jan 22",
+            stage: "Negotiation",
+            quote: "Strong use of the anchoring technique we discussed. When they pushed on price, you led with the ROI calculation ($180K savings) before discussing discount. That's the right sequence—value first, then numbers."
           }
         ]
       }
     },
 
     flags: [
-      { type: "warning", text: "Week 4 coaching dropped to zero feedback. Check if quarter-end pressure is causing coaching to be deprioritised." },
-      { type: "warning", text: "Lauren Kim (89% quota) received least coaching. Consider reversing this—struggling AEs typically need more attention." },
-      { type: "info", text: "Feedback quality is inconsistent. May benefit from coaching calibration session with Sarah Chen." }
+      { type: "positive", text: "Feedback quality has improved significantly. Recent comments are specific, reference frameworks, and include actionable next steps." },
+      { type: "warning", text: "Week 4 coaching dropped to 2 calls. Activity volume is declining even as quality improves." },
+      { type: "warning", text: "Lauren Kim (89% quota) received least coaching. Struggling AEs need more of Marcus's improved feedback approach." }
     ],
     
     suggested_actions: [
-      { id: "add_1on1", label: "Add 'Lauren Kim coaching gap' to 1:1 with Marcus", icon: "calendar" },
-      { id: "send_summary", label: "Send coaching trend summary to Marcus", icon: "mail" },
-      { id: "pair", label: "Set up peer session with Sarah Chen", icon: "users" }
+      { id: "recognize", label: "Recognize Marcus's feedback quality improvement", icon: "star" },
+      { id: "add_1on1", label: "Discuss increasing coaching volume in 1:1", icon: "calendar" },
+      { id: "focus", label: "Direct improved feedback approach to Lauren Kim", icon: "users" }
     ],
-    
+
     follow_up_questions: [
+      "How has Marcus's feedback improved over time?",
       "Why hasn't Lauren Kim been coached?",
-      "Show me Marcus's coaching in the last 2 weeks",
-      "What happened to Marcus's coaching after Week 8?"
+      "Show me Marcus's best coaching examples"
     ]
   },
 
   MGR003: {
     manager_id: "MGR003",
     manager_name: "Jennifer Walsh",
-    headline: "Listening but not coaching—feedback lacks substance",
+    headline: "Jennifer is listening to calls but not converting that into meaningful coaching—only 54% of reviewed calls received comments, and feedback is generic ('Nice job', 'Good call'). Her two lowest performers, Amanda (82%) and Natalie (84%), have received zero scorecards and minimal attention. This pattern suggests avoidance of difficult coaching conversations.",
     
     sections: {
       effort: {
@@ -350,7 +360,7 @@ export const managerSummaries = {
   MGR004: {
     manager_id: "MGR004",
     manager_name: "David Park",
-    headline: "Critical coaching gap with team in crisis",
+    headline: "David has effectively stopped coaching—only 2 calls reviewed this month with zero activity in the past 14 days. His team is in crisis: all 4 AEs are below quota, with Jessica Huang at 54% (lowest in the org) receiving no coaching whatsoever. Team quota sits at 62%, directly correlating with the coaching absence. Immediate intervention required.",
     
     sections: {
       effort: {
