@@ -130,8 +130,15 @@ export function FilterRow({ managerName = null }) {
   }, []);
 
   return (
-    <div className={`sticky top-[57px] z-40 bg-gray-100 py-3 -ml-[calc(50vw-50%)] -mr-[calc(50vw-50%)] px-[calc(50vw-50%)] mb-6 transition-shadow duration-200 ${isScrolled ? 'shadow-[0_4px_12px_rgba(0,0,0,0.06)]' : ''}`}>
-      <div className="flex items-center gap-4 max-w-7xl mx-auto px-4">
+    <div className={`sticky top-[57px] z-40 bg-gray-100 py-3 -mx-4 px-4 mb-6 transition-shadow duration-200 ${isScrolled ? 'shadow-[0_4px_12px_rgba(0,0,0,0.06)]' : ''}`}>
+      <div className="flex items-center gap-4">
+        {/* Person/Team selector - only show on Dashboard (when no managerName) */}
+        {!managerName && (
+          <FilterSelect
+            value="All Managers"
+            icon={<TeamIcon />}
+          />
+        )}
         <TimeframeSelect />
         <FilterSelect
           value="External calls"
