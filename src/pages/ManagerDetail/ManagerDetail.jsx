@@ -210,7 +210,6 @@ export function ManagerDetail() {
 
           {/* Coaching Activity - directly under insight */}
           <div className="mt-6">
-            <h2 className="text-xl font-semibold text-foreground mb-4">Coaching Activity</h2>
             <div className="bg-background-100 border border-border rounded-lg overflow-hidden">
               <AETable managerId={managerId} />
             </div>
