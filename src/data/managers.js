@@ -1,132 +1,193 @@
 // Coaching Intelligence - Manager Data
-// 4 managers with varying performance levels
+// All metrics are derived from AE data - nothing hardcoded
 
-import { getAEsByManager } from './aes.js';
+import { getAEsByManager, getManagerCoachingStats, estimateActiveDays } from './aes.js';
+import { calculateCoachingScore } from '../utils/coachingScore.js';
+
+// Working days in a 30-day period
+const WORKING_DAYS = 22;
+
+// Base manager identity data (only static info that can't be derived)
+const managersBase = [
+  { id: "MGR001", name: "Sarah Chen", region: "West" },
+  { id: "MGR002", name: "Marcus Jones", region: "East" },
+  { id: "MGR003", name: "Jennifer Walsh", region: "Central" },
+  { id: "MGR004", name: "David Park", region: "South" }
+];
 
 // Compute sources from AE data
 function computeSources(managerId) {
-  const aes = getAEsByManager(managerId);
-  const callListening = aes.reduce((sum, ae) => sum + ae.calls_coached, 0);
-  const callAttendance = aes.reduce((sum, ae) => sum + ae.live_attended, 0);
-  const callComments = aes.reduce((sum, ae) => sum + ae.comments, 0);
-  const scorecards = aes.reduce((sum, ae) => sum + ae.scorecards, 0);
-  // feedback_events = calls that have any form of feedback (comments or scorecards)
-  const feedbackEvents = callComments + scorecards;
+  const stats = getManagerCoachingStats(managerId);
   return {
-    call_listening: callListening,
-    call_attendance: callAttendance,
-    call_comments: callComments,
-    scorecards: scorecards,
-    feedback_events: feedbackEvents,
-    forecast_updates: 0 // This would come from a different data source
+    calls_listened: stats.total_calls_listened,
+    calls_attended: stats.total_calls_attended,
+    scorecards: stats.total_scorecards,
+    calls_with_comments: stats.total_calls_with_comments,
+    marked_as_feedback_given: stats.total_marked_feedback,
+    calls_with_feedback: stats.total_calls_with_feedback,
+    feedback_rate: stats.feedback_rate,
+    total_ae_calls: stats.total_ae_calls
   };
 }
 
-export const managers = [
-  {
-    id: "MGR001",
-    name: "Sarah Chen",
-    region: "West",
-    performance: "excellent",
-    quota_attainment: 118,
-    coaching_score: 97,
-    team_win_rate: 42,
-    trend: "stable",
-    summary: "Consistently high engagement with specific, actionable feedback. All AEs above quota with strong pipeline coverage.",
-    coaching_investment: { level: "High", activities: 171 },
-    improvement: { trend: "Stable", days: 90 },
-    distribution: "Even",
-    team_performance: "Exceeding",
-    sources: {
-      call_listening: 60,
-      call_attendance: 18,
-      call_comments: 38,
-      scorecards: 14,
-      feedback_events: 112,
-      forecast_updates: 24
-    }
-  },
-  {
-    id: "MGR002",
-    name: "Marcus Jones",
-    region: "East",
-    performance: "good",
-    quota_attainment: 96,
-    coaching_score: 56,
-    team_win_rate: 34,
-    trend: "declining",
-    summary: "Solid coaching foundation but engagement declining over past 30 days. Lauren Kim under-coached compared to rest of team.",
-    coaching_investment: { level: "Medium", activities: 89 },
-    improvement: { trend: "Declining", days: 90 },
-    distribution: "Uneven",
-    team_performance: "On Track",
-    sources: {
-      call_listening: 14,
-      call_attendance: 8,
-      call_comments: 10,
-      scorecards: 4,
-      feedback_events: 34,
-      forecast_updates: 18
-    }
-  },
-  {
-    id: "MGR003",
-    name: "Jennifer Walsh",
-    region: "Central",
-    performance: "average",
-    quota_attainment: 88,
-    coaching_score: 26,
-    team_win_rate: 31,
-    trend: "stable",
-    summary: "High call listening but minimal coaching delivered. Feedback lacks substance and actionable guidance for the team.",
-    coaching_investment: { level: "Low", activities: 44 },
-    improvement: { trend: "Stable", days: 90 },
-    distribution: "Sporadic",
-    team_performance: "Underperforming",
-    sources: {
-      call_listening: 13,
-      call_attendance: 3,
-      call_comments: 7,
-      scorecards: 2,
-      feedback_events: 8,
-      forecast_updates: 12
-    }
-  },
-  {
-    id: "MGR004",
-    name: "David Park",
-    region: "South",
-    performance: "needs_intervention",
-    quota_attainment: 62,
-    coaching_score: 5,
-    team_win_rate: 19,
-    trend: "declining",
-    summary: "Critical intervention needed. Zero coaching activities in past 14 days. Team performance declining with multiple reps at risk.",
-    coaching_investment: { level: "Minimal", activities: 22 },
-    improvement: { trend: "Declining", days: 90 },
-    distribution: "Absent",
-    team_performance: "Underperforming",
-    sources: {
-      call_listening: 2,
-      call_attendance: 1,
-      call_comments: 1,
-      scorecards: 0,
-      feedback_events: 1,
-      forecast_updates: 4
-    }
+// Compute coaching score from AE data
+function computeCoachingScore(managerId) {
+  const sources = computeSources(managerId);
+  const teamAEs = getAEsByManager(managerId);
+  const activeDays = estimateActiveDays(managerId, WORKING_DAYS);
+
+  // Get per-AE coaching data for distribution calculation
+  const aeCoachingData = teamAEs.map(ae => ({
+    listened: ae.calls_listened || 0,
+    total: ae.total_calls || 20
+  }));
+
+  return calculateCoachingScore({
+    activeDays,
+    workingDays: WORKING_DAYS,
+    callsReviewed: sources.calls_listened,
+    callsWithFeedback: sources.calls_with_feedback,
+    comments: sources.calls_with_comments,
+    scorecards: sources.scorecards,
+    liveAttended: sources.calls_attended,
+    markedFeedbackGiven: sources.marked_as_feedback_given,
+    aeCoachingData
+  });
+}
+
+// Derive performance level from coaching score
+function derivePerformanceLevel(coachingScore) {
+  if (coachingScore >= 70) return "excellent";
+  if (coachingScore >= 50) return "good";
+  if (coachingScore >= 30) return "average";
+  return "needs_intervention";
+}
+
+// Derive coaching investment level from activity volume
+function deriveCoachingInvestmentLevel(sources, aeCount) {
+  const activitiesPerAE = aeCount > 0
+    ? (sources.calls_listened + sources.calls_with_comments + sources.scorecards + sources.calls_attended) / aeCount
+    : 0;
+
+  if (activitiesPerAE >= 8) return "High";
+  if (activitiesPerAE >= 4) return "Medium";
+  if (activitiesPerAE >= 2) return "Low";
+  return "Minimal";
+}
+
+// Derive distribution label from AE coaching data
+function deriveDistributionLabel(managerId) {
+  const teamAEs = getAEsByManager(managerId);
+  if (teamAEs.length === 0) return "N/A";
+
+  const coverageRates = teamAEs.map(ae => {
+    const total = ae.total_calls || 1;
+    return ae.calls_listened / total;
+  });
+
+  const zeroCount = coverageRates.filter(r => r === 0).length;
+  const mean = coverageRates.reduce((sum, r) => sum + r, 0) / coverageRates.length;
+  const variance = coverageRates.reduce((sum, r) => sum + Math.pow(r - mean, 2), 0) / coverageRates.length;
+  const cv = mean > 0 ? Math.sqrt(variance) / mean : 0;
+
+  if (zeroCount > coverageRates.length / 2) return "Absent";
+  if (zeroCount > 0) return "Uneven";
+  if (cv > 0.5) return "Sporadic";
+  return "Even";
+}
+
+// Derive team performance label from quota attainment
+function deriveTeamPerformance(quotaAttainment) {
+  if (quotaAttainment >= 100) return "Exceeding";
+  if (quotaAttainment >= 90) return "On Track";
+  return "Underperforming";
+}
+
+// Derive trend from score relative to team average (simplified - in real app, compare to prior period)
+function deriveTrend(coachingScore, quotaAttainment) {
+  // High score + high quota = stable
+  // High score + low quota = needs review (external factors)
+  // Low score + declining quota = declining
+  // Improving scores would need historical data
+  if (coachingScore >= 50 && quotaAttainment >= 90) return "stable";
+  if (coachingScore < 30 || quotaAttainment < 70) return "declining";
+  return "stable";
+}
+
+// Generate summary based on derived metrics
+function generateSummary(managerId, coachingScore, sources, stats) {
+  const feedbackRate = sources.feedback_rate;
+  const undercoached = stats.undercoached_count;
+
+  if (coachingScore >= 70) {
+    return `Consistently high engagement with specific, actionable feedback. Strong coaching coverage across the team.`;
   }
-];
+  if (coachingScore >= 50) {
+    if (undercoached > 0) {
+      return `Solid coaching foundation but uneven distribution. ${undercoached} AE(s) need more attention.`;
+    }
+    return `Good coaching activity with room for improvement in feedback quality and consistency.`;
+  }
+  if (coachingScore >= 30) {
+    if (feedbackRate < 30) {
+      return `Listening to calls but feedback rate is low (${feedbackRate}%). Focus on providing actionable feedback after reviews.`;
+    }
+    return `Below average coaching engagement. Increase consistency and depth of coaching activities.`;
+  }
+  return `Critical intervention needed. Minimal coaching activity is impacting team performance.`;
+}
+
+// Build complete manager object with all derived values
+function buildManager(base) {
+  const sources = computeSources(base.id);
+  const stats = getManagerCoachingStats(base.id);
+  const coachingScore = computeCoachingScore(base.id);
+  const quotaAttainment = stats.team_quota_attainment;
+  const activeDays = estimateActiveDays(base.id, WORKING_DAYS);
+
+  const performance = derivePerformanceLevel(coachingScore);
+  const investmentLevel = deriveCoachingInvestmentLevel(sources, stats.ae_count);
+  const distribution = deriveDistributionLabel(base.id);
+  const teamPerformance = deriveTeamPerformance(quotaAttainment);
+  const trend = deriveTrend(coachingScore, quotaAttainment);
+  const summary = generateSummary(base.id, coachingScore, sources, stats);
+
+  // Calculate team win rate from quota (simplified proxy)
+  // In reality this would come from deal data
+  const teamWinRate = Math.round(20 + (quotaAttainment - 50) * 0.4);
+
+  return {
+    ...base,
+    coaching_score: coachingScore,
+    quota_attainment: quotaAttainment,
+    team_win_rate: Math.max(10, Math.min(50, teamWinRate)),
+    performance,
+    trend,
+    summary,
+    sources,
+    coaching_investment: {
+      level: investmentLevel,
+      activities: sources.calls_listened + sources.calls_with_comments + sources.scorecards + sources.calls_attended
+    },
+    improvement: {
+      trend: trend === "declining" ? "Declining" : "Stable",
+      days: 90
+    },
+    distribution,
+    team_performance: teamPerformance,
+    active_days: activeDays,
+    working_days: WORKING_DAYS
+  };
+}
+
+// Export managers with all computed values
+export const managers = managersBase.map(buildManager);
 
 export const getManagerById = (id) => {
-  const manager = managers.find(m => m.id === id);
-  if (!manager) return null;
-
-  // Merge computed sources into the manager
-  return {
-    ...manager,
-    sources: computeSources(id)
-  };
+  const base = managersBase.find(m => m.id === id);
+  if (!base) return null;
+  return buildManager(base);
 };
 
-export const getManagersByPerformance = (performance) => 
+export const getManagersByPerformance = (performance) =>
   managers.filter(m => m.performance === performance);

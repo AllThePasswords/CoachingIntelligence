@@ -77,6 +77,34 @@ export const managerSummaries = {
             date: "Jan 20",
             stage: "Qualification",
             quote: "I noticed you didn't ask about their decision timeline until minute 38. By then we'd done a full capability overview for someone who might not have budget until Q3. Let's work on your BANT qualification."
+          },
+          {
+            call_id: "CALL-1089",
+            ae: "Emma Liu",
+            date: "Jan 18",
+            stage: "Demo",
+            quote: "Good discovery recap at the start of the demo. You connected their pain points (manual reporting, 3hrs/week) directly to the dashboard walkthrough. The CFO was nodding throughout."
+          },
+          {
+            call_id: "CALL-1029",
+            ae: "Alex Rivera",
+            date: "Jan 15",
+            stage: "Negotiation",
+            quote: "Good use of the 'feel, felt, found' framework on the security objection. The customer visibly relaxed when you shared the Meridian case study."
+          },
+          {
+            call_id: "CALL-1156",
+            ae: "Sofia Andersson",
+            date: "Jan 22",
+            stage: "Proposal",
+            quote: "Excellent job handling the competitive objection. When they mentioned Clari, you didn't bash the competitor—you asked what specific capabilities they were comparing."
+          },
+          {
+            call_id: "CALL-1076",
+            ae: "Emma Liu",
+            date: "Jan 14",
+            stage: "Qualification",
+            quote: "Strong BANT qualification. You uncovered the $50K budget in the first 10 minutes without being pushy. The question 'What happens if you don't solve this by Q2?' was perfect."
           }
         ]
       }
@@ -161,11 +189,32 @@ export const managerSummaries = {
             date: "Jan 14",
             stage: "Demo",
             quote: "Demo ran a bit long. Try to keep it under 45 mins. Otherwise, good energy."
+          },
+          {
+            call_id: "CALL-2089",
+            ae: "James Wilson",
+            date: "Jan 18",
+            stage: "Demo",
+            quote: "Solid demo. Good energy. Maybe trim the intro section next time."
+          },
+          {
+            call_id: "CALL-2045",
+            ae: "Michael Brown",
+            date: "Dec 15",
+            stage: "Qualification",
+            quote: "Scorecard: 4/5 overall. Solid qualification call."
+          },
+          {
+            call_id: "CALL-2023",
+            ae: "Lauren Kim",
+            date: "Dec 2",
+            stage: "Discovery",
+            quote: "Good start. Keep building rapport."
           }
         ]
       }
     },
-    
+
     flags: [
       { type: "warning", text: "Week 4 coaching dropped to zero feedback. Check if quarter-end pressure is causing coaching to be deprioritised." },
       { type: "warning", text: "Lauren Kim (89% quota) received least coaching. Consider reversing this—struggling AEs typically need more attention." },
@@ -246,11 +295,39 @@ export const managerSummaries = {
             date: "Jan 16",
             stage: "Qualification",
             quote: "Good call. Keep it up."
+          },
+          {
+            call_id: "CALL-3045",
+            ae: "Chris Taylor",
+            date: "Jan 18",
+            stage: "Demo",
+            quote: "Good call."
+          },
+          {
+            call_id: "CALL-3033",
+            ae: "Amanda Foster",
+            date: "Jan 5",
+            stage: "Discovery",
+            quote: "OK."
+          },
+          {
+            call_id: "CALL-3055",
+            ae: "Kevin O'Brien",
+            date: "Jan 20",
+            stage: "Demo",
+            quote: "Scorecard: 3/5 overall."
+          },
+          {
+            call_id: "CALL-3028",
+            ae: "Natalie Cruz",
+            date: "Dec 12",
+            stage: "Discovery",
+            quote: "Fine."
           }
         ]
       }
     },
-    
+
     flags: [
       { type: "warning", text: "18% feedback rate is well below 60% benchmark. Calls are being reviewed but not coached." },
       { type: "warning", text: "Amanda Foster (82%) and Natalie Cruz (84%) have received zero scorecards and minimal feedback. Both are at risk of missing quota." },
@@ -328,7 +405,7 @@ export const managerSummaries = {
         ]
       }
     },
-    
+
     flags: [
       { type: "critical", text: "Zero coaching activity in past 14 days. Immediate intervention required." },
       { type: "critical", text: "Jessica Huang (54%) and Rachel Green (58%) are in critical performance territory with no coaching support." },

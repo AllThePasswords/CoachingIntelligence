@@ -1,9 +1,18 @@
 /**
  * FilterRow - Consistent filter row for Dashboard and Manager pages
- * Shows: Person/Team selector, Timeframe (30 days), Call type
+ * Shows: Person/Team selector, Timeframe (dropdown: 30/60/90 days), Call type
+ * Timeframe drives all page data when on Dashboard.
  */
+import { useState, useRef, useEffect } from 'react';
+import { useTimeframeStore } from '@/stores';
 
-// Dropdown selector component
+const TIMEFRAME_OPTIONS = [
+  { value: '30', label: 'Last 30 days' },
+  { value: '60', label: 'Last 60 days' },
+  { value: '90', label: 'Last 90 days' },
+];
+
+// Static dropdown selector (no popover)
 function FilterSelect({ value, icon }) {
   return (
     <div className="flex items-center gap-2 bg-white border border-gray-200 rounded-lg px-3 py-2 min-w-[180px]">
@@ -14,6 +23,64 @@ function FilterSelect({ value, icon }) {
       <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
       </svg>
+    </div>
+  );
+}
+
+// Timeframe dropdown: opens on click, selects option, updates store
+function TimeframeSelect() {
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const timeframe = useTimeframeStore((s) => s.timeframe);
+  const setTimeframe = useTimeframeStore((s) => s.setTimeframe);
+
+  const currentLabel = TIMEFRAME_OPTIONS.find((o) => o.value === timeframe)?.label ?? 'Last 30 days';
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    }
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [open]);
+
+  return (
+    <div className="relative min-w-[180px]" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        className="flex items-center gap-2 w-full bg-white border border-gray-200 rounded-lg px-3 py-2 text-left hover:border-gray-300 transition-colors"
+      >
+        <CalendarIcon />
+        <span className="flex-1 text-sm text-gray-700">{currentLabel}</span>
+        <svg className={`w-4 h-4 text-gray-400 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg py-1 z-50">
+          {TIMEFRAME_OPTIONS.map((opt) => (
+            <button
+              key={opt.value}
+              type="button"
+              onClick={() => {
+                setTimeframe(opt.value);
+                setOpen(false);
+              }}
+              className={`w-full px-3 py-2 text-left text-sm hover:bg-gray-50 flex items-center justify-between ${timeframe === opt.value ? 'bg-gray-50 text-gray-900 font-medium' : 'text-gray-700'}`}
+            >
+              {opt.label}
+              {timeframe === opt.value && (
+                <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              )}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -59,10 +126,7 @@ export function FilterRow({ managerName = null }) {
         value={isManagerView ? managerName : "Ann Martinez's Team"}
         icon={isManagerView ? <PersonIcon /> : <TeamIcon />}
       />
-      <FilterSelect
-        value="Last 30 days"
-        icon={<CalendarIcon />}
-      />
+      <TimeframeSelect />
       <FilterSelect
         value="External calls"
         icon={<PhoneIcon />}
