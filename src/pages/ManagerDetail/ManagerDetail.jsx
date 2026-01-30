@@ -143,8 +143,8 @@ export function ManagerDetail() {
   const coachingScore = managerMetrics?.coaching_score ?? manager?.coaching_score;
   const quotaAttainment = managerMetrics?.quota_attainment ?? manager?.quota_attainment;
 
-  // Get AI summary for headline
-  const summary = getSummaryByManager(managerId);
+  // Get AI summary for headline (filtered by timeframe)
+  const summary = getSummaryByManager(managerId, timeframe);
 
   // CTA actions
   const openConfirmationModal = useModalStore(state => state.openConfirmationModal);

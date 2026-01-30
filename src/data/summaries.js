@@ -436,20 +436,149 @@ export const managerSummaries = {
   }
 };
 
-export const getSummaryByManager = (managerId) => {
+// Timeframe-specific summary overrides
+// These provide dynamic headlines and section levels based on the selected time period
+const timeframeSummaries = {
+  MGR001: {
+    "30": {
+      headline: "Sarah is a top-performing coach investing 4x the team average in coaching, with 20 calls reviewed this month and 75% receiving feedback. Her team shows the results: all 4 AEs are above quota with a 42% win rate (11 points above org average). Coaching is consistent week-over-week and distributed appropriately across skill levels.",
+      sections: {
+        effort: { level: "High", value: "20 calls reviewed" },
+        trend: { level: "Stable" },
+        distribution: { level: "Even" }
+      }
+    },
+    "60": {
+      headline: "Over the past 60 days, Sarah has maintained consistent coaching excellence with 38 calls reviewed and a 76% feedback rate. Her team quota sits at 115%—second best across all managers. Week-over-week variance is minimal, indicating coaching is a deliberate habit, not an afterthought.",
+      sections: {
+        effort: { level: "High", value: "38 calls reviewed" },
+        trend: { level: "Stable" },
+        distribution: { level: "Even" }
+      }
+    },
+    "90": {
+      headline: "Sarah has been the most consistent coach over the past 90 days, reviewing 58 calls with a 76% feedback rate sustained throughout. Her team's quota attainment of 112% directly correlates with this sustained investment. She averages 4-5 calls per AE per month—matching best practice benchmarks.",
+      sections: {
+        effort: { level: "High", value: "58 calls reviewed" },
+        trend: { level: "Stable" },
+        distribution: { level: "Even" }
+      }
+    }
+  },
+  MGR002: {
+    "30": {
+      headline: "Marcus's coaching volume has declined from 5 calls in week 1 to just 2 calls in week 4, coinciding with quarter-end pressure. However, his feedback quality has improved significantly—recent comments are specific and actionable. The concern: Lauren Kim (89% quota) received the least coaching despite needing it most. Marcus needs to maintain his improved quality while increasing volume.",
+      sections: {
+        effort: { level: "Medium", value: "10 calls reviewed" },
+        trend: { level: "Declining" },
+        distribution: { level: "Uneven" }
+      }
+    },
+    "60": {
+      headline: "Looking back 60 days, Marcus showed stronger engagement early in the period (28 calls total, 57% feedback rate) before his recent decline. His team quota was at 102%—still performing. The pattern suggests he can sustain good coaching, but recent pressure has pulled him away. The opportunity: return to his 30-60 day pace.",
+      sections: {
+        effort: { level: "Medium", value: "28 calls reviewed" },
+        trend: { level: "Declining" },
+        distribution: { level: "Uneven" }
+      }
+    },
+    "90": {
+      headline: "Over 90 days, Marcus was one of the stronger coaches—52 calls reviewed with a 62% feedback rate, team quota at 108%. His gradual decline is visible across the full period, dropping from ~6 calls/week early on to ~2 calls/week recently. This trajectory needs course correction before it impacts team performance further.",
+      sections: {
+        effort: { level: "Medium", value: "52 calls reviewed" },
+        trend: { level: "Declining" },
+        distribution: { level: "Uneven" }
+      }
+    }
+  },
+  MGR003: {
+    "30": {
+      headline: "Jennifer is listening to calls but not converting that into meaningful coaching—only 25% of reviewed calls received feedback, and feedback is generic ('Nice job', 'Good call'). Her two lowest performers, Amanda (82%) and Natalie (84%), have received zero scorecards and minimal attention. This pattern suggests avoidance of difficult coaching conversations.",
+      sections: {
+        effort: { level: "Low", value: "8 calls reviewed" },
+        trend: { level: "Stable" },
+        distribution: { level: "Sporadic" }
+      }
+    },
+    "60": {
+      headline: "Over 60 days, Jennifer reviewed 19 calls with a 32% feedback rate—consistent but below benchmark. Her team quota sits at 91%, struggling to break through. The pattern is steady but insufficient: she's maintaining minimal engagement rather than developing her team. Amanda and Natalie remain under-supported.",
+      sections: {
+        effort: { level: "Low", value: "19 calls reviewed" },
+        trend: { level: "Stable" },
+        distribution: { level: "Sporadic" }
+      }
+    },
+    "90": {
+      headline: "The 90-day view confirms Jennifer's pattern: 32 calls reviewed with a 31% feedback rate, team quota at 94%. Her engagement has been consistently low throughout—no significant peaks or valleys. This suggests a baseline behavior rather than temporary circumstances. Intervention needed to shift the pattern.",
+      sections: {
+        effort: { level: "Low", value: "32 calls reviewed" },
+        trend: { level: "Stable" },
+        distribution: { level: "Sporadic" }
+      }
+    }
+  },
+  MGR004: {
+    "30": {
+      headline: "David has effectively stopped coaching—only 2 calls reviewed this month with zero feedback given. His team is in crisis: all 4 AEs are below quota, with Jessica Huang at 54% (lowest in the org) receiving no coaching whatsoever. Team quota sits at 62%, directly correlating with the coaching absence. Immediate intervention required.",
+      sections: {
+        effort: { level: "Minimal", value: "2 calls reviewed" },
+        trend: { level: "Declining" },
+        distribution: { level: "Absent" }
+      }
+    },
+    "60": {
+      headline: "The 60-day view shows David had a brief spike of engagement around day 45 (9 calls total, 33% feedback rate), but it didn't sustain. His team quota improved slightly to 68% during that window. This suggests he can coach when engaged—the gap is consistency. His recent 2-week absence is the crisis to address.",
+      sections: {
+        effort: { level: "Low", value: "9 calls reviewed" },
+        trend: { level: "Declining" },
+        distribution: { level: "Sporadic" }
+      }
+    },
+    "90": {
+      headline: "Over 90 days, David shows a clear decline: decent engagement 60-90 days ago (18 calls total, 39% feedback rate), then gradual drop-off to near-zero activity. His team quota tracked with this—78% at the start, now 62%. The correlation is stark: when David coaches, his team performs better. He needs support to re-engage.",
+      sections: {
+        effort: { level: "Low", value: "18 calls reviewed" },
+        trend: { level: "Declining" },
+        distribution: { level: "Sporadic" }
+      }
+    }
+  }
+};
+
+export const getSummaryByManager = (managerId, timeframe = "30") => {
   const summary = managerSummaries[managerId];
   if (!summary) return null;
 
+  // Get timeframe-specific overrides
+  const tfOverrides = timeframeSummaries[managerId]?.[timeframe];
+
   // Merge computed breakdown into the summary
   const computedBreakdown = computeBreakdown(managerId);
-  return {
+
+  // Build the result with timeframe-specific values merged in
+  const result = {
     ...summary,
+    headline: tfOverrides?.headline || summary.headline,
     sections: {
       ...summary.sections,
+      effort: {
+        ...summary.sections.effort,
+        ...(tfOverrides?.sections?.effort || {})
+      },
+      trend: {
+        ...summary.sections.trend,
+        ...(tfOverrides?.sections?.trend || {})
+      },
+      distribution: {
+        ...summary.sections.distribution,
+        ...(tfOverrides?.sections?.distribution || {})
+      },
       methods: {
         ...summary.sections.methods,
         breakdown: computedBreakdown
       }
     }
   };
+
+  return result;
 };
