@@ -25,7 +25,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -44,7 +43,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -58,13 +56,12 @@ export const feedbackLog = [
     ae_name: "Ryan Patel",
     pipeline_stage: "Discovery",
     duration: 28,
-    type: "comment",
-    feedback: "Good discovery questions. You uncovered their real pain point about manual data entry within the first 10 minutes.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -82,7 +79,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -100,14 +96,13 @@ export const feedbackLog = [
     ae_name: "Alex Rivera",
     pipeline_stage: "Proposal",
     duration: 40,
-    type: "comment",
-    feedback: "Solid proposal presentation. The ROI slide landed well with their CFO.",
+    type: "scorecard",
+    feedback: "Scorecard: Proposal Structure 5/5, ROI Clarity 5/5, Next Steps 4/5.",
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
-    has_scorecard: false
+    has_comments: false,
+    has_scorecard: true
   },
   {
     id: "FB001f",
@@ -124,7 +119,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -145,7 +139,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -159,13 +152,12 @@ export const feedbackLog = [
     ae_name: "Ryan Patel",
     pipeline_stage: "Demo",
     duration: 45,
-    type: "comment",
-    feedback: "Strong demo. You customized the workflow section to match their exact process. That attention to detail makes a difference.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -183,7 +175,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -204,7 +195,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -225,7 +215,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -244,8 +233,7 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: true
   },
   {
@@ -258,13 +246,12 @@ export const feedbackLog = [
     ae_name: "Ryan Patel",
     pipeline_stage: "Proposal",
     duration: 35,
-    type: "comment",
-    feedback: "Clear proposal walkthrough. You addressed their budget concerns proactively.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -282,7 +269,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -301,7 +287,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -324,7 +309,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -338,13 +322,12 @@ export const feedbackLog = [
     ae_name: "Ryan Patel",
     pipeline_stage: "Negotiation",
     duration: 42,
-    type: "comment",
-    feedback: "Held firm on pricing. Good job not caving on the 20% discount request.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
 
@@ -364,7 +347,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -383,7 +365,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -402,7 +383,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -423,7 +403,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -439,13 +418,12 @@ export const feedbackLog = [
     ae_name: "Alex Rivera",
     pipeline_stage: "Demo",
     duration: 45,
-    type: "comment",
-    feedback: "Excellent demo customization. You remembered their mention of Salesforce integration from discovery and led with that.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -463,7 +441,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -484,7 +461,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -505,7 +481,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -524,7 +499,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -538,13 +512,12 @@ export const feedbackLog = [
     ae_name: "Sofia Andersson",
     pipeline_stage: "Discovery",
     duration: 30,
-    type: "comment",
-    feedback: "Great discovery. You identified the champion and got introduced to the economic buyer.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
 
@@ -564,7 +537,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -585,7 +557,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -604,7 +575,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -618,13 +588,12 @@ export const feedbackLog = [
     ae_name: "Ryan Patel",
     pipeline_stage: "Discovery",
     duration: 32,
-    type: "comment",
-    feedback: "Good discovery call. You asked the right questions about their current workflow.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -642,7 +611,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -663,7 +631,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -679,13 +646,12 @@ export const feedbackLog = [
     ae_name: "Emma Liu",
     pipeline_stage: "Proposal",
     duration: 40,
-    type: "comment",
-    feedback: "Clean proposal presentation. The pricing breakdown was easy to follow.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -703,8 +669,7 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: true
   },
   {
@@ -722,7 +687,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -743,7 +707,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -759,13 +722,12 @@ export const feedbackLog = [
     ae_name: "Alex Rivera",
     pipeline_stage: "Negotiation",
     duration: 45,
-    type: "comment",
-    feedback: "Strong negotiation. You protected margin while still giving them a win.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: true,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -783,7 +745,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -804,7 +765,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -820,13 +780,12 @@ export const feedbackLog = [
     ae_name: "Alex Rivera",
     pipeline_stage: "Demo",
     duration: 42,
-    type: "comment",
-    feedback: "Great demo energy. The prospect was engaged throughout.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -844,7 +803,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -863,7 +821,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -884,7 +841,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -900,13 +856,12 @@ export const feedbackLog = [
     ae_name: "Alex Rivera",
     pipeline_stage: "Discovery",
     duration: 35,
-    type: "comment",
-    feedback: "Strong discovery. You uncovered their true urgency around compliance deadlines.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -924,7 +879,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -945,7 +899,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -961,14 +914,13 @@ export const feedbackLog = [
     ae_name: "Emma Liu",
     pipeline_stage: "Demo",
     duration: 45,
-    type: "scorecard",
-    feedback: "Scorecard: Preparation 5/5, Delivery 5/5, Engagement 5/5. Excellent work.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: true,
-    has_feedback: true,
-    has_comments: true,
-    has_scorecard: true
+    has_comments: false,
+    has_scorecard: false
   },
   {
     id: "FB034c",
@@ -985,8 +937,7 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -1004,7 +955,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1025,7 +975,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1041,13 +990,12 @@ export const feedbackLog = [
     ae_name: "Alex Rivera",
     pipeline_stage: "Proposal",
     duration: 40,
-    type: "comment",
-    feedback: "Clean proposal. Customer appreciated the clear ROI section.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -1065,7 +1013,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1086,7 +1033,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1107,7 +1053,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: true,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1121,13 +1066,12 @@ export const feedbackLog = [
     ae_name: "Emma Liu",
     pipeline_stage: "Demo",
     duration: 45,
-    type: "comment",
-    feedback: "Strong demo. You read the room and pivoted to analytics when you saw their interest.",
-    quality: "specific",
+    type: "listened",
+    feedback: "",
+    quality: "none",
     listened: true,
     attended: false,
-    has_feedback: true,
-    has_comments: true,
+    has_comments: false,
     has_scorecard: false
   },
   {
@@ -1145,7 +1089,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1164,7 +1107,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1185,7 +1127,6 @@ export const feedbackLog = [
     quality: "specific",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1211,7 +1152,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1230,7 +1170,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1251,7 +1190,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1272,7 +1210,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1291,7 +1228,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1310,7 +1246,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1331,7 +1266,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1352,7 +1286,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1371,7 +1304,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1392,7 +1324,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1413,7 +1344,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1432,7 +1362,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1453,7 +1382,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1474,7 +1402,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1493,7 +1420,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1514,7 +1440,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1535,7 +1460,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1554,7 +1478,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1575,7 +1498,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1596,7 +1518,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1615,7 +1536,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1636,7 +1556,6 @@ export const feedbackLog = [
     quality: "moderate",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1657,7 +1576,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1676,7 +1594,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1697,7 +1614,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1718,7 +1634,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1737,7 +1652,6 @@ export const feedbackLog = [
     quality: "vague",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1763,7 +1677,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1784,7 +1697,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1803,7 +1715,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1824,7 +1735,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1845,7 +1755,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1866,7 +1775,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1887,7 +1795,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1906,7 +1813,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1927,7 +1833,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1948,7 +1853,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -1969,7 +1873,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: true
   },
@@ -1990,7 +1893,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -2011,7 +1913,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -2032,7 +1933,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -2053,7 +1953,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: true,
     has_comments: true,
     has_scorecard: false
   },
@@ -2079,7 +1978,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: false,
     has_comments: true,
     has_scorecard: false
   },
@@ -2100,7 +1998,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: false,
     has_comments: true,
     has_scorecard: false
   },
@@ -2121,7 +2018,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: false,
     has_comments: true,
     has_scorecard: false
   },
@@ -2142,7 +2038,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: false,
     has_comments: true,
     has_scorecard: false
   },
@@ -2163,7 +2058,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: false,
     has_comments: true,
     has_scorecard: false
   },
@@ -2184,7 +2078,6 @@ export const feedbackLog = [
     quality: "generic",
     listened: true,
     attended: false,
-    has_feedback: false,
     has_comments: true,
     has_scorecard: false
   }

@@ -3,8 +3,7 @@
  *
  * Columns:
  * - AE data: Name, Quota, Total calls (separated visually)
- * - Coaching types: Calls listened, Calls attended, Calls with scorecards,
- *   Calls with comments, Marked as feedback given, Calls with feedback
+ * - Coaching types: Calls listened, Calls attended, Calls with scorecards, Calls with comments
  *
  * Data is timeframe-aware: metrics are computed from feedback log based on selected period
  */
@@ -50,8 +49,6 @@ function computeAEMetricsForTimeframe(aes, managerId, timeframe) {
     const calls_attended = aeFeedback.filter(f => f.attended).length;
     const scorecards = aeFeedback.filter(f => f.has_scorecard).length;
     const calls_with_comments = aeFeedback.filter(f => f.has_comments).length;
-    const marked_as_feedback_given = aeFeedback.filter(f => f.has_feedback).length;
-    const calls_with_feedback = aeFeedback.filter(f => f.has_feedback || f.has_scorecard || f.has_comments).length;
 
     // Scale total_calls with deterministic variation per AE/timeframe
     // Base: ae.total_calls is for 30 days, scale proportionally with +/- 15% variation
@@ -67,8 +64,6 @@ function computeAEMetricsForTimeframe(aes, managerId, timeframe) {
       calls_attended,
       scorecards,
       calls_with_comments,
-      marked_as_feedback_given,
-      calls_with_feedback,
     };
   });
 }
@@ -94,8 +89,6 @@ export function AETable({ managerId }) {
       calls_attended: acc.calls_attended + (ae.calls_attended || 0),
       scorecards: acc.scorecards + (ae.scorecards || 0),
       calls_with_comments: acc.calls_with_comments + (ae.calls_with_comments || 0),
-      marked_as_feedback_given: acc.marked_as_feedback_given + (ae.marked_as_feedback_given || 0),
-      calls_with_feedback: acc.calls_with_feedback + (ae.calls_with_feedback || 0),
     }),
     {
       total_calls: 0,
@@ -103,8 +96,6 @@ export function AETable({ managerId }) {
       calls_attended: 0,
       scorecards: 0,
       calls_with_comments: 0,
-      marked_as_feedback_given: 0,
-      calls_with_feedback: 0,
     }
   );
 
@@ -120,8 +111,6 @@ export function AETable({ managerId }) {
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[90px] text-right">Call attended</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[110px] text-right">Calls with scorecards</th>
             <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[110px] text-right">Calls with comments</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[130px] text-right">Marked as feedback given</th>
-            <th className="py-3 px-4 text-xs font-medium text-gray-500 uppercase tracking-wider w-[110px] text-right">Calls with feedback</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-100">
@@ -134,8 +123,6 @@ export function AETable({ managerId }) {
               <td className="py-3 px-4 text-gray-700 text-right">{ae.calls_attended}</td>
               <td className="py-3 px-4 text-gray-700 text-right">{ae.scorecards}</td>
               <td className="py-3 px-4 text-gray-700 text-right">{ae.calls_with_comments}</td>
-              <td className="py-3 px-4 text-gray-700 text-right">{ae.marked_as_feedback_given}</td>
-              <td className="py-3 px-4 text-gray-700 text-right">{ae.calls_with_feedback}</td>
             </tr>
           ))}
         </tbody>
@@ -148,8 +135,6 @@ export function AETable({ managerId }) {
             <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.calls_attended}</td>
             <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.scorecards}</td>
             <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.calls_with_comments}</td>
-            <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.marked_as_feedback_given}</td>
-            <td className="py-3 px-4 font-bold text-gray-900 text-right">{totals.calls_with_feedback}</td>
           </tr>
         </tfoot>
       </table>
